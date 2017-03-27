@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="mystateApiDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'mystateApiDb.dbo.vw_user' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_user">
+          <Key>
+            <PropertyRef Name="phonenumber" />
+            <PropertyRef Name="isuninstalled" />
+          </Key>
+          <Property Name="phonenumber" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="gcmregistrationid" Type="text" />
+          <Property Name="LastUpdated" Type="datetime" />
+          <Property Name="createdate" Type="datetime" />
+          <Property Name="updatedate" Type="datetime" />
+          <Property Name="devicetype" Type="nchar" MaxLength="15" />
+          <Property Name="appversioncode" Type="int" />
+          <Property Name="statetext" Type="nchar" MaxLength="50" />
+          <Property Name="waitings" Type="text" />
+          <Property Name="fullstate" Type="int" />
+          <Property Name="reconnectpushdate" Type="datetime" />
+          <Property Name="timezone" Type="nchar" MaxLength="10" />
+          <Property Name="isuninstalled" Type="bit" Nullable="false" />
+          <Property Name="uninstallationreason" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityContainer Name="mystateApiDbModelStoreContainer">
+          <EntitySet Name="vw_user" EntityType="Self.vw_user" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_user].[phonenumber] AS [phonenumber], 
+    [vw_user].[gcmregistrationid] AS [gcmregistrationid], 
+    [vw_user].[LastUpdated] AS [LastUpdated], 
+    [vw_user].[createdate] AS [createdate], 
+    [vw_user].[updatedate] AS [updatedate], 
+    [vw_user].[devicetype] AS [devicetype], 
+    [vw_user].[appversioncode] AS [appversioncode], 
+    [vw_user].[statetext] AS [statetext], 
+    [vw_user].[waitings] AS [waitings], 
+    [vw_user].[fullstate] AS [fullstate], 
+    [vw_user].[reconnectpushdate] AS [reconnectpushdate], 
+    [vw_user].[timezone] AS [timezone], 
+    [vw_user].[isuninstalled] AS [isuninstalled], 
+    [vw_user].[uninstallationreason] AS [uninstallationreason]
+    FROM [dbo].[vw_user] AS [vw_user]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="mystateApiDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="vw_user">
+          <Key>
+            <PropertyRef Name="phonenumber" />
+            <PropertyRef Name="isuninstalled" />
+          </Key>
+          <Property Name="phonenumber" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="gcmregistrationid" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdated" Type="DateTime" Precision="3" />
+          <Property Name="createdate" Type="DateTime" Precision="3" />
+          <Property Name="updatedate" Type="DateTime" Precision="3" />
+          <Property Name="devicetype" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="appversioncode" Type="Int32" />
+          <Property Name="statetext" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="waitings" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="fullstate" Type="Int32" />
+          <Property Name="reconnectpushdate" Type="DateTime" Precision="3" />
+          <Property Name="timezone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="isuninstalled" Type="Boolean" Nullable="false" />
+          <Property Name="uninstallationreason" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="mystateApiDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="vw_user" EntityType="Self.vw_user" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="mystateApiDbModelStoreContainer" CdmEntityContainer="mystateApiDbEntities">
+          <EntitySetMapping Name="vw_user">
+            <EntityTypeMapping TypeName="mystateApiDbModel.vw_user">
+              <MappingFragment StoreEntitySet="vw_user">
+                <ScalarProperty Name="phonenumber" ColumnName="phonenumber" />
+                <ScalarProperty Name="gcmregistrationid" ColumnName="gcmregistrationid" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="createdate" ColumnName="createdate" />
+                <ScalarProperty Name="updatedate" ColumnName="updatedate" />
+                <ScalarProperty Name="devicetype" ColumnName="devicetype" />
+                <ScalarProperty Name="appversioncode" ColumnName="appversioncode" />
+                <ScalarProperty Name="statetext" ColumnName="statetext" />
+                <ScalarProperty Name="waitings" ColumnName="waitings" />
+                <ScalarProperty Name="fullstate" ColumnName="fullstate" />
+                <ScalarProperty Name="reconnectpushdate" ColumnName="reconnectpushdate" />
+                <ScalarProperty Name="timezone" ColumnName="timezone" />
+                <ScalarProperty Name="isuninstalled" ColumnName="isuninstalled" />
+                <ScalarProperty Name="uninstallationreason" ColumnName="uninstallationreason" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

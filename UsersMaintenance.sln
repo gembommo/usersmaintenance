@@ -1,0 +1,70 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsersMaintenance", "UsersMaintenance\UsersMaintenance.csproj", "{8B91A8B6-2FA2-4C18-95F5-8FA64336D8EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PushNotificationEngines", "PushNotificationEngines\PushNotificationEngines.csproj", "{77FDEC9F-6871-410F-8217-5EF085C7D3F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanInterested", "CleanInterested\CleanInterested.csproj", "{5C82BDC2-C747-47AF-9E65-87793D1F8730}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessNumbersUpdatedPush", "BusinessNumbersUpdatedPush\BusinessNumbersUpdatedPush.csproj", "{58A322BD-E692-4A69-B705-627EE6890600}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PushToClients", "PushToClients\PushToClients.csproj", "{76F9304D-D51F-4887-85BB-F2F1604A5518}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 6
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://mystate.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = PushNotificationEngines\\PushNotificationEngines.csproj
+		SccProjectName1 = PushNotificationEngines
+		SccLocalPath1 = PushNotificationEngines
+		SccProjectUniqueName2 = UsersMaintenance\\UsersMaintenance.csproj
+		SccProjectName2 = UsersMaintenance
+		SccLocalPath2 = UsersMaintenance
+		SccProjectUniqueName3 = CleanInterested\\CleanInterested.csproj
+		SccProjectName3 = CleanInterested
+		SccLocalPath3 = CleanInterested
+		SccProjectUniqueName4 = BusinessNumbersUpdatedPush\\BusinessNumbersUpdatedPush.csproj
+		SccProjectName4 = BusinessNumbersUpdatedPush
+		SccLocalPath4 = BusinessNumbersUpdatedPush
+		SccProjectUniqueName5 = PushToClients\\PushToClients.csproj
+		SccProjectName5 = PushToClients
+		SccLocalPath5 = PushToClients
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8B91A8B6-2FA2-4C18-95F5-8FA64336D8EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B91A8B6-2FA2-4C18-95F5-8FA64336D8EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B91A8B6-2FA2-4C18-95F5-8FA64336D8EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B91A8B6-2FA2-4C18-95F5-8FA64336D8EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77FDEC9F-6871-410F-8217-5EF085C7D3F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77FDEC9F-6871-410F-8217-5EF085C7D3F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77FDEC9F-6871-410F-8217-5EF085C7D3F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77FDEC9F-6871-410F-8217-5EF085C7D3F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C82BDC2-C747-47AF-9E65-87793D1F8730}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C82BDC2-C747-47AF-9E65-87793D1F8730}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C82BDC2-C747-47AF-9E65-87793D1F8730}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C82BDC2-C747-47AF-9E65-87793D1F8730}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58A322BD-E692-4A69-B705-627EE6890600}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58A322BD-E692-4A69-B705-627EE6890600}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58A322BD-E692-4A69-B705-627EE6890600}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58A322BD-E692-4A69-B705-627EE6890600}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76F9304D-D51F-4887-85BB-F2F1604A5518}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76F9304D-D51F-4887-85BB-F2F1604A5518}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76F9304D-D51F-4887-85BB-F2F1604A5518}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76F9304D-D51F-4887-85BB-F2F1604A5518}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
+	EndGlobalSection
+EndGlobal

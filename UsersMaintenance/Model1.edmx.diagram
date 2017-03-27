@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cc1a2ff612a54dcc9978de2781b52def" Name="Diagram1">
+        <EntityTypeShape EntityType="mystateApiDbModel.AdminUser" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.AvailabilityType" Width="1.5" PointX="3" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.Business_Activity" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.Business_Communication" Width="1.5" PointX="5.25" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.Business_Property" Width="1.5" PointX="8.25" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.Business" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.Category" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.City" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.Communication" Width="1.5" PointX="3" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.CommunicationType" Width="1.5" PointX="0.75" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.Permission" Width="1.5" PointX="7.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.Phone" Width="1.5" PointX="5.25" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.Property" Width="1.5" PointX="6" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.Type" Width="1.5" PointX="9.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.AccessTokensLog" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.AlphaList" Width="1.5" PointX="11.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.AnalyticsKey" Width="1.5" PointX="11.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.AppleFeedback" Width="1.5" PointX="12.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.BlackList" Width="1.5" PointX="7.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.CompanyPhone" Width="1.5" PointX="13.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.ContactStateWasInterested" Width="1.5" PointX="13.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.ContactUpdated" Width="1.5" PointX="13.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.CrunchesLog" Width="1.5" PointX="14.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.DailyNonMyStateContact" Width="1.5" PointX="9.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.InstallationsLog" Width="1.5" PointX="11.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.Invitation" Width="1.5" PointX="13.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.Log" Width="1.5" PointX="15.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.MyMyStateContact" Width="1.5" PointX="15.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.NonMystateContact" Width="1.5" PointX="15.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.NonMyStateContactsAggregation" Width="1.5" PointX="15.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.NonMyStateContactsForMarketing" Width="1.5" PointX="0.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.PendingVerification" Width="1.5" PointX="16.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.PushRespons" Width="1.5" PointX="15.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.ServerPushCode" Width="1.5" PointX="11" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.ShareCode" Width="1.5" PointX="17.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.SmsLog" Width="1.5" PointX="2.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.State" Width="1.5" PointX="4.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.sysdiagram" Width="1.5" PointX="17.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.Token" Width="1.5" PointX="6.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.User" Width="1.5" PointX="8.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.Company" Width="1.5" PointX="8.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.Area" Width="1.5" PointX="17.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.GArea" Width="1.5" PointX="10.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.NonMyStateContactsForMarketingTemp" Width="1.5" PointX="17.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.vw_clean_uninstall" Width="1.5" PointX="12.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.vw_friends_days_uninstall_basic" Width="1.5" PointX="17.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.vw_friends_days_uninstall_basic_Israel" Width="1.5" PointX="19.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.vw_ghost_users_full_data" Width="1.5" PointX="19.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.vw_gohst_users" Width="1.5" PointX="19.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.vw_mystate_friends" Width="1.5" PointX="14.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.vw_mystate_friends_created_date" Width="1.5" PointX="19.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.vw_mystate_friends_when_install" Width="1.5" PointX="19.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.vw_mystate_friends_with_create_date_to_all" Width="1.5" PointX="10.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.vw_TablesSize" Width="1.5" PointX="16.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.vw_uninstall" Width="1.5" PointX="21.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.vw_users" Width="1.5" PointX="0.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.vw_without_gsm_users_full_data" Width="1.5" PointX="21.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.database_firewall_rules" Width="1.5" PointX="21.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.script_deployment_status" Width="1.5" PointX="21.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mystateApiDbModel.script_deployments" Width="1.5" PointX="21.75" PointY="18.75" IsExpanded="true" />
+        <AssociationConnector Association="mystateApiDbModel.fk_businessComunication_available" ManuallyRouted="false" />
+        <AssociationConnector Association="mystateApiDbModel.fk_businessAct_business" ManuallyRouted="false" />
+        <AssociationConnector Association="mystateApiDbModel.fk_businessComunication_business" ManuallyRouted="false" />
+        <AssociationConnector Association="mystateApiDbModel.fk_businessComunication_comunication" ManuallyRouted="false" />
+        <AssociationConnector Association="mystateApiDbModel.fk_businessProp_business" ManuallyRouted="false" />
+        <AssociationConnector Association="mystateApiDbModel.fk_businessProp_property" ManuallyRouted="false" />
+        <AssociationConnector Association="mystateApiDbModel.fk_business_category" ManuallyRouted="false" />
+        <AssociationConnector Association="mystateApiDbModel.FK_Phones_Businesses" ManuallyRouted="false" />
+        <AssociationConnector Association="mystateApiDbModel.fk_btbComunication_CommunicationType" ManuallyRouted="false" />
+        <AssociationConnector Association="mystateApiDbModel.FK__ServerPus__Compa__79B300FB" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,2903 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="mystateApiDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdminUsers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userName" Type="varchar" MaxLength="50" />
+          <Property Name="permission" Type="varchar" MaxLength="50" />
+          <Property Name="firstName" Type="varchar" MaxLength="50" />
+          <Property Name="lastName" Type="varchar" MaxLength="50" />
+          <Property Name="address" Type="varchar" MaxLength="50" />
+          <Property Name="phone" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="password" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'mystateApiDb_MultiSdk.BusinessPopup.Areas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Areas">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" />
+          <Property Name="letter" Type="nchar" MaxLength="10" />
+          <Property Name="areaID" Type="int" />
+        </EntityType>
+        <EntityType Name="AvailabilityTypes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Business_Activity">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="businessID" Type="int" Nullable="false" />
+          <Property Name="area" Type="char" MaxLength="10" />
+          <Property Name="type" Type="varchar" MaxLength="50" />
+          <Property Name="starthours" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="days" Type="int" Nullable="false" />
+          <Property Name="endhours" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Business_Communication">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="businessID" Type="int" Nullable="false" />
+          <Property Name="comunicationID" Type="int" Nullable="false" />
+          <Property Name="Sort" Type="int" Nullable="false" />
+          <Property Name="linkContent" Type="varchar" MaxLength="255" />
+          <Property Name="availableID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Business_Property">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="propertyID" Type="int" Nullable="false" />
+          <Property Name="businessID" Type="int" Nullable="false" />
+          <Property Name="url" Type="varchar" MaxLength="255" />
+          <Property Name="Sort" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Businesses">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="image" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="255" />
+          <Property Name="street" Type="varchar" MaxLength="255" />
+          <Property Name="longitude" Type="decimal" Precision="9" Scale="6" />
+          <Property Name="catID" Type="int" Nullable="false" />
+          <Property Name="homeN" Type="nchar" MaxLength="10" />
+          <Property Name="city" Type="varchar" MaxLength="50" />
+          <Property Name="latitude" Type="decimal" Precision="8" Scale="6" />
+          <Property Name="largeImage" Type="varchar" MaxLength="255" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="TimeZoneId" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cities">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Region" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Communications">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="icon" Type="varchar" MaxLength="255" />
+          <Property Name="CommunicationTypeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CommunicationTypes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'mystateApiDb_MultiSdk.BusinessPopup.GAreas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="GAreas">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Permissions">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="permissionName" Type="nchar" MaxLength="50" />
+          <Property Name="permissionCode" Type="nchar" MaxLength="5" />
+          <Property Name="permissionDescription" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Phones">
+          <Key>
+            <PropertyRef Name="Phone" />
+            <PropertyRef Name="Region" />
+          </Key>
+          <Property Name="Phone" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="Region" Type="nchar" MaxLength="2" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="BusinessID" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Properties">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Types">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" />
+          <Property Name="letter" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="AccessTokensLog">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="AccessToken" Type="nvarchar(max)" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AlphaList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="50" />
+          <Property Name="phone" Type="nchar" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="Inviter" Type="varchar" MaxLength="50" />
+          <Property Name="IsInstalled" Type="bit" />
+        </EntityType>
+        <EntityType Name="AnalyticsKeys">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Key" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AppleFeedback">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Token" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AppleDate" Type="datetime" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="Enviroment" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BlackLists">
+          <Key>
+            <PropertyRef Name="UserPhoneNumber" />
+            <PropertyRef Name="BlackListedPhoneNumber" />
+          </Key>
+          <Property Name="UserPhoneNumber" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="BlackListedPhoneNumber" Type="nchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CompanyPhones">
+          <Key>
+            <PropertyRef Name="PhoneNumber" />
+          </Key>
+          <Property Name="PhoneNumber" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ContactStateWasInterested">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ContactUpdated">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="20" />
+          <Property Name="FullState" Type="int" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="Text" Type="nchar" MaxLength="50" />
+          <Property Name="TextUpdateDate" Type="datetime" />
+          <Property Name="StateAvailabilityDate" Type="datetime" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CrunchesLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CruncherPhone" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="DestinationPhone" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="Action" Type="int" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DailyNonMyStateContacts">
+          <Key>
+            <PropertyRef Name="PhoneNumber" />
+          </Key>
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InstallationsLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Action" Type="int" Nullable="false" />
+          <Property Name="Reason" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Invitations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Inviter" Type="nvarchar" MaxLength="20" />
+          <Property Name="Invitee" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="LinkActivate" Type="bit" Nullable="false" />
+          <Property Name="UniqueKey" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Logs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientTime" Type="datetime" />
+          <Property Name="DBTime" Type="datetime" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nchar" MaxLength="20" />
+          <Property Name="Title" Type="nvarchar" MaxLength="500" />
+          <Property Name="Message" Type="nvarchar(max)" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="Severity" Type="int" />
+          <Property Name="CallStack" Type="nvarchar(max)" />
+          <Property Name="Extra" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="MyMyStateContacts">
+          <Key>
+            <PropertyRef Name="UserPhone" />
+            <PropertyRef Name="ContactPhone" />
+          </Key>
+          <Property Name="UserPhone" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="ContactPhone" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="AddedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NonMystateContacts">
+          <Key>
+            <PropertyRef Name="ContactPhoneNumber" />
+          </Key>
+          <Property Name="ContactPhoneNumber" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="UsersPhoneNumbers" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="WasInMyState" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NonMyStateContactsAggregation">
+          <Key>
+            <PropertyRef Name="PhoneNumber" />
+          </Key>
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="NumberOfMyStateUsers" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NonMyStateContactsForMarketing">
+          <Key>
+            <PropertyRef Name="PhoneNumber" />
+          </Key>
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DisplayName" Type="varchar" MaxLength="100" />
+          <Property Name="TimesContacted" Type="int" />
+          <Property Name="Starred" Type="bit" />
+          <Property Name="Favorite" Type="bit" />
+          <Property Name="Recents" Type="bit" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'mystateApiDb_MultiSdk.dbo.NonMyStateContactsForMarketingTemp' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="NonMyStateContactsForMarketingTemp">
+          <Key>
+            <PropertyRef Name="PhoneNumber" />
+          </Key>
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DisplayName" Type="varchar" MaxLength="100" />
+          <Property Name="TimesContacted" Type="int" />
+          <Property Name="Starred" Type="bit" />
+          <Property Name="Favorite" Type="bit" />
+          <Property Name="Recents" Type="bit" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PendingVerifications">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RequestId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdateDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PushResponses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Json" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Response" Type="text" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="ServerPushCodes">
+          <Key>
+            <PropertyRef Name="PhoneNumber" />
+            <PropertyRef Name="CompanyId" />
+          </Key>
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="CompanyId" Type="int" Nullable="false" />
+          <Property Name="PushCode" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="IsInstalled" Type="bit" Nullable="false" />
+          <Property Name="UninstallationReason" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="ShareCodes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="UniqueKey" Type="nvarchar" MaxLength="10" />
+          <Property Name="Count" Type="int" />
+        </EntityType>
+        <EntityType Name="SmsLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MessageId" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Sender" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Recipient" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="SmsType" Type="int" Nullable="false" />
+          <Property Name="TextSent" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="SmsResponse" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ReceiptStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="ReceiptErrCcode" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="States">
+          <Key>
+            <PropertyRef Name="PhoneNumber" />
+          </Key>
+          <Property Name="PhoneNumber" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="StateText" Type="nchar" MaxLength="50" />
+          <Property Name="StateTextDate" Type="datetime" />
+          <Property Name="StateAvailabilityDate" Type="datetime" />
+          <Property Name="LastUpdated" Type="datetime" />
+          <Property Name="Waitings" Type="text" />
+          <Property Name="FullState" Type="int" />
+          <Property Name="ViewCount" Type="int" Nullable="false" />
+          <Property Name="ViewCountDate" Type="datetime" />
+          <Property Name="ReconnectPushDate" Type="datetime" />
+          <Property Name="IsHideRingerMode" Type="bit" Nullable="false" />
+          <Property Name="IsHideManualAvailability" Type="bit" Nullable="false" />
+          <Property Name="IsHideBatteryAndCharging" Type="bit" Nullable="false" />
+          <Property Name="TimeZone" Type="nchar" MaxLength="10" />
+          <Property Name="IsUninstalled" Type="bit" Nullable="false" />
+          <Property Name="UninstallationReason" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Tokens">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullToken" Type="varchar" MaxLength="600" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="ExpireDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="PhoneNumber" />
+          </Key>
+          <Property Name="PhoneNumber" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="FirstName" Type="nchar" MaxLength="20" />
+          <Property Name="LastName" Type="nchar" MaxLength="20" />
+          <Property Name="perCode" Type="nchar" MaxLength="10" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="GcmRegistrationId" Type="text" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="DeviceType" Type="nchar" MaxLength="15" />
+          <Property Name="AccessToken" Type="varchar" MaxLength="600" />
+          <Property Name="AppVersion" Type="nvarchar" MaxLength="20" />
+          <Property Name="AppVersionCode" Type="int" />
+          <Property Name="AndroidId" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Companies">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SDKKey" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="AuthUrl" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="State" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'mystateApiDb_MultiSdk.dbo.vw_clean_uninstall' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_clean_uninstall">
+          <Key>
+            <PropertyRef Name="PhoneNumber" />
+          </Key>
+          <Property Name="PhoneNumber" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="install" Type="datetime" />
+          <Property Name="uninstall" Type="datetime" />
+          <Property Name="diff_days" Type="int" />
+          <Property Name="diff_hours" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'mystateApiDb_MultiSdk.dbo.vw_friends_days_uninstall_basic' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_friends_days_uninstall_basic">
+          <Key>
+            <PropertyRef Name="PhoneNumber" />
+          </Key>
+          <Property Name="PhoneNumber" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="userPhone" Type="nchar" MaxLength="20" />
+          <Property Name="install" Type="datetime" />
+          <Property Name="uninstall" Type="datetime" />
+          <Property Name="diff_days" Type="int" />
+          <Property Name="diff_hours" Type="int" />
+          <Property Name="counter" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'mystateApiDb_MultiSdk.dbo.vw_friends_days_uninstall_basic_Israel' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_friends_days_uninstall_basic_Israel">
+          <Key>
+            <PropertyRef Name="PhoneNumber" />
+          </Key>
+          <Property Name="PhoneNumber" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="userPhone" Type="nchar" MaxLength="20" />
+          <Property Name="install" Type="datetime" />
+          <Property Name="uninstall" Type="datetime" />
+          <Property Name="diff_days" Type="int" />
+          <Property Name="diff_hours" Type="int" />
+          <Property Name="counter" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'mystateApiDb_MultiSdk.dbo.vw_ghost_users_full_data' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_ghost_users_full_data">
+          <Key>
+            <PropertyRef Name="PhoneNumber" />
+            <PropertyRef Name="key" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="ViewCount" />
+            <PropertyRef Name="IsHideRingerMode" />
+            <PropertyRef Name="IsHideManualAvailability" />
+            <PropertyRef Name="IsHideBatteryAndCharging" />
+            <PropertyRef Name="IsUninstalled" />
+          </Key>
+          <Property Name="PhoneNumber" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="key" Type="bigint" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="GcmRegistrationId" Type="text" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="AccessToken" Type="varchar" MaxLength="600" />
+          <Property Name="AppVersionCode" Type="int" />
+          <Property Name="AndroidId" Type="nvarchar" MaxLength="100" />
+          <Property Name="StateText" Type="nchar" MaxLength="50" />
+          <Property Name="StateTextDate" Type="datetime" />
+          <Property Name="StateAvailabilityDate" Type="datetime" />
+          <Property Name="LastUpdated" Type="datetime" />
+          <Property Name="Waitings" Type="text" />
+          <Property Name="FullState" Type="int" />
+          <Property Name="ViewCount" Type="int" Nullable="false" />
+          <Property Name="ViewCountDate" Type="datetime" />
+          <Property Name="ReconnectPushDate" Type="datetime" />
+          <Property Name="IsHideRingerMode" Type="bit" Nullable="false" />
+          <Property Name="IsHideManualAvailability" Type="bit" Nullable="false" />
+          <Property Name="IsHideBatteryAndCharging" Type="bit" Nullable="false" />
+          <Property Name="TimeZone" Type="nchar" MaxLength="10" />
+          <Property Name="IsUninstalled" Type="bit" Nullable="false" />
+          <Property Name="UninstallationReason" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'mystateApiDb_MultiSdk.dbo.vw_gohst_users' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_gohst_users">
+          <Key>
+            <PropertyRef Name="PhoneNumber" />
+          </Key>
+          <Property Name="PhoneNumber" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="LastSeen" Type="date" />
+          <Property Name="LastSeenDiff" Type="int" />
+          <Property Name="CreateDate" Type="date" />
+          <Property Name="CreateDateDiff" Type="int" />
+          <Property Name="UpdateDate" Type="date" />
+          <Property Name="UpdateDateDiff" Type="int" />
+          <Property Name="AppVersionCode" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'mystateApiDb_MultiSdk.dbo.vw_mystate_friends' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_mystate_friends">
+          <Key>
+            <PropertyRef Name="UserPhone" />
+          </Key>
+          <Property Name="UserPhone" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="counter" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'mystateApiDb_MultiSdk.dbo.vw_mystate_friends_created_date' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_mystate_friends_created_date">
+          <Key>
+            <PropertyRef Name="UserPhone" />
+            <PropertyRef Name="ContactPhone" />
+          </Key>
+          <Property Name="UserPhone" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="ContactPhone" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="ContactPhone_CreateDate" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'mystateApiDb_MultiSdk.dbo.vw_mystate_friends_when_install' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_mystate_friends_when_install">
+          <Key>
+            <PropertyRef Name="UserPhone" />
+          </Key>
+          <Property Name="UserPhone" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="counter" Type="int" />
+          <Property Name="User_CreateDate" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'mystateApiDb_MultiSdk.dbo.vw_mystate_friends_with_create_date_to_all' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_mystate_friends_with_create_date_to_all">
+          <Key>
+            <PropertyRef Name="UserPhone" />
+            <PropertyRef Name="ContactPhone" />
+          </Key>
+          <Property Name="UserPhone" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="User_CreateDate" Type="datetime" />
+          <Property Name="ContactPhone" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="ContactPhone_CreateDate" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'mystateApiDb_MultiSdk.dbo.vw_TablesSize' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_TablesSize">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="size" Type="numeric" Precision="27" Scale="6" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'mystateApiDb_MultiSdk.dbo.vw_uninstall' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_uninstall">
+          <Key>
+            <PropertyRef Name="PhoneNumber" />
+            <PropertyRef Name="install" />
+            <PropertyRef Name="inAction" />
+            <PropertyRef Name="uninstall" />
+            <PropertyRef Name="unAction" />
+          </Key>
+          <Property Name="PhoneNumber" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="install" Type="datetime" Nullable="false" />
+          <Property Name="inAction" Type="int" Nullable="false" />
+          <Property Name="uninstall" Type="datetime" Nullable="false" />
+          <Property Name="unAction" Type="int" Nullable="false" />
+          <Property Name="Reason" Type="nvarchar" MaxLength="100" />
+          <Property Name="diff_days" Type="int" />
+          <Property Name="diff_hours" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'mystateApiDb_MultiSdk.dbo.vw_users' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_users">
+          <Key>
+            <PropertyRef Name="phonenumber" />
+            <PropertyRef Name="isuninstalled" />
+          </Key>
+          <Property Name="phonenumber" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="gcmregistrationid" Type="text" />
+          <Property Name="LastUpdated" Type="datetime" />
+          <Property Name="createdate" Type="datetime" />
+          <Property Name="updatedate" Type="datetime" />
+          <Property Name="devicetype" Type="nchar" MaxLength="15" />
+          <Property Name="appversioncode" Type="int" />
+          <Property Name="statetext" Type="nchar" MaxLength="50" />
+          <Property Name="accesstoken" Type="varchar" MaxLength="600" />
+          <Property Name="fullstate" Type="int" />
+          <Property Name="reconnectpushdate" Type="datetime" />
+          <Property Name="timezone" Type="nchar" MaxLength="10" />
+          <Property Name="isuninstalled" Type="bit" Nullable="false" />
+          <Property Name="uninstallationreason" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'mystateApiDb_MultiSdk.dbo.vw_without_gsm_users_full_data' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_without_gsm_users_full_data">
+          <Key>
+            <PropertyRef Name="PhoneNumber" />
+            <PropertyRef Name="key" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="ViewCount" />
+            <PropertyRef Name="IsHideRingerMode" />
+            <PropertyRef Name="IsHideManualAvailability" />
+            <PropertyRef Name="IsHideBatteryAndCharging" />
+            <PropertyRef Name="IsUninstalled" />
+          </Key>
+          <Property Name="PhoneNumber" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="key" Type="bigint" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="GcmRegistrationId" Type="text" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="AccessToken" Type="varchar" MaxLength="600" />
+          <Property Name="AppVersionCode" Type="int" />
+          <Property Name="AndroidId" Type="nvarchar" MaxLength="100" />
+          <Property Name="StateText" Type="nchar" MaxLength="50" />
+          <Property Name="StateTextDate" Type="datetime" />
+          <Property Name="StateAvailabilityDate" Type="datetime" />
+          <Property Name="LastUpdated" Type="datetime" />
+          <Property Name="Waitings" Type="text" />
+          <Property Name="FullState" Type="int" />
+          <Property Name="ViewCount" Type="int" Nullable="false" />
+          <Property Name="ViewCountDate" Type="datetime" />
+          <Property Name="ReconnectPushDate" Type="datetime" />
+          <Property Name="IsHideRingerMode" Type="bit" Nullable="false" />
+          <Property Name="IsHideManualAvailability" Type="bit" Nullable="false" />
+          <Property Name="IsHideBatteryAndCharging" Type="bit" Nullable="false" />
+          <Property Name="TimeZone" Type="nchar" MaxLength="10" />
+          <Property Name="IsUninstalled" Type="bit" Nullable="false" />
+          <Property Name="UninstallationReason" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'mystateApiDb_MultiSdk.sys.database_firewall_rules' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="database_firewall_rules">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="start_ip_address" />
+            <PropertyRef Name="end_ip_address" />
+            <PropertyRef Name="create_date" />
+            <PropertyRef Name="modify_date" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="start_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="end_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="create_date" Type="datetime" Nullable="false" />
+          <Property Name="modify_date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'mystateApiDb_MultiSdk.sys.script_deployment_status' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="script_deployment_status">
+          <Key>
+            <PropertyRef Name="deployment_id" />
+            <PropertyRef Name="logical_server" />
+            <PropertyRef Name="database_name" />
+            <PropertyRef Name="status" />
+            <PropertyRef Name="num_retries" />
+          </Key>
+          <Property Name="deployment_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="worker_id" Type="uniqueidentifier" />
+          <Property Name="logical_server" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="database_name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="deployment_start" Type="datetimeoffset" Precision="7" />
+          <Property Name="deployment_end" Type="datetimeoffset" Precision="7" />
+          <Property Name="status" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="num_retries" Type="smallint" Nullable="false" />
+          <Property Name="messages" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'mystateApiDb_MultiSdk.sys.script_deployments' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="script_deployments">
+          <Key>
+            <PropertyRef Name="deployment_id" />
+            <PropertyRef Name="coordinator_id" />
+            <PropertyRef Name="deployment_name" />
+            <PropertyRef Name="deployment_submitted" />
+            <PropertyRef Name="status" />
+            <PropertyRef Name="retry_policy" />
+            <PropertyRef Name="script" />
+          </Key>
+          <Property Name="deployment_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="coordinator_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="deployment_name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="deployment_submitted" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="deployment_start" Type="datetimeoffset" Precision="7" />
+          <Property Name="deployment_end" Type="datetimeoffset" Precision="7" />
+          <Property Name="status" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="results_table" Type="nvarchar" MaxLength="261" />
+          <Property Name="retry_policy" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="script" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="messages" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK__ServerPus__Compa__34D3C6C9">
+          <End Role="Companies" Type="Self.Companies" Multiplicity="1" />
+          <End Role="ServerPushCodes" Type="Self.ServerPushCodes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServerPushCodes">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_btbComunication_CommunicationType">
+          <End Role="CommunicationTypes" Type="Self.CommunicationTypes" Multiplicity="1" />
+          <End Role="Communications" Type="Self.Communications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CommunicationTypes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Communications">
+              <PropertyRef Name="CommunicationTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_business_category">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
+          <End Role="Businesses" Type="Self.Businesses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Businesses">
+              <PropertyRef Name="catID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_businessAct_business">
+          <End Role="Businesses" Type="Self.Businesses" Multiplicity="1" />
+          <End Role="Business_Activity" Type="Self.Business_Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Businesses">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Business_Activity">
+              <PropertyRef Name="businessID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_businessComunication_available">
+          <End Role="AvailabilityTypes" Type="Self.AvailabilityTypes" Multiplicity="1" />
+          <End Role="Business_Communication" Type="Self.Business_Communication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AvailabilityTypes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Business_Communication">
+              <PropertyRef Name="availableID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_businessComunication_business">
+          <End Role="Businesses" Type="Self.Businesses" Multiplicity="1" />
+          <End Role="Business_Communication" Type="Self.Business_Communication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Businesses">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Business_Communication">
+              <PropertyRef Name="businessID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_businessComunication_comunication">
+          <End Role="Communications" Type="Self.Communications" Multiplicity="1" />
+          <End Role="Business_Communication" Type="Self.Business_Communication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Communications">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Business_Communication">
+              <PropertyRef Name="comunicationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_businessProp_business">
+          <End Role="Businesses" Type="Self.Businesses" Multiplicity="1" />
+          <End Role="Business_Property" Type="Self.Business_Property" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Businesses">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Business_Property">
+              <PropertyRef Name="businessID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_businessProp_property">
+          <End Role="Properties" Type="Self.Properties" Multiplicity="1" />
+          <End Role="Business_Property" Type="Self.Business_Property" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Properties">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Business_Property">
+              <PropertyRef Name="propertyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Phones_Businesses">
+          <End Role="Businesses" Type="Self.Businesses" Multiplicity="1" />
+          <End Role="Phones" Type="Self.Phones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Businesses">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Phones">
+              <PropertyRef Name="BusinessID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="mystateApiDbModelStoreContainer">
+          <EntitySet Name="AdminUsers" EntityType="Self.AdminUsers" Schema="BusinessPopup" store:Type="Tables" />
+          <EntitySet Name="AvailabilityTypes" EntityType="Self.AvailabilityTypes" Schema="BusinessPopup" store:Type="Tables" />
+          <EntitySet Name="Business_Activity" EntityType="Self.Business_Activity" Schema="BusinessPopup" store:Type="Tables" />
+          <EntitySet Name="Business_Communication" EntityType="Self.Business_Communication" Schema="BusinessPopup" store:Type="Tables" />
+          <EntitySet Name="Business_Property" EntityType="Self.Business_Property" Schema="BusinessPopup" store:Type="Tables" />
+          <EntitySet Name="Businesses" EntityType="Self.Businesses" Schema="BusinessPopup" store:Type="Tables" />
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="BusinessPopup" store:Type="Tables" />
+          <EntitySet Name="Cities" EntityType="Self.Cities" Schema="BusinessPopup" store:Type="Tables" />
+          <EntitySet Name="Communications" EntityType="Self.Communications" Schema="BusinessPopup" store:Type="Tables" />
+          <EntitySet Name="CommunicationTypes" EntityType="Self.CommunicationTypes" Schema="BusinessPopup" store:Type="Tables" />
+          <EntitySet Name="Permissions" EntityType="Self.Permissions" Schema="BusinessPopup" store:Type="Tables" />
+          <EntitySet Name="Phones" EntityType="Self.Phones" Schema="BusinessPopup" store:Type="Tables" />
+          <EntitySet Name="Properties" EntityType="Self.Properties" Schema="BusinessPopup" store:Type="Tables" />
+          <EntitySet Name="Types" EntityType="Self.Types" Schema="BusinessPopup" store:Type="Tables" />
+          <EntitySet Name="AccessTokensLog" EntityType="Self.AccessTokensLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AlphaList" EntityType="Self.AlphaList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AnalyticsKeys" EntityType="Self.AnalyticsKeys" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AppleFeedback" EntityType="Self.AppleFeedback" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BlackLists" EntityType="Self.BlackLists" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompanyPhones" EntityType="Self.CompanyPhones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContactStateWasInterested" EntityType="Self.ContactStateWasInterested" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContactUpdated" EntityType="Self.ContactUpdated" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CrunchesLog" EntityType="Self.CrunchesLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DailyNonMyStateContacts" EntityType="Self.DailyNonMyStateContacts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InstallationsLog" EntityType="Self.InstallationsLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invitations" EntityType="Self.Invitations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Logs" EntityType="Self.Logs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MyMyStateContacts" EntityType="Self.MyMyStateContacts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NonMystateContacts" EntityType="Self.NonMystateContacts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NonMyStateContactsAggregation" EntityType="Self.NonMyStateContactsAggregation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NonMyStateContactsForMarketing" EntityType="Self.NonMyStateContactsForMarketing" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PendingVerifications" EntityType="Self.PendingVerifications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PushResponses" EntityType="Self.PushResponses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServerPushCodes" EntityType="Self.ServerPushCodes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShareCodes" EntityType="Self.ShareCodes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SmsLog" EntityType="Self.SmsLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="States" EntityType="Self.States" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tokens" EntityType="Self.Tokens" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Companies" EntityType="Self.Companies" Schema="SDK" store:Type="Tables" />
+          <EntitySet Name="Areas" EntityType="Self.Areas" store:Type="Tables" store:Schema="BusinessPopup">
+            <DefiningQuery>SELECT 
+    [Areas].[ID] AS [ID], 
+    [Areas].[name] AS [name], 
+    [Areas].[letter] AS [letter], 
+    [Areas].[areaID] AS [areaID]
+    FROM [BusinessPopup].[Areas] AS [Areas]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="GAreas" EntityType="Self.GAreas" store:Type="Tables" store:Schema="BusinessPopup">
+            <DefiningQuery>SELECT 
+    [GAreas].[ID] AS [ID], 
+    [GAreas].[name] AS [name]
+    FROM [BusinessPopup].[GAreas] AS [GAreas]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="NonMyStateContactsForMarketingTemp" EntityType="Self.NonMyStateContactsForMarketingTemp" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [NonMyStateContactsForMarketingTemp].[PhoneNumber] AS [PhoneNumber], 
+    [NonMyStateContactsForMarketingTemp].[DisplayName] AS [DisplayName], 
+    [NonMyStateContactsForMarketingTemp].[TimesContacted] AS [TimesContacted], 
+    [NonMyStateContactsForMarketingTemp].[Starred] AS [Starred], 
+    [NonMyStateContactsForMarketingTemp].[Favorite] AS [Favorite], 
+    [NonMyStateContactsForMarketingTemp].[Recents] AS [Recents], 
+    [NonMyStateContactsForMarketingTemp].[CreatedDate] AS [CreatedDate]
+    FROM [dbo].[NonMyStateContactsForMarketingTemp] AS [NonMyStateContactsForMarketingTemp]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_clean_uninstall" EntityType="Self.vw_clean_uninstall" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_clean_uninstall].[PhoneNumber] AS [PhoneNumber], 
+    [vw_clean_uninstall].[install] AS [install], 
+    [vw_clean_uninstall].[uninstall] AS [uninstall], 
+    [vw_clean_uninstall].[diff_days] AS [diff_days], 
+    [vw_clean_uninstall].[diff_hours] AS [diff_hours]
+    FROM [dbo].[vw_clean_uninstall] AS [vw_clean_uninstall]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_friends_days_uninstall_basic" EntityType="Self.vw_friends_days_uninstall_basic" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_friends_days_uninstall_basic].[PhoneNumber] AS [PhoneNumber], 
+    [vw_friends_days_uninstall_basic].[userPhone] AS [userPhone], 
+    [vw_friends_days_uninstall_basic].[install] AS [install], 
+    [vw_friends_days_uninstall_basic].[uninstall] AS [uninstall], 
+    [vw_friends_days_uninstall_basic].[diff_days] AS [diff_days], 
+    [vw_friends_days_uninstall_basic].[diff_hours] AS [diff_hours], 
+    [vw_friends_days_uninstall_basic].[counter] AS [counter]
+    FROM [dbo].[vw_friends_days_uninstall_basic] AS [vw_friends_days_uninstall_basic]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_friends_days_uninstall_basic_Israel" EntityType="Self.vw_friends_days_uninstall_basic_Israel" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_friends_days_uninstall_basic_Israel].[PhoneNumber] AS [PhoneNumber], 
+    [vw_friends_days_uninstall_basic_Israel].[userPhone] AS [userPhone], 
+    [vw_friends_days_uninstall_basic_Israel].[install] AS [install], 
+    [vw_friends_days_uninstall_basic_Israel].[uninstall] AS [uninstall], 
+    [vw_friends_days_uninstall_basic_Israel].[diff_days] AS [diff_days], 
+    [vw_friends_days_uninstall_basic_Israel].[diff_hours] AS [diff_hours], 
+    [vw_friends_days_uninstall_basic_Israel].[counter] AS [counter]
+    FROM [dbo].[vw_friends_days_uninstall_basic_Israel] AS [vw_friends_days_uninstall_basic_Israel]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_ghost_users_full_data" EntityType="Self.vw_ghost_users_full_data" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_ghost_users_full_data].[PhoneNumber] AS [PhoneNumber], 
+    [vw_ghost_users_full_data].[key] AS [key], 
+    [vw_ghost_users_full_data].[Status] AS [Status], 
+    [vw_ghost_users_full_data].[GcmRegistrationId] AS [GcmRegistrationId], 
+    [vw_ghost_users_full_data].[CreateDate] AS [CreateDate], 
+    [vw_ghost_users_full_data].[UpdateDate] AS [UpdateDate], 
+    [vw_ghost_users_full_data].[AccessToken] AS [AccessToken], 
+    [vw_ghost_users_full_data].[AppVersionCode] AS [AppVersionCode], 
+    [vw_ghost_users_full_data].[AndroidId] AS [AndroidId], 
+    [vw_ghost_users_full_data].[StateText] AS [StateText], 
+    [vw_ghost_users_full_data].[StateTextDate] AS [StateTextDate], 
+    [vw_ghost_users_full_data].[StateAvailabilityDate] AS [StateAvailabilityDate], 
+    [vw_ghost_users_full_data].[LastUpdated] AS [LastUpdated], 
+    [vw_ghost_users_full_data].[Waitings] AS [Waitings], 
+    [vw_ghost_users_full_data].[FullState] AS [FullState], 
+    [vw_ghost_users_full_data].[ViewCount] AS [ViewCount], 
+    [vw_ghost_users_full_data].[ViewCountDate] AS [ViewCountDate], 
+    [vw_ghost_users_full_data].[ReconnectPushDate] AS [ReconnectPushDate], 
+    [vw_ghost_users_full_data].[IsHideRingerMode] AS [IsHideRingerMode], 
+    [vw_ghost_users_full_data].[IsHideManualAvailability] AS [IsHideManualAvailability], 
+    [vw_ghost_users_full_data].[IsHideBatteryAndCharging] AS [IsHideBatteryAndCharging], 
+    [vw_ghost_users_full_data].[TimeZone] AS [TimeZone], 
+    [vw_ghost_users_full_data].[IsUninstalled] AS [IsUninstalled], 
+    [vw_ghost_users_full_data].[UninstallationReason] AS [UninstallationReason]
+    FROM [dbo].[vw_ghost_users_full_data] AS [vw_ghost_users_full_data]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_gohst_users" EntityType="Self.vw_gohst_users" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_gohst_users].[PhoneNumber] AS [PhoneNumber], 
+    [vw_gohst_users].[LastSeen] AS [LastSeen], 
+    [vw_gohst_users].[LastSeenDiff] AS [LastSeenDiff], 
+    [vw_gohst_users].[CreateDate] AS [CreateDate], 
+    [vw_gohst_users].[CreateDateDiff] AS [CreateDateDiff], 
+    [vw_gohst_users].[UpdateDate] AS [UpdateDate], 
+    [vw_gohst_users].[UpdateDateDiff] AS [UpdateDateDiff], 
+    [vw_gohst_users].[AppVersionCode] AS [AppVersionCode]
+    FROM [dbo].[vw_gohst_users] AS [vw_gohst_users]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_mystate_friends" EntityType="Self.vw_mystate_friends" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_mystate_friends].[UserPhone] AS [UserPhone], 
+    [vw_mystate_friends].[counter] AS [counter]
+    FROM [dbo].[vw_mystate_friends] AS [vw_mystate_friends]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_mystate_friends_created_date" EntityType="Self.vw_mystate_friends_created_date" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_mystate_friends_created_date].[UserPhone] AS [UserPhone], 
+    [vw_mystate_friends_created_date].[ContactPhone] AS [ContactPhone], 
+    [vw_mystate_friends_created_date].[ContactPhone_CreateDate] AS [ContactPhone_CreateDate]
+    FROM [dbo].[vw_mystate_friends_created_date] AS [vw_mystate_friends_created_date]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_mystate_friends_when_install" EntityType="Self.vw_mystate_friends_when_install" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_mystate_friends_when_install].[UserPhone] AS [UserPhone], 
+    [vw_mystate_friends_when_install].[counter] AS [counter], 
+    [vw_mystate_friends_when_install].[User_CreateDate] AS [User_CreateDate]
+    FROM [dbo].[vw_mystate_friends_when_install] AS [vw_mystate_friends_when_install]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_mystate_friends_with_create_date_to_all" EntityType="Self.vw_mystate_friends_with_create_date_to_all" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_mystate_friends_with_create_date_to_all].[UserPhone] AS [UserPhone], 
+    [vw_mystate_friends_with_create_date_to_all].[User_CreateDate] AS [User_CreateDate], 
+    [vw_mystate_friends_with_create_date_to_all].[ContactPhone] AS [ContactPhone], 
+    [vw_mystate_friends_with_create_date_to_all].[ContactPhone_CreateDate] AS [ContactPhone_CreateDate]
+    FROM [dbo].[vw_mystate_friends_with_create_date_to_all] AS [vw_mystate_friends_with_create_date_to_all]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_TablesSize" EntityType="Self.vw_TablesSize" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_TablesSize].[name] AS [name], 
+    [vw_TablesSize].[size] AS [size]
+    FROM [dbo].[vw_TablesSize] AS [vw_TablesSize]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_uninstall" EntityType="Self.vw_uninstall" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_uninstall].[PhoneNumber] AS [PhoneNumber], 
+    [vw_uninstall].[install] AS [install], 
+    [vw_uninstall].[inAction] AS [inAction], 
+    [vw_uninstall].[uninstall] AS [uninstall], 
+    [vw_uninstall].[unAction] AS [unAction], 
+    [vw_uninstall].[Reason] AS [Reason], 
+    [vw_uninstall].[diff_days] AS [diff_days], 
+    [vw_uninstall].[diff_hours] AS [diff_hours]
+    FROM [dbo].[vw_uninstall] AS [vw_uninstall]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_users" EntityType="Self.vw_users" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_users].[phonenumber] AS [phonenumber], 
+    [vw_users].[gcmregistrationid] AS [gcmregistrationid], 
+    [vw_users].[LastUpdated] AS [LastUpdated], 
+    [vw_users].[createdate] AS [createdate], 
+    [vw_users].[updatedate] AS [updatedate], 
+    [vw_users].[devicetype] AS [devicetype], 
+    [vw_users].[appversioncode] AS [appversioncode], 
+    [vw_users].[statetext] AS [statetext], 
+    [vw_users].[accesstoken] AS [accesstoken], 
+    [vw_users].[fullstate] AS [fullstate], 
+    [vw_users].[reconnectpushdate] AS [reconnectpushdate], 
+    [vw_users].[timezone] AS [timezone], 
+    [vw_users].[isuninstalled] AS [isuninstalled], 
+    [vw_users].[uninstallationreason] AS [uninstallationreason]
+    FROM [dbo].[vw_users] AS [vw_users]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_without_gsm_users_full_data" EntityType="Self.vw_without_gsm_users_full_data" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_without_gsm_users_full_data].[PhoneNumber] AS [PhoneNumber], 
+    [vw_without_gsm_users_full_data].[key] AS [key], 
+    [vw_without_gsm_users_full_data].[Status] AS [Status], 
+    [vw_without_gsm_users_full_data].[GcmRegistrationId] AS [GcmRegistrationId], 
+    [vw_without_gsm_users_full_data].[CreateDate] AS [CreateDate], 
+    [vw_without_gsm_users_full_data].[UpdateDate] AS [UpdateDate], 
+    [vw_without_gsm_users_full_data].[AccessToken] AS [AccessToken], 
+    [vw_without_gsm_users_full_data].[AppVersionCode] AS [AppVersionCode], 
+    [vw_without_gsm_users_full_data].[AndroidId] AS [AndroidId], 
+    [vw_without_gsm_users_full_data].[StateText] AS [StateText], 
+    [vw_without_gsm_users_full_data].[StateTextDate] AS [StateTextDate], 
+    [vw_without_gsm_users_full_data].[StateAvailabilityDate] AS [StateAvailabilityDate], 
+    [vw_without_gsm_users_full_data].[LastUpdated] AS [LastUpdated], 
+    [vw_without_gsm_users_full_data].[Waitings] AS [Waitings], 
+    [vw_without_gsm_users_full_data].[FullState] AS [FullState], 
+    [vw_without_gsm_users_full_data].[ViewCount] AS [ViewCount], 
+    [vw_without_gsm_users_full_data].[ViewCountDate] AS [ViewCountDate], 
+    [vw_without_gsm_users_full_data].[ReconnectPushDate] AS [ReconnectPushDate], 
+    [vw_without_gsm_users_full_data].[IsHideRingerMode] AS [IsHideRingerMode], 
+    [vw_without_gsm_users_full_data].[IsHideManualAvailability] AS [IsHideManualAvailability], 
+    [vw_without_gsm_users_full_data].[IsHideBatteryAndCharging] AS [IsHideBatteryAndCharging], 
+    [vw_without_gsm_users_full_data].[TimeZone] AS [TimeZone], 
+    [vw_without_gsm_users_full_data].[IsUninstalled] AS [IsUninstalled], 
+    [vw_without_gsm_users_full_data].[UninstallationReason] AS [UninstallationReason]
+    FROM [dbo].[vw_without_gsm_users_full_data] AS [vw_without_gsm_users_full_data]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" store:Type="Views" store:Schema="sys">
+            <DefiningQuery>SELECT 
+    [database_firewall_rules].[id] AS [id], 
+    [database_firewall_rules].[name] AS [name], 
+    [database_firewall_rules].[start_ip_address] AS [start_ip_address], 
+    [database_firewall_rules].[end_ip_address] AS [end_ip_address], 
+    [database_firewall_rules].[create_date] AS [create_date], 
+    [database_firewall_rules].[modify_date] AS [modify_date]
+    FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="script_deployment_status" EntityType="Self.script_deployment_status" store:Type="Views" store:Schema="sys">
+            <DefiningQuery>SELECT 
+    [script_deployment_status].[deployment_id] AS [deployment_id], 
+    [script_deployment_status].[worker_id] AS [worker_id], 
+    [script_deployment_status].[logical_server] AS [logical_server], 
+    [script_deployment_status].[database_name] AS [database_name], 
+    [script_deployment_status].[deployment_start] AS [deployment_start], 
+    [script_deployment_status].[deployment_end] AS [deployment_end], 
+    [script_deployment_status].[status] AS [status], 
+    [script_deployment_status].[num_retries] AS [num_retries], 
+    [script_deployment_status].[messages] AS [messages]
+    FROM [sys].[script_deployment_status] AS [script_deployment_status]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="script_deployments" EntityType="Self.script_deployments" store:Type="Views" store:Schema="sys">
+            <DefiningQuery>SELECT 
+    [script_deployments].[deployment_id] AS [deployment_id], 
+    [script_deployments].[coordinator_id] AS [coordinator_id], 
+    [script_deployments].[deployment_name] AS [deployment_name], 
+    [script_deployments].[deployment_submitted] AS [deployment_submitted], 
+    [script_deployments].[deployment_start] AS [deployment_start], 
+    [script_deployments].[deployment_end] AS [deployment_end], 
+    [script_deployments].[status] AS [status], 
+    [script_deployments].[results_table] AS [results_table], 
+    [script_deployments].[retry_policy] AS [retry_policy], 
+    [script_deployments].[script] AS [script], 
+    [script_deployments].[messages] AS [messages]
+    FROM [sys].[script_deployments] AS [script_deployments]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__ServerPus__Compa__34D3C6C9" Association="Self.FK__ServerPus__Compa__34D3C6C9">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="ServerPushCodes" EntitySet="ServerPushCodes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_btbComunication_CommunicationType" Association="Self.fk_btbComunication_CommunicationType">
+            <End Role="CommunicationTypes" EntitySet="CommunicationTypes" />
+            <End Role="Communications" EntitySet="Communications" />
+          </AssociationSet>
+          <AssociationSet Name="fk_business_category" Association="Self.fk_business_category">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Businesses" EntitySet="Businesses" />
+          </AssociationSet>
+          <AssociationSet Name="fk_businessAct_business" Association="Self.fk_businessAct_business">
+            <End Role="Businesses" EntitySet="Businesses" />
+            <End Role="Business_Activity" EntitySet="Business_Activity" />
+          </AssociationSet>
+          <AssociationSet Name="fk_businessComunication_available" Association="Self.fk_businessComunication_available">
+            <End Role="AvailabilityTypes" EntitySet="AvailabilityTypes" />
+            <End Role="Business_Communication" EntitySet="Business_Communication" />
+          </AssociationSet>
+          <AssociationSet Name="fk_businessComunication_business" Association="Self.fk_businessComunication_business">
+            <End Role="Businesses" EntitySet="Businesses" />
+            <End Role="Business_Communication" EntitySet="Business_Communication" />
+          </AssociationSet>
+          <AssociationSet Name="fk_businessComunication_comunication" Association="Self.fk_businessComunication_comunication">
+            <End Role="Communications" EntitySet="Communications" />
+            <End Role="Business_Communication" EntitySet="Business_Communication" />
+          </AssociationSet>
+          <AssociationSet Name="fk_businessProp_business" Association="Self.fk_businessProp_business">
+            <End Role="Businesses" EntitySet="Businesses" />
+            <End Role="Business_Property" EntitySet="Business_Property" />
+          </AssociationSet>
+          <AssociationSet Name="fk_businessProp_property" Association="Self.fk_businessProp_property">
+            <End Role="Properties" EntitySet="Properties" />
+            <End Role="Business_Property" EntitySet="Business_Property" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Phones_Businesses" Association="Self.FK_Phones_Businesses">
+            <End Role="Businesses" EntitySet="Businesses" />
+            <End Role="Phones" EntitySet="Phones" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="mystateApiDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AdminUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="permission" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="AvailabilityType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Business_Communication" Relationship="Self.fk_businessComunication_available" FromRole="AvailabilityTypes" ToRole="Business_Communication" />
+        </EntityType>
+        <EntityType Name="Business_Activity">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="businessID" Type="Int32" Nullable="false" />
+          <Property Name="area" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="starthours" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="days" Type="Int32" Nullable="false" />
+          <Property Name="endhours" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Business" Relationship="Self.fk_businessAct_business" FromRole="Business_Activity" ToRole="Businesses" />
+        </EntityType>
+        <EntityType Name="Business_Communication">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="businessID" Type="Int32" Nullable="false" />
+          <Property Name="comunicationID" Type="Int32" Nullable="false" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <Property Name="linkContent" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="availableID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AvailabilityType" Relationship="Self.fk_businessComunication_available" FromRole="Business_Communication" ToRole="AvailabilityTypes" />
+          <NavigationProperty Name="Business" Relationship="Self.fk_businessComunication_business" FromRole="Business_Communication" ToRole="Businesses" />
+          <NavigationProperty Name="Communication" Relationship="Self.fk_businessComunication_comunication" FromRole="Business_Communication" ToRole="Communications" />
+        </EntityType>
+        <EntityType Name="Business_Property">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="propertyID" Type="Int32" Nullable="false" />
+          <Property Name="businessID" Type="Int32" Nullable="false" />
+          <Property Name="url" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Business" Relationship="Self.fk_businessProp_business" FromRole="Business_Property" ToRole="Businesses" />
+          <NavigationProperty Name="Property" Relationship="Self.fk_businessProp_property" FromRole="Business_Property" ToRole="Properties" />
+        </EntityType>
+        <EntityType Name="Business">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="image" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="street" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="longitude" Type="Decimal" Precision="9" Scale="6" />
+          <Property Name="catID" Type="Int32" Nullable="false" />
+          <Property Name="homeN" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="latitude" Type="Decimal" Precision="8" Scale="6" />
+          <Property Name="largeImage" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="TimeZoneId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Business_Activity" Relationship="Self.fk_businessAct_business" FromRole="Businesses" ToRole="Business_Activity" />
+          <NavigationProperty Name="Business_Communication" Relationship="Self.fk_businessComunication_business" FromRole="Businesses" ToRole="Business_Communication" />
+          <NavigationProperty Name="Business_Property" Relationship="Self.fk_businessProp_business" FromRole="Businesses" ToRole="Business_Property" />
+          <NavigationProperty Name="Category" Relationship="Self.fk_business_category" FromRole="Businesses" ToRole="Categories" />
+          <NavigationProperty Name="Phones" Relationship="Self.FK_Phones_Businesses" FromRole="Businesses" ToRole="Phones" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Businesses" Relationship="Self.fk_business_category" FromRole="Categories" ToRole="Businesses" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Region" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Communication">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="icon" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CommunicationTypeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Business_Communication" Relationship="Self.fk_businessComunication_comunication" FromRole="Communications" ToRole="Business_Communication" />
+          <NavigationProperty Name="CommunicationType" Relationship="Self.fk_btbComunication_CommunicationType" FromRole="Communications" ToRole="CommunicationTypes" />
+        </EntityType>
+        <EntityType Name="CommunicationType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Communications" Relationship="Self.fk_btbComunication_CommunicationType" FromRole="CommunicationTypes" ToRole="Communications" />
+        </EntityType>
+        <EntityType Name="Permission">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="permissionName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="permissionCode" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+          <Property Name="permissionDescription" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Phone">
+          <Key>
+            <PropertyRef Name="Phone1" />
+            <PropertyRef Name="Region" />
+          </Key>
+          <Property Name="Phone1" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Region" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BusinessID" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Business" Relationship="Self.FK_Phones_Businesses" FromRole="Phones" ToRole="Businesses" />
+        </EntityType>
+        <EntityType Name="Property">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Business_Property" Relationship="Self.fk_businessProp_property" FromRole="Properties" ToRole="Business_Property" />
+        </EntityType>
+        <EntityType Name="Type">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="letter" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AccessTokensLog">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AccessToken" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="AlphaList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="Inviter" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsInstalled" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="AnalyticsKey">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Key" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AppleFeedback">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Token" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AppleDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Enviroment" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BlackList">
+          <Key>
+            <PropertyRef Name="UserPhoneNumber" />
+            <PropertyRef Name="BlackListedPhoneNumber" />
+          </Key>
+          <Property Name="UserPhoneNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="BlackListedPhoneNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CompanyPhone">
+          <Key>
+            <PropertyRef Name="PhoneNumber" />
+          </Key>
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ContactStateWasInterested">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="ContactUpdated">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FullState" Type="Int32" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="Text" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="TextUpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="StateAvailabilityDate" Type="DateTime" Precision="3" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="CrunchesLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CruncherPhone" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="DestinationPhone" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Action" Type="Int32" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="DailyNonMyStateContact">
+          <Key>
+            <PropertyRef Name="PhoneNumber" />
+          </Key>
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="InstallationsLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Action" Type="Int32" Nullable="false" />
+          <Property Name="Reason" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Invitation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Inviter" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Invitee" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LinkActivate" Type="Boolean" Nullable="false" />
+          <Property Name="UniqueKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientTime" Type="DateTime" Precision="3" />
+          <Property Name="DBTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Severity" Type="Int32" />
+          <Property Name="CallStack" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Extra" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="MyMyStateContact">
+          <Key>
+            <PropertyRef Name="UserPhone" />
+            <PropertyRef Name="ContactPhone" />
+          </Key>
+          <Property Name="UserPhone" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ContactPhone" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="AddedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="NonMystateContact">
+          <Key>
+            <PropertyRef Name="ContactPhoneNumber" />
+          </Key>
+          <Property Name="ContactPhoneNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="UsersPhoneNumbers" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="WasInMyState" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NonMyStateContactsAggregation">
+          <Key>
+            <PropertyRef Name="PhoneNumber" />
+          </Key>
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NumberOfMyStateUsers" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NonMyStateContactsForMarketing">
+          <Key>
+            <PropertyRef Name="PhoneNumber" />
+          </Key>
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DisplayName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TimesContacted" Type="Int32" />
+          <Property Name="Starred" Type="Boolean" />
+          <Property Name="Favorite" Type="Boolean" />
+          <Property Name="Recents" Type="Boolean" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="PendingVerification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequestId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="PushRespons">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Json" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Response" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ServerPushCode">
+          <Key>
+            <PropertyRef Name="PhoneNumber" />
+            <PropertyRef Name="CompanyId" />
+          </Key>
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CompanyId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="PushCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Company" Relationship="Self.FK__ServerPus__Compa__79B300FB" FromRole="ServerPushCodes" ToRole="Companies" />
+          <Property Name="IsInstalled" Type="Boolean" Nullable="false" />
+          <Property Name="UninstallationReason" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ShareCode">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="UniqueKey" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Count" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SmsLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MessageId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Sender" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Recipient" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SmsType" Type="Int32" Nullable="false" />
+          <Property Name="TextSent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SmsResponse" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ReceiptStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReceiptErrCcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="PhoneNumber" />
+          </Key>
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="StateText" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="StateTextDate" Type="DateTime" Precision="3" />
+          <Property Name="StateAvailabilityDate" Type="DateTime" Precision="3" />
+          <Property Name="LastUpdated" Type="DateTime" Precision="3" />
+          <Property Name="Waitings" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FullState" Type="Int32" />
+          <Property Name="ViewCount" Type="Int32" Nullable="false" />
+          <Property Name="ViewCountDate" Type="DateTime" Precision="3" />
+          <Property Name="ReconnectPushDate" Type="DateTime" Precision="3" />
+          <Property Name="IsHideRingerMode" Type="Boolean" Nullable="false" />
+          <Property Name="IsHideManualAvailability" Type="Boolean" Nullable="false" />
+          <Property Name="IsHideBatteryAndCharging" Type="Boolean" Nullable="false" />
+          <Property Name="TimeZone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="IsUninstalled" Type="Boolean" Nullable="false" />
+          <Property Name="UninstallationReason" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Token">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullToken" Type="String" MaxLength="600" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ExpireDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="PhoneNumber" />
+          </Key>
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="perCode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="GcmRegistrationId" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="DeviceType" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="AccessToken" Type="String" MaxLength="600" FixedLength="false" Unicode="false" />
+          <Property Name="AppVersion" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="AppVersionCode" Type="Int32" />
+          <Property Name="AndroidId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SDKKey" Type="String" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AuthUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="State" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ServerPushCodes" Relationship="Self.FK__ServerPus__Compa__79B300FB" FromRole="Companies" ToRole="ServerPushCodes" />
+        </EntityType>
+        <EntityType Name="Area">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="letter" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="areaID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="GArea">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="NonMyStateContactsForMarketingTemp">
+          <Key>
+            <PropertyRef Name="PhoneNumber" />
+          </Key>
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DisplayName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TimesContacted" Type="Int32" />
+          <Property Name="Starred" Type="Boolean" />
+          <Property Name="Favorite" Type="Boolean" />
+          <Property Name="Recents" Type="Boolean" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="vw_clean_uninstall">
+          <Key>
+            <PropertyRef Name="PhoneNumber" />
+          </Key>
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="install" Type="DateTime" Precision="3" />
+          <Property Name="uninstall" Type="DateTime" Precision="3" />
+          <Property Name="diff_days" Type="Int32" />
+          <Property Name="diff_hours" Type="Int32" />
+        </EntityType>
+        <EntityType Name="vw_friends_days_uninstall_basic">
+          <Key>
+            <PropertyRef Name="PhoneNumber" />
+          </Key>
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="userPhone" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="install" Type="DateTime" Precision="3" />
+          <Property Name="uninstall" Type="DateTime" Precision="3" />
+          <Property Name="diff_days" Type="Int32" />
+          <Property Name="diff_hours" Type="Int32" />
+          <Property Name="counter" Type="Int32" />
+        </EntityType>
+        <EntityType Name="vw_friends_days_uninstall_basic_Israel">
+          <Key>
+            <PropertyRef Name="PhoneNumber" />
+          </Key>
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="userPhone" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="install" Type="DateTime" Precision="3" />
+          <Property Name="uninstall" Type="DateTime" Precision="3" />
+          <Property Name="diff_days" Type="Int32" />
+          <Property Name="diff_hours" Type="Int32" />
+          <Property Name="counter" Type="Int32" />
+        </EntityType>
+        <EntityType Name="vw_ghost_users_full_data">
+          <Key>
+            <PropertyRef Name="PhoneNumber" />
+            <PropertyRef Name="key" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="ViewCount" />
+            <PropertyRef Name="IsHideRingerMode" />
+            <PropertyRef Name="IsHideManualAvailability" />
+            <PropertyRef Name="IsHideBatteryAndCharging" />
+            <PropertyRef Name="IsUninstalled" />
+          </Key>
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="key" Type="Int64" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="GcmRegistrationId" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="AccessToken" Type="String" MaxLength="600" FixedLength="false" Unicode="false" />
+          <Property Name="AppVersionCode" Type="Int32" />
+          <Property Name="AndroidId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="StateText" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="StateTextDate" Type="DateTime" Precision="3" />
+          <Property Name="StateAvailabilityDate" Type="DateTime" Precision="3" />
+          <Property Name="LastUpdated" Type="DateTime" Precision="3" />
+          <Property Name="Waitings" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FullState" Type="Int32" />
+          <Property Name="ViewCount" Type="Int32" Nullable="false" />
+          <Property Name="ViewCountDate" Type="DateTime" Precision="3" />
+          <Property Name="ReconnectPushDate" Type="DateTime" Precision="3" />
+          <Property Name="IsHideRingerMode" Type="Boolean" Nullable="false" />
+          <Property Name="IsHideManualAvailability" Type="Boolean" Nullable="false" />
+          <Property Name="IsHideBatteryAndCharging" Type="Boolean" Nullable="false" />
+          <Property Name="TimeZone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="IsUninstalled" Type="Boolean" Nullable="false" />
+          <Property Name="UninstallationReason" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vw_gohst_users">
+          <Key>
+            <PropertyRef Name="PhoneNumber" />
+          </Key>
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="LastSeen" Type="DateTime" Precision="0" />
+          <Property Name="LastSeenDiff" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Precision="0" />
+          <Property Name="CreateDateDiff" Type="Int32" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdateDateDiff" Type="Int32" />
+          <Property Name="AppVersionCode" Type="Int32" />
+        </EntityType>
+        <EntityType Name="vw_mystate_friends">
+          <Key>
+            <PropertyRef Name="UserPhone" />
+          </Key>
+          <Property Name="UserPhone" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="counter" Type="Int32" />
+        </EntityType>
+        <EntityType Name="vw_mystate_friends_created_date">
+          <Key>
+            <PropertyRef Name="UserPhone" />
+            <PropertyRef Name="ContactPhone" />
+          </Key>
+          <Property Name="UserPhone" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ContactPhone" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ContactPhone_CreateDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="vw_mystate_friends_when_install">
+          <Key>
+            <PropertyRef Name="UserPhone" />
+          </Key>
+          <Property Name="UserPhone" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="counter" Type="Int32" />
+          <Property Name="User_CreateDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="vw_mystate_friends_with_create_date_to_all">
+          <Key>
+            <PropertyRef Name="UserPhone" />
+            <PropertyRef Name="ContactPhone" />
+          </Key>
+          <Property Name="UserPhone" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="User_CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="ContactPhone" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ContactPhone_CreateDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="vw_TablesSize">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="size" Type="Decimal" Precision="27" Scale="6" />
+        </EntityType>
+        <EntityType Name="vw_uninstall">
+          <Key>
+            <PropertyRef Name="PhoneNumber" />
+            <PropertyRef Name="install" />
+            <PropertyRef Name="inAction" />
+            <PropertyRef Name="uninstall" />
+            <PropertyRef Name="unAction" />
+          </Key>
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="install" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="inAction" Type="Int32" Nullable="false" />
+          <Property Name="uninstall" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="unAction" Type="Int32" Nullable="false" />
+          <Property Name="Reason" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="diff_days" Type="Int32" />
+          <Property Name="diff_hours" Type="Int32" />
+        </EntityType>
+        <EntityType Name="vw_users">
+          <Key>
+            <PropertyRef Name="phonenumber" />
+            <PropertyRef Name="isuninstalled" />
+          </Key>
+          <Property Name="phonenumber" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="gcmregistrationid" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdated" Type="DateTime" Precision="3" />
+          <Property Name="createdate" Type="DateTime" Precision="3" />
+          <Property Name="updatedate" Type="DateTime" Precision="3" />
+          <Property Name="devicetype" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="appversioncode" Type="Int32" />
+          <Property Name="statetext" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="accesstoken" Type="String" MaxLength="600" FixedLength="false" Unicode="false" />
+          <Property Name="fullstate" Type="Int32" />
+          <Property Name="reconnectpushdate" Type="DateTime" Precision="3" />
+          <Property Name="timezone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="isuninstalled" Type="Boolean" Nullable="false" />
+          <Property Name="uninstallationreason" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vw_without_gsm_users_full_data">
+          <Key>
+            <PropertyRef Name="PhoneNumber" />
+            <PropertyRef Name="key" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="ViewCount" />
+            <PropertyRef Name="IsHideRingerMode" />
+            <PropertyRef Name="IsHideManualAvailability" />
+            <PropertyRef Name="IsHideBatteryAndCharging" />
+            <PropertyRef Name="IsUninstalled" />
+          </Key>
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="key" Type="Int64" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="GcmRegistrationId" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="AccessToken" Type="String" MaxLength="600" FixedLength="false" Unicode="false" />
+          <Property Name="AppVersionCode" Type="Int32" />
+          <Property Name="AndroidId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="StateText" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="StateTextDate" Type="DateTime" Precision="3" />
+          <Property Name="StateAvailabilityDate" Type="DateTime" Precision="3" />
+          <Property Name="LastUpdated" Type="DateTime" Precision="3" />
+          <Property Name="Waitings" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FullState" Type="Int32" />
+          <Property Name="ViewCount" Type="Int32" Nullable="false" />
+          <Property Name="ViewCountDate" Type="DateTime" Precision="3" />
+          <Property Name="ReconnectPushDate" Type="DateTime" Precision="3" />
+          <Property Name="IsHideRingerMode" Type="Boolean" Nullable="false" />
+          <Property Name="IsHideManualAvailability" Type="Boolean" Nullable="false" />
+          <Property Name="IsHideBatteryAndCharging" Type="Boolean" Nullable="false" />
+          <Property Name="TimeZone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="IsUninstalled" Type="Boolean" Nullable="false" />
+          <Property Name="UninstallationReason" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="database_firewall_rules">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="start_ip_address" />
+            <PropertyRef Name="end_ip_address" />
+            <PropertyRef Name="create_date" />
+            <PropertyRef Name="modify_date" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="start_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="end_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="script_deployment_status">
+          <Key>
+            <PropertyRef Name="deployment_id" />
+            <PropertyRef Name="logical_server" />
+            <PropertyRef Name="database_name" />
+            <PropertyRef Name="status" />
+            <PropertyRef Name="num_retries" />
+          </Key>
+          <Property Name="deployment_id" Type="Guid" Nullable="false" />
+          <Property Name="worker_id" Type="Guid" />
+          <Property Name="logical_server" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="database_name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="deployment_start" Type="DateTimeOffset" Precision="7" />
+          <Property Name="deployment_end" Type="DateTimeOffset" Precision="7" />
+          <Property Name="status" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="num_retries" Type="Int16" Nullable="false" />
+          <Property Name="messages" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="script_deployments">
+          <Key>
+            <PropertyRef Name="deployment_id" />
+            <PropertyRef Name="coordinator_id" />
+            <PropertyRef Name="deployment_name" />
+            <PropertyRef Name="deployment_submitted" />
+            <PropertyRef Name="status" />
+            <PropertyRef Name="retry_policy" />
+            <PropertyRef Name="script" />
+          </Key>
+          <Property Name="deployment_id" Type="Guid" Nullable="false" />
+          <Property Name="coordinator_id" Type="Guid" Nullable="false" />
+          <Property Name="deployment_name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="deployment_submitted" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="deployment_start" Type="DateTimeOffset" Precision="7" />
+          <Property Name="deployment_end" Type="DateTimeOffset" Precision="7" />
+          <Property Name="status" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="results_table" Type="String" MaxLength="261" FixedLength="false" Unicode="true" />
+          <Property Name="retry_policy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="script" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="messages" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="fk_businessComunication_available">
+          <End Role="AvailabilityTypes" Type="Self.AvailabilityType" Multiplicity="1" />
+          <End Role="Business_Communication" Type="Self.Business_Communication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AvailabilityTypes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Business_Communication">
+              <PropertyRef Name="availableID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_businessAct_business">
+          <End Role="Businesses" Type="Self.Business" Multiplicity="1" />
+          <End Role="Business_Activity" Type="Self.Business_Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Businesses">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Business_Activity">
+              <PropertyRef Name="businessID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_businessComunication_business">
+          <End Role="Businesses" Type="Self.Business" Multiplicity="1" />
+          <End Role="Business_Communication" Type="Self.Business_Communication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Businesses">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Business_Communication">
+              <PropertyRef Name="businessID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_businessComunication_comunication">
+          <End Role="Communications" Type="Self.Communication" Multiplicity="1" />
+          <End Role="Business_Communication" Type="Self.Business_Communication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Communications">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Business_Communication">
+              <PropertyRef Name="comunicationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_businessProp_business">
+          <End Role="Businesses" Type="Self.Business" Multiplicity="1" />
+          <End Role="Business_Property" Type="Self.Business_Property" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Businesses">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Business_Property">
+              <PropertyRef Name="businessID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_businessProp_property">
+          <End Role="Properties" Type="Self.Property" Multiplicity="1" />
+          <End Role="Business_Property" Type="Self.Business_Property" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Properties">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Business_Property">
+              <PropertyRef Name="propertyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_business_category">
+          <End Role="Categories" Type="Self.Category" Multiplicity="1" />
+          <End Role="Businesses" Type="Self.Business" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Businesses">
+              <PropertyRef Name="catID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Phones_Businesses">
+          <End Role="Businesses" Type="Self.Business" Multiplicity="1" />
+          <End Role="Phones" Type="Self.Phone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Businesses">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Phones">
+              <PropertyRef Name="BusinessID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_btbComunication_CommunicationType">
+          <End Role="CommunicationTypes" Type="Self.CommunicationType" Multiplicity="1" />
+          <End Role="Communications" Type="Self.Communication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CommunicationTypes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Communications">
+              <PropertyRef Name="CommunicationTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ServerPus__Compa__79B300FB">
+          <End Role="Companies" Type="Self.Company" Multiplicity="1" />
+          <End Role="ServerPushCodes" Type="Self.ServerPushCode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServerPushCodes">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="mystateApiDbEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AdminUsers" EntityType="Self.AdminUser" />
+          <EntitySet Name="AvailabilityTypes" EntityType="Self.AvailabilityType" />
+          <EntitySet Name="Business_Activity" EntityType="Self.Business_Activity" />
+          <EntitySet Name="Business_Communication" EntityType="Self.Business_Communication" />
+          <EntitySet Name="Business_Property" EntityType="Self.Business_Property" />
+          <EntitySet Name="Businesses" EntityType="Self.Business" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Cities" EntityType="Self.City" />
+          <EntitySet Name="Communications" EntityType="Self.Communication" />
+          <EntitySet Name="CommunicationTypes" EntityType="Self.CommunicationType" />
+          <EntitySet Name="Permissions" EntityType="Self.Permission" />
+          <EntitySet Name="Phones" EntityType="Self.Phone" />
+          <EntitySet Name="Properties" EntityType="Self.Property" />
+          <EntitySet Name="Types" EntityType="Self.Type" />
+          <EntitySet Name="AccessTokensLogs" EntityType="Self.AccessTokensLog" />
+          <EntitySet Name="AlphaLists" EntityType="Self.AlphaList" />
+          <EntitySet Name="AnalyticsKeys" EntityType="Self.AnalyticsKey" />
+          <EntitySet Name="AppleFeedbacks" EntityType="Self.AppleFeedback" />
+          <EntitySet Name="BlackLists" EntityType="Self.BlackList" />
+          <EntitySet Name="CompanyPhones" EntityType="Self.CompanyPhone" />
+          <EntitySet Name="ContactStateWasInteresteds" EntityType="Self.ContactStateWasInterested" />
+          <EntitySet Name="ContactUpdateds" EntityType="Self.ContactUpdated" />
+          <EntitySet Name="CrunchesLogs" EntityType="Self.CrunchesLog" />
+          <EntitySet Name="DailyNonMyStateContacts" EntityType="Self.DailyNonMyStateContact" />
+          <EntitySet Name="InstallationsLogs" EntityType="Self.InstallationsLog" />
+          <EntitySet Name="Invitations" EntityType="Self.Invitation" />
+          <EntitySet Name="Logs" EntityType="Self.Log" />
+          <EntitySet Name="MyMyStateContacts" EntityType="Self.MyMyStateContact" />
+          <EntitySet Name="NonMystateContacts" EntityType="Self.NonMystateContact" />
+          <EntitySet Name="NonMyStateContactsAggregations" EntityType="Self.NonMyStateContactsAggregation" />
+          <EntitySet Name="NonMyStateContactsForMarketings" EntityType="Self.NonMyStateContactsForMarketing" />
+          <EntitySet Name="PendingVerifications" EntityType="Self.PendingVerification" />
+          <EntitySet Name="PushResponses" EntityType="Self.PushRespons" />
+          <EntitySet Name="ServerPushCodes" EntityType="Self.ServerPushCode" />
+          <EntitySet Name="ShareCodes" EntityType="Self.ShareCode" />
+          <EntitySet Name="SmsLogs" EntityType="Self.SmsLog" />
+          <EntitySet Name="States" EntityType="Self.State" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Tokens" EntityType="Self.Token" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="Companies" EntityType="Self.Company" />
+          <EntitySet Name="Areas" EntityType="Self.Area" />
+          <EntitySet Name="GAreas" EntityType="Self.GArea" />
+          <EntitySet Name="NonMyStateContactsForMarketingTemps" EntityType="Self.NonMyStateContactsForMarketingTemp" />
+          <EntitySet Name="vw_clean_uninstall" EntityType="Self.vw_clean_uninstall" />
+          <EntitySet Name="vw_friends_days_uninstall_basic" EntityType="Self.vw_friends_days_uninstall_basic" />
+          <EntitySet Name="vw_friends_days_uninstall_basic_Israel" EntityType="Self.vw_friends_days_uninstall_basic_Israel" />
+          <EntitySet Name="vw_ghost_users_full_data" EntityType="Self.vw_ghost_users_full_data" />
+          <EntitySet Name="vw_gohst_users" EntityType="Self.vw_gohst_users" />
+          <EntitySet Name="vw_mystate_friends" EntityType="Self.vw_mystate_friends" />
+          <EntitySet Name="vw_mystate_friends_created_date" EntityType="Self.vw_mystate_friends_created_date" />
+          <EntitySet Name="vw_mystate_friends_when_install" EntityType="Self.vw_mystate_friends_when_install" />
+          <EntitySet Name="vw_mystate_friends_with_create_date_to_all" EntityType="Self.vw_mystate_friends_with_create_date_to_all" />
+          <EntitySet Name="vw_TablesSize" EntityType="Self.vw_TablesSize" />
+          <EntitySet Name="vw_uninstall" EntityType="Self.vw_uninstall" />
+          <EntitySet Name="vw_users" EntityType="Self.vw_users" />
+          <EntitySet Name="vw_without_gsm_users_full_data" EntityType="Self.vw_without_gsm_users_full_data" />
+          <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" />
+          <EntitySet Name="script_deployment_status" EntityType="Self.script_deployment_status" />
+          <EntitySet Name="script_deployments" EntityType="Self.script_deployments" />
+          <AssociationSet Name="fk_businessComunication_available" Association="Self.fk_businessComunication_available">
+            <End Role="AvailabilityTypes" EntitySet="AvailabilityTypes" />
+            <End Role="Business_Communication" EntitySet="Business_Communication" />
+          </AssociationSet>
+          <AssociationSet Name="fk_businessAct_business" Association="Self.fk_businessAct_business">
+            <End Role="Businesses" EntitySet="Businesses" />
+            <End Role="Business_Activity" EntitySet="Business_Activity" />
+          </AssociationSet>
+          <AssociationSet Name="fk_businessComunication_business" Association="Self.fk_businessComunication_business">
+            <End Role="Businesses" EntitySet="Businesses" />
+            <End Role="Business_Communication" EntitySet="Business_Communication" />
+          </AssociationSet>
+          <AssociationSet Name="fk_businessComunication_comunication" Association="Self.fk_businessComunication_comunication">
+            <End Role="Communications" EntitySet="Communications" />
+            <End Role="Business_Communication" EntitySet="Business_Communication" />
+          </AssociationSet>
+          <AssociationSet Name="fk_businessProp_business" Association="Self.fk_businessProp_business">
+            <End Role="Businesses" EntitySet="Businesses" />
+            <End Role="Business_Property" EntitySet="Business_Property" />
+          </AssociationSet>
+          <AssociationSet Name="fk_businessProp_property" Association="Self.fk_businessProp_property">
+            <End Role="Properties" EntitySet="Properties" />
+            <End Role="Business_Property" EntitySet="Business_Property" />
+          </AssociationSet>
+          <AssociationSet Name="fk_business_category" Association="Self.fk_business_category">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Businesses" EntitySet="Businesses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Phones_Businesses" Association="Self.FK_Phones_Businesses">
+            <End Role="Businesses" EntitySet="Businesses" />
+            <End Role="Phones" EntitySet="Phones" />
+          </AssociationSet>
+          <AssociationSet Name="fk_btbComunication_CommunicationType" Association="Self.fk_btbComunication_CommunicationType">
+            <End Role="CommunicationTypes" EntitySet="CommunicationTypes" />
+            <End Role="Communications" EntitySet="Communications" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ServerPus__Compa__79B300FB" Association="Self.FK__ServerPus__Compa__79B300FB">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="ServerPushCodes" EntitySet="ServerPushCodes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="mystateApiDbModelStoreContainer" CdmEntityContainer="mystateApiDbEntities1">
+          <EntitySetMapping Name="AdminUsers">
+            <EntityTypeMapping TypeName="mystateApiDbModel.AdminUser">
+              <MappingFragment StoreEntitySet="AdminUsers">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="permission" ColumnName="permission" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AvailabilityTypes">
+            <EntityTypeMapping TypeName="mystateApiDbModel.AvailabilityType">
+              <MappingFragment StoreEntitySet="AvailabilityTypes">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Business_Activity">
+            <EntityTypeMapping TypeName="mystateApiDbModel.Business_Activity">
+              <MappingFragment StoreEntitySet="Business_Activity">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="businessID" ColumnName="businessID" />
+                <ScalarProperty Name="area" ColumnName="area" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="starthours" ColumnName="starthours" />
+                <ScalarProperty Name="days" ColumnName="days" />
+                <ScalarProperty Name="endhours" ColumnName="endhours" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Business_Communication">
+            <EntityTypeMapping TypeName="mystateApiDbModel.Business_Communication">
+              <MappingFragment StoreEntitySet="Business_Communication">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="businessID" ColumnName="businessID" />
+                <ScalarProperty Name="comunicationID" ColumnName="comunicationID" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="linkContent" ColumnName="linkContent" />
+                <ScalarProperty Name="availableID" ColumnName="availableID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Business_Property">
+            <EntityTypeMapping TypeName="mystateApiDbModel.Business_Property">
+              <MappingFragment StoreEntitySet="Business_Property">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="propertyID" ColumnName="propertyID" />
+                <ScalarProperty Name="businessID" ColumnName="businessID" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Businesses">
+            <EntityTypeMapping TypeName="mystateApiDbModel.Business">
+              <MappingFragment StoreEntitySet="Businesses">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="street" ColumnName="street" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="catID" ColumnName="catID" />
+                <ScalarProperty Name="homeN" ColumnName="homeN" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="largeImage" ColumnName="largeImage" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="TimeZoneId" ColumnName="TimeZoneId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="mystateApiDbModel.Category">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="mystateApiDbModel.City">
+              <MappingFragment StoreEntitySet="Cities">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Communications">
+            <EntityTypeMapping TypeName="mystateApiDbModel.Communication">
+              <MappingFragment StoreEntitySet="Communications">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="icon" ColumnName="icon" />
+                <ScalarProperty Name="CommunicationTypeID" ColumnName="CommunicationTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CommunicationTypes">
+            <EntityTypeMapping TypeName="mystateApiDbModel.CommunicationType">
+              <MappingFragment StoreEntitySet="CommunicationTypes">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Permissions">
+            <EntityTypeMapping TypeName="mystateApiDbModel.Permission">
+              <MappingFragment StoreEntitySet="Permissions">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="permissionName" ColumnName="permissionName" />
+                <ScalarProperty Name="permissionCode" ColumnName="permissionCode" />
+                <ScalarProperty Name="permissionDescription" ColumnName="permissionDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Phones">
+            <EntityTypeMapping TypeName="mystateApiDbModel.Phone">
+              <MappingFragment StoreEntitySet="Phones">
+                <ScalarProperty Name="Phone1" ColumnName="Phone" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="BusinessID" ColumnName="BusinessID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Properties">
+            <EntityTypeMapping TypeName="mystateApiDbModel.Property">
+              <MappingFragment StoreEntitySet="Properties">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Types">
+            <EntityTypeMapping TypeName="mystateApiDbModel.Type">
+              <MappingFragment StoreEntitySet="Types">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="letter" ColumnName="letter" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccessTokensLogs">
+            <EntityTypeMapping TypeName="mystateApiDbModel.AccessTokensLog">
+              <MappingFragment StoreEntitySet="AccessTokensLog">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="AccessToken" ColumnName="AccessToken" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AlphaLists">
+            <EntityTypeMapping TypeName="mystateApiDbModel.AlphaList">
+              <MappingFragment StoreEntitySet="AlphaList">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="Inviter" ColumnName="Inviter" />
+                <ScalarProperty Name="IsInstalled" ColumnName="IsInstalled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AnalyticsKeys">
+            <EntityTypeMapping TypeName="mystateApiDbModel.AnalyticsKey">
+              <MappingFragment StoreEntitySet="AnalyticsKeys">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AppleFeedbacks">
+            <EntityTypeMapping TypeName="mystateApiDbModel.AppleFeedback">
+              <MappingFragment StoreEntitySet="AppleFeedback">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Token" ColumnName="Token" />
+                <ScalarProperty Name="AppleDate" ColumnName="AppleDate" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Enviroment" ColumnName="Enviroment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BlackLists">
+            <EntityTypeMapping TypeName="mystateApiDbModel.BlackList">
+              <MappingFragment StoreEntitySet="BlackLists">
+                <ScalarProperty Name="UserPhoneNumber" ColumnName="UserPhoneNumber" />
+                <ScalarProperty Name="BlackListedPhoneNumber" ColumnName="BlackListedPhoneNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompanyPhones">
+            <EntityTypeMapping TypeName="mystateApiDbModel.CompanyPhone">
+              <MappingFragment StoreEntitySet="CompanyPhones">
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContactStateWasInteresteds">
+            <EntityTypeMapping TypeName="mystateApiDbModel.ContactStateWasInterested">
+              <MappingFragment StoreEntitySet="ContactStateWasInterested">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContactUpdateds">
+            <EntityTypeMapping TypeName="mystateApiDbModel.ContactUpdated">
+              <MappingFragment StoreEntitySet="ContactUpdated">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="FullState" ColumnName="FullState" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="TextUpdateDate" ColumnName="TextUpdateDate" />
+                <ScalarProperty Name="StateAvailabilityDate" ColumnName="StateAvailabilityDate" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CrunchesLogs">
+            <EntityTypeMapping TypeName="mystateApiDbModel.CrunchesLog">
+              <MappingFragment StoreEntitySet="CrunchesLog">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CruncherPhone" ColumnName="CruncherPhone" />
+                <ScalarProperty Name="DestinationPhone" ColumnName="DestinationPhone" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DailyNonMyStateContacts">
+            <EntityTypeMapping TypeName="mystateApiDbModel.DailyNonMyStateContact">
+              <MappingFragment StoreEntitySet="DailyNonMyStateContacts">
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InstallationsLogs">
+            <EntityTypeMapping TypeName="mystateApiDbModel.InstallationsLog">
+              <MappingFragment StoreEntitySet="InstallationsLog">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invitations">
+            <EntityTypeMapping TypeName="mystateApiDbModel.Invitation">
+              <MappingFragment StoreEntitySet="Invitations">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Inviter" ColumnName="Inviter" />
+                <ScalarProperty Name="Invitee" ColumnName="Invitee" />
+                <ScalarProperty Name="LinkActivate" ColumnName="LinkActivate" />
+                <ScalarProperty Name="UniqueKey" ColumnName="UniqueKey" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logs">
+            <EntityTypeMapping TypeName="mystateApiDbModel.Log">
+              <MappingFragment StoreEntitySet="Logs">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ClientTime" ColumnName="ClientTime" />
+                <ScalarProperty Name="DBTime" ColumnName="DBTime" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Severity" ColumnName="Severity" />
+                <ScalarProperty Name="CallStack" ColumnName="CallStack" />
+                <ScalarProperty Name="Extra" ColumnName="Extra" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MyMyStateContacts">
+            <EntityTypeMapping TypeName="mystateApiDbModel.MyMyStateContact">
+              <MappingFragment StoreEntitySet="MyMyStateContacts">
+                <ScalarProperty Name="UserPhone" ColumnName="UserPhone" />
+                <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
+                <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NonMystateContacts">
+            <EntityTypeMapping TypeName="mystateApiDbModel.NonMystateContact">
+              <MappingFragment StoreEntitySet="NonMystateContacts">
+                <ScalarProperty Name="ContactPhoneNumber" ColumnName="ContactPhoneNumber" />
+                <ScalarProperty Name="UsersPhoneNumbers" ColumnName="UsersPhoneNumbers" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="WasInMyState" ColumnName="WasInMyState" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NonMyStateContactsAggregations">
+            <EntityTypeMapping TypeName="mystateApiDbModel.NonMyStateContactsAggregation">
+              <MappingFragment StoreEntitySet="NonMyStateContactsAggregation">
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="NumberOfMyStateUsers" ColumnName="NumberOfMyStateUsers" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NonMyStateContactsForMarketings">
+            <EntityTypeMapping TypeName="mystateApiDbModel.NonMyStateContactsForMarketing">
+              <MappingFragment StoreEntitySet="NonMyStateContactsForMarketing">
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="TimesContacted" ColumnName="TimesContacted" />
+                <ScalarProperty Name="Starred" ColumnName="Starred" />
+                <ScalarProperty Name="Favorite" ColumnName="Favorite" />
+                <ScalarProperty Name="Recents" ColumnName="Recents" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PendingVerifications">
+            <EntityTypeMapping TypeName="mystateApiDbModel.PendingVerification">
+              <MappingFragment StoreEntitySet="PendingVerifications">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PushResponses">
+            <EntityTypeMapping TypeName="mystateApiDbModel.PushRespons">
+              <MappingFragment StoreEntitySet="PushResponses">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Json" ColumnName="Json" />
+                <ScalarProperty Name="Response" ColumnName="Response" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServerPushCodes">
+            <EntityTypeMapping TypeName="mystateApiDbModel.ServerPushCode">
+              <MappingFragment StoreEntitySet="ServerPushCodes">
+                <ScalarProperty Name="UninstallationReason" ColumnName="UninstallationReason" />
+                <ScalarProperty Name="IsInstalled" ColumnName="IsInstalled" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="PushCode" ColumnName="PushCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShareCodes">
+            <EntityTypeMapping TypeName="mystateApiDbModel.ShareCode">
+              <MappingFragment StoreEntitySet="ShareCodes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="UniqueKey" ColumnName="UniqueKey" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SmsLogs">
+            <EntityTypeMapping TypeName="mystateApiDbModel.SmsLog">
+              <MappingFragment StoreEntitySet="SmsLog">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MessageId" ColumnName="MessageId" />
+                <ScalarProperty Name="Sender" ColumnName="Sender" />
+                <ScalarProperty Name="Recipient" ColumnName="Recipient" />
+                <ScalarProperty Name="SmsType" ColumnName="SmsType" />
+                <ScalarProperty Name="TextSent" ColumnName="TextSent" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="SmsResponse" ColumnName="SmsResponse" />
+                <ScalarProperty Name="ReceiptStatus" ColumnName="ReceiptStatus" />
+                <ScalarProperty Name="ReceiptErrCcode" ColumnName="ReceiptErrCcode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="States">
+            <EntityTypeMapping TypeName="mystateApiDbModel.State">
+              <MappingFragment StoreEntitySet="States">
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="StateText" ColumnName="StateText" />
+                <ScalarProperty Name="StateTextDate" ColumnName="StateTextDate" />
+                <ScalarProperty Name="StateAvailabilityDate" ColumnName="StateAvailabilityDate" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="Waitings" ColumnName="Waitings" />
+                <ScalarProperty Name="FullState" ColumnName="FullState" />
+                <ScalarProperty Name="ViewCount" ColumnName="ViewCount" />
+                <ScalarProperty Name="ViewCountDate" ColumnName="ViewCountDate" />
+                <ScalarProperty Name="ReconnectPushDate" ColumnName="ReconnectPushDate" />
+                <ScalarProperty Name="IsHideRingerMode" ColumnName="IsHideRingerMode" />
+                <ScalarProperty Name="IsHideManualAvailability" ColumnName="IsHideManualAvailability" />
+                <ScalarProperty Name="IsHideBatteryAndCharging" ColumnName="IsHideBatteryAndCharging" />
+                <ScalarProperty Name="TimeZone" ColumnName="TimeZone" />
+                <ScalarProperty Name="IsUninstalled" ColumnName="IsUninstalled" />
+                <ScalarProperty Name="UninstallationReason" ColumnName="UninstallationReason" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="mystateApiDbModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tokens">
+            <EntityTypeMapping TypeName="mystateApiDbModel.Token">
+              <MappingFragment StoreEntitySet="Tokens">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FullToken" ColumnName="FullToken" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ExpireDate" ColumnName="ExpireDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="mystateApiDbModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="perCode" ColumnName="perCode" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="GcmRegistrationId" ColumnName="GcmRegistrationId" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="DeviceType" ColumnName="DeviceType" />
+                <ScalarProperty Name="AccessToken" ColumnName="AccessToken" />
+                <ScalarProperty Name="AppVersion" ColumnName="AppVersion" />
+                <ScalarProperty Name="AppVersionCode" ColumnName="AppVersionCode" />
+                <ScalarProperty Name="AndroidId" ColumnName="AndroidId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="mystateApiDbModel.Company">
+              <MappingFragment StoreEntitySet="Companies">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SDKKey" ColumnName="SDKKey" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="AuthUrl" ColumnName="AuthUrl" />
+                <ScalarProperty Name="State" ColumnName="State" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Areas">
+            <EntityTypeMapping TypeName="mystateApiDbModel.Area">
+              <MappingFragment StoreEntitySet="Areas">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="letter" ColumnName="letter" />
+                <ScalarProperty Name="areaID" ColumnName="areaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GAreas">
+            <EntityTypeMapping TypeName="mystateApiDbModel.GArea">
+              <MappingFragment StoreEntitySet="GAreas">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NonMyStateContactsForMarketingTemps">
+            <EntityTypeMapping TypeName="mystateApiDbModel.NonMyStateContactsForMarketingTemp">
+              <MappingFragment StoreEntitySet="NonMyStateContactsForMarketingTemp">
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="TimesContacted" ColumnName="TimesContacted" />
+                <ScalarProperty Name="Starred" ColumnName="Starred" />
+                <ScalarProperty Name="Favorite" ColumnName="Favorite" />
+                <ScalarProperty Name="Recents" ColumnName="Recents" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_clean_uninstall">
+            <EntityTypeMapping TypeName="mystateApiDbModel.vw_clean_uninstall">
+              <MappingFragment StoreEntitySet="vw_clean_uninstall">
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="install" ColumnName="install" />
+                <ScalarProperty Name="uninstall" ColumnName="uninstall" />
+                <ScalarProperty Name="diff_days" ColumnName="diff_days" />
+                <ScalarProperty Name="diff_hours" ColumnName="diff_hours" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_friends_days_uninstall_basic">
+            <EntityTypeMapping TypeName="mystateApiDbModel.vw_friends_days_uninstall_basic">
+              <MappingFragment StoreEntitySet="vw_friends_days_uninstall_basic">
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="userPhone" ColumnName="userPhone" />
+                <ScalarProperty Name="install" ColumnName="install" />
+                <ScalarProperty Name="uninstall" ColumnName="uninstall" />
+                <ScalarProperty Name="diff_days" ColumnName="diff_days" />
+                <ScalarProperty Name="diff_hours" ColumnName="diff_hours" />
+                <ScalarProperty Name="counter" ColumnName="counter" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_friends_days_uninstall_basic_Israel">
+            <EntityTypeMapping TypeName="mystateApiDbModel.vw_friends_days_uninstall_basic_Israel">
+              <MappingFragment StoreEntitySet="vw_friends_days_uninstall_basic_Israel">
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="userPhone" ColumnName="userPhone" />
+                <ScalarProperty Name="install" ColumnName="install" />
+                <ScalarProperty Name="uninstall" ColumnName="uninstall" />
+                <ScalarProperty Name="diff_days" ColumnName="diff_days" />
+                <ScalarProperty Name="diff_hours" ColumnName="diff_hours" />
+                <ScalarProperty Name="counter" ColumnName="counter" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_ghost_users_full_data">
+            <EntityTypeMapping TypeName="mystateApiDbModel.vw_ghost_users_full_data">
+              <MappingFragment StoreEntitySet="vw_ghost_users_full_data">
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="key" ColumnName="key" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="GcmRegistrationId" ColumnName="GcmRegistrationId" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="AccessToken" ColumnName="AccessToken" />
+                <ScalarProperty Name="AppVersionCode" ColumnName="AppVersionCode" />
+                <ScalarProperty Name="AndroidId" ColumnName="AndroidId" />
+                <ScalarProperty Name="StateText" ColumnName="StateText" />
+                <ScalarProperty Name="StateTextDate" ColumnName="StateTextDate" />
+                <ScalarProperty Name="StateAvailabilityDate" ColumnName="StateAvailabilityDate" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="Waitings" ColumnName="Waitings" />
+                <ScalarProperty Name="FullState" ColumnName="FullState" />
+                <ScalarProperty Name="ViewCount" ColumnName="ViewCount" />
+                <ScalarProperty Name="ViewCountDate" ColumnName="ViewCountDate" />
+                <ScalarProperty Name="ReconnectPushDate" ColumnName="ReconnectPushDate" />
+                <ScalarProperty Name="IsHideRingerMode" ColumnName="IsHideRingerMode" />
+                <ScalarProperty Name="IsHideManualAvailability" ColumnName="IsHideManualAvailability" />
+                <ScalarProperty Name="IsHideBatteryAndCharging" ColumnName="IsHideBatteryAndCharging" />
+                <ScalarProperty Name="TimeZone" ColumnName="TimeZone" />
+                <ScalarProperty Name="IsUninstalled" ColumnName="IsUninstalled" />
+                <ScalarProperty Name="UninstallationReason" ColumnName="UninstallationReason" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_gohst_users">
+            <EntityTypeMapping TypeName="mystateApiDbModel.vw_gohst_users">
+              <MappingFragment StoreEntitySet="vw_gohst_users">
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="LastSeen" ColumnName="LastSeen" />
+                <ScalarProperty Name="LastSeenDiff" ColumnName="LastSeenDiff" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateDateDiff" ColumnName="CreateDateDiff" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="UpdateDateDiff" ColumnName="UpdateDateDiff" />
+                <ScalarProperty Name="AppVersionCode" ColumnName="AppVersionCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_mystate_friends">
+            <EntityTypeMapping TypeName="mystateApiDbModel.vw_mystate_friends">
+              <MappingFragment StoreEntitySet="vw_mystate_friends">
+                <ScalarProperty Name="UserPhone" ColumnName="UserPhone" />
+                <ScalarProperty Name="counter" ColumnName="counter" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_mystate_friends_created_date">
+            <EntityTypeMapping TypeName="mystateApiDbModel.vw_mystate_friends_created_date">
+              <MappingFragment StoreEntitySet="vw_mystate_friends_created_date">
+                <ScalarProperty Name="UserPhone" ColumnName="UserPhone" />
+                <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
+                <ScalarProperty Name="ContactPhone_CreateDate" ColumnName="ContactPhone_CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_mystate_friends_when_install">
+            <EntityTypeMapping TypeName="mystateApiDbModel.vw_mystate_friends_when_install">
+              <MappingFragment StoreEntitySet="vw_mystate_friends_when_install">
+                <ScalarProperty Name="UserPhone" ColumnName="UserPhone" />
+                <ScalarProperty Name="counter" ColumnName="counter" />
+                <ScalarProperty Name="User_CreateDate" ColumnName="User_CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_mystate_friends_with_create_date_to_all">
+            <EntityTypeMapping TypeName="mystateApiDbModel.vw_mystate_friends_with_create_date_to_all">
+              <MappingFragment StoreEntitySet="vw_mystate_friends_with_create_date_to_all">
+                <ScalarProperty Name="UserPhone" ColumnName="UserPhone" />
+                <ScalarProperty Name="User_CreateDate" ColumnName="User_CreateDate" />
+                <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
+                <ScalarProperty Name="ContactPhone_CreateDate" ColumnName="ContactPhone_CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_TablesSize">
+            <EntityTypeMapping TypeName="mystateApiDbModel.vw_TablesSize">
+              <MappingFragment StoreEntitySet="vw_TablesSize">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="size" ColumnName="size" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_uninstall">
+            <EntityTypeMapping TypeName="mystateApiDbModel.vw_uninstall">
+              <MappingFragment StoreEntitySet="vw_uninstall">
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="install" ColumnName="install" />
+                <ScalarProperty Name="inAction" ColumnName="inAction" />
+                <ScalarProperty Name="uninstall" ColumnName="uninstall" />
+                <ScalarProperty Name="unAction" ColumnName="unAction" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="diff_days" ColumnName="diff_days" />
+                <ScalarProperty Name="diff_hours" ColumnName="diff_hours" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_users">
+            <EntityTypeMapping TypeName="mystateApiDbModel.vw_users">
+              <MappingFragment StoreEntitySet="vw_users">
+                <ScalarProperty Name="phonenumber" ColumnName="phonenumber" />
+                <ScalarProperty Name="gcmregistrationid" ColumnName="gcmregistrationid" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="createdate" ColumnName="createdate" />
+                <ScalarProperty Name="updatedate" ColumnName="updatedate" />
+                <ScalarProperty Name="devicetype" ColumnName="devicetype" />
+                <ScalarProperty Name="appversioncode" ColumnName="appversioncode" />
+                <ScalarProperty Name="statetext" ColumnName="statetext" />
+                <ScalarProperty Name="accesstoken" ColumnName="accesstoken" />
+                <ScalarProperty Name="fullstate" ColumnName="fullstate" />
+                <ScalarProperty Name="reconnectpushdate" ColumnName="reconnectpushdate" />
+                <ScalarProperty Name="timezone" ColumnName="timezone" />
+                <ScalarProperty Name="isuninstalled" ColumnName="isuninstalled" />
+                <ScalarProperty Name="uninstallationreason" ColumnName="uninstallationreason" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_without_gsm_users_full_data">
+            <EntityTypeMapping TypeName="mystateApiDbModel.vw_without_gsm_users_full_data">
+              <MappingFragment StoreEntitySet="vw_without_gsm_users_full_data">
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="key" ColumnName="key" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="GcmRegistrationId" ColumnName="GcmRegistrationId" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="AccessToken" ColumnName="AccessToken" />
+                <ScalarProperty Name="AppVersionCode" ColumnName="AppVersionCode" />
+                <ScalarProperty Name="AndroidId" ColumnName="AndroidId" />
+                <ScalarProperty Name="StateText" ColumnName="StateText" />
+                <ScalarProperty Name="StateTextDate" ColumnName="StateTextDate" />
+                <ScalarProperty Name="StateAvailabilityDate" ColumnName="StateAvailabilityDate" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="Waitings" ColumnName="Waitings" />
+                <ScalarProperty Name="FullState" ColumnName="FullState" />
+                <ScalarProperty Name="ViewCount" ColumnName="ViewCount" />
+                <ScalarProperty Name="ViewCountDate" ColumnName="ViewCountDate" />
+                <ScalarProperty Name="ReconnectPushDate" ColumnName="ReconnectPushDate" />
+                <ScalarProperty Name="IsHideRingerMode" ColumnName="IsHideRingerMode" />
+                <ScalarProperty Name="IsHideManualAvailability" ColumnName="IsHideManualAvailability" />
+                <ScalarProperty Name="IsHideBatteryAndCharging" ColumnName="IsHideBatteryAndCharging" />
+                <ScalarProperty Name="TimeZone" ColumnName="TimeZone" />
+                <ScalarProperty Name="IsUninstalled" ColumnName="IsUninstalled" />
+                <ScalarProperty Name="UninstallationReason" ColumnName="UninstallationReason" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="database_firewall_rules">
+            <EntityTypeMapping TypeName="mystateApiDbModel.database_firewall_rules">
+              <MappingFragment StoreEntitySet="database_firewall_rules">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="start_ip_address" ColumnName="start_ip_address" />
+                <ScalarProperty Name="end_ip_address" ColumnName="end_ip_address" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+                <ScalarProperty Name="modify_date" ColumnName="modify_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="script_deployment_status">
+            <EntityTypeMapping TypeName="mystateApiDbModel.script_deployment_status">
+              <MappingFragment StoreEntitySet="script_deployment_status">
+                <ScalarProperty Name="deployment_id" ColumnName="deployment_id" />
+                <ScalarProperty Name="worker_id" ColumnName="worker_id" />
+                <ScalarProperty Name="logical_server" ColumnName="logical_server" />
+                <ScalarProperty Name="database_name" ColumnName="database_name" />
+                <ScalarProperty Name="deployment_start" ColumnName="deployment_start" />
+                <ScalarProperty Name="deployment_end" ColumnName="deployment_end" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="num_retries" ColumnName="num_retries" />
+                <ScalarProperty Name="messages" ColumnName="messages" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="script_deployments">
+            <EntityTypeMapping TypeName="mystateApiDbModel.script_deployments">
+              <MappingFragment StoreEntitySet="script_deployments">
+                <ScalarProperty Name="deployment_id" ColumnName="deployment_id" />
+                <ScalarProperty Name="coordinator_id" ColumnName="coordinator_id" />
+                <ScalarProperty Name="deployment_name" ColumnName="deployment_name" />
+                <ScalarProperty Name="deployment_submitted" ColumnName="deployment_submitted" />
+                <ScalarProperty Name="deployment_start" ColumnName="deployment_start" />
+                <ScalarProperty Name="deployment_end" ColumnName="deployment_end" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="results_table" ColumnName="results_table" />
+                <ScalarProperty Name="retry_policy" ColumnName="retry_policy" />
+                <ScalarProperty Name="script" ColumnName="script" />
+                <ScalarProperty Name="messages" ColumnName="messages" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

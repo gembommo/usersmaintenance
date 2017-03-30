@@ -1,0 +1,6 @@
+﻿namespace AzureStorage
+{
+    class ExtensionMethods
+    {
+    }
+}

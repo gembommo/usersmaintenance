@@ -19,18 +19,36 @@ namespace UsersMaintenance
         private static readonly DateTime ONE_DAY_AGO = DateTime.UtcNow.AddDays(-1);
         static void Main(string[] args)
         {
+            SendMePushReconnectCode();
+
+            return;
             DB.SyncDbAndRedisContacts();
 
             List<PhoneNumberAndSdkWithGcm> phoneNumbers = DB.GetStatesWhoDidntReportSince(ONE_DAY_AGO);
 
             //Canceled in order prevent Sdk users who doesn't have Gcm code from being removed
-            //DB.UninstallUsersWithoutGCM(phoneNumbers);
+            DB.UninstallUsersWithoutGCM(phoneNumbers);
 
             phoneNumbers.RemoveAll(s => string.IsNullOrEmpty(s.GcmRegistrationId));
 
             DB.UninstallUsersWhoDidntReportForAWeek(phoneNumbers);
 
             SendPushToReconnectAndReportBack(phoneNumbers);
+        }
+
+        private static void SendMePushReconnectCode()
+        {
+            var pushDetails = PushSender.SendReconnectRequest(new List<string>() { "c41XYM5L_dY:APA91bGSFBvm3o7ESNsmz6V1_A9J6Ia43WObUsrFQnfDLSyJC0-rgDMH92LixkKNVhEI8yV4vdVPwSdtFttaAzLzIF_SCth2Cz-HLmzLGojem5dN_mF3WUiPKZrmNORmKB6VvI9J0mwH" });
+
+            List<GoogleResult> gcmResults = pushDetails.RawResponse.Results;
+            if (gcmResults[0].Error == "NotRegistered")
+            {
+                Console.WriteLine("NotRegistered");
+            }
+            else
+            {
+                Console.WriteLine("Registered");
+            }
         }
 
         private static List<PhoneNumberAndSdkWithGcm> SendPushToReconnectAndReportBack(List<PhoneNumberAndSdkWithGcm> phoneNumbersAndSdksWithGcm)

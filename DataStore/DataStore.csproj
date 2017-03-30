@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5CF7F086-BFF1-403E-921B-6F91F2037332}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MyState.WebApplication.DataStore</RootNamespace>
+    <AssemblyName>MyState.WebApplication.DataStore</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DevDebug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\DevDebug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugDevelopment|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\DebugDevelopment\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseDevelopment|AnyCPU'">
+    <OutputPath>bin\ReleaseDevelopment\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Dapper, Version=1.40.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Dapper.1.42\lib\net45\Dapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Mindscape.Raygun4Net">
+      <HintPath>..\..\packages\Mindscape.Raygun4Net.Core.5.1.1\lib\net40\Mindscape.Raygun4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Mindscape.Raygun4Net.WebApi">
+      <HintPath>..\..\packages\Mindscape.Raygun4Net.WebApi.5.1.1\lib\net45\Mindscape.Raygun4Net.WebApi.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Account\DapperDb.cs" />
+    <Compile Include="Account\Logger.cs" />
+    <Compile Include="DataObjects\NonMyStateContactsForMarketing.cs" />
+    <Compile Include="Helpers\CodeGenerator.cs" />
+    <Compile Include="Helpers\ExtendedMethods.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserDefinedSqlObjects\DbPassedTempContactDetails.cs" />
+    <Compile Include="UserDefinedSqlObjects\DbPassedMarketingObjectArray.cs" />
+    <Compile Include="UserDefinedSqlObjects\DbPassedArray.cs" />
+    <Compile Include="UserDefinedSqlObjects\DbPassedDistinctArray.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonInterfaces\CommonInterfaces.csproj">
+      <Project>{5E53045C-4ACD-413A-8BA8-6B0B1AFAFBF2}</Project>
+      <Name>CommonInterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PushNotificationEngines\PushNotificationEngines.csproj">
+      <Project>{77fdec9f-6871-410f-8217-5ef085c7d3f0}</Project>
+      <Name>PushNotificationEngines</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Sql\Constraints\2016-06-23.txt" />
+    <Content Include="Sql\Constraints\Pre2016-06-23.txt" />
+    <Content Include="Sql\Functions\Table-valued Functions\dbo.splitstring.sql" />
+    <Content Include="Sql\Indexes\IDX_NonUniqueNCI_PhoneNumber.txt" />
+    <Content Include="Sql\StoresProcedures\dbo.AddAlphaInvitee.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.AlphaListAddInvitee.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.AlphaList_Add_Invitee.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.AlphaList_Delete.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.AlphaList_Insert.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.AlphaList_Update.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.CrunchInfo_GetCrunchers.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.CrunchInfo_Insert.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.DeleteCrunch.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.DeleteCrunchesByCrunchedPhoneNumber.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.DeleteNonMyStateContact.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.GetAlphaUserByPhoneNumber.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.GetAnalyticsKey.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.GetCrunchesByCruncherPhoneNumber.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.GetUserStatePreferences.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.IncrementViewCount.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.InsertAnalyticsKey.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.InsertBulkToPushResponses.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.InsertInvitations.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.InsertShareCode.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.InsertSmsLog.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.InsertToLogs.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.NonMystateContactsByPhoneNumber.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.PendingVerification_Select.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.PendingVerification_Update.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.spGetAllUsersRegistrationIds.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.spGetNext100Users.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.StateInsert.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.States_ByPhoneNumbers.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.States_ByPhoneNumbersWithVersionCode.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.StateUpdate.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.State_ByPhoneNumber.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.SynchronizeContacts.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.Token_SaveFull.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.UpdateAnalyticsKey.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.UpdateInvitations.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.UpdateShareCodes.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.UpdateSmsLogByMessageId.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.UpdateStateReconnectPushDate.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.UpdateStatesPreferences.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.UpdateUser.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.UsersUpdateAppVersion.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.UsersUpdateAppVersionCode.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.Users_ByPhoneNumbers.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.User_ByPhone.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.User_UpdateOrInsert.sql" />
+    <Content Include="Sql\StoresProcedures\dbo.User_UpdateOrInsert_02_06_20105.sql" />
+    <Content Include="Sql\StoresProcedures\ServerPushCodeDelete.txt" />
+    <Content Include="Sql\StoresProcedures\ServerPushCodesInsertOrUpdate.txt" />
+    <Content Include="Sql\StoresProcedures\sp_alterdiagram.txt" />
+    <Content Include="Sql\StoresProcedures\sp_creatediagram.txt" />
+    <Content Include="Sql\StoresProcedures\sp_dropdiagram.txt" />
+    <Content Include="Sql\StoresProcedures\sp_helpdiagramdefinition.txt" />
+    <Content Include="Sql\StoresProcedures\sp_helpdiagrams.txt" />
+    <Content Include="Sql\StoresProcedures\sp_renamediagram.txt" />
+    <Content Include="Sql\StoresProcedures\sp_upgraddiagrams.txt" />
+    <Content Include="Sql\StoresProcedures\States_ByPhoneNumbers_temp_multiPush.txt" />
+    <Content Include="Sql\StoresProcedures\Users_ByPhoneNumbers_temp_multiPush.txt" />
+    <Content Include="Sql\StoresProcedures\User_ByPhone_temp_multiPush.txt" />
+    <Content Include="Sql\StoresProcedures\User_UpdateOrInsert_temp_multiPush.txt" />
+    <Content Include="Sql\Tables\AlphaList.txt" />
+    <Content Include="Sql\Tables\AnalyticsKeys.txt" />
+    <Content Include="Sql\Tables\BusinessPopup.Businesses.txt" />
+    <Content Include="Sql\Tables\BusinessPopup.Cities.txt" />
+    <Content Include="Sql\Tables\HistoricalActivities.txt" />
+    <Content Include="Sql\Tables\Invitations.txt" />
+    <Content Include="Sql\Tables\Logs.txt" />
+    <Content Include="Sql\Tables\NonMystateContacts.txt" />
+    <Content Include="Sql\Tables\PendingVerifications.txt" />
+    <Content Include="Sql\Tables\Personas.txt" />
+    <Content Include="Sql\Tables\PushResponses.txt" />
+    <Content Include="Sql\Tables\ServerPushCodes.txt" />
+    <Content Include="Sql\Tables\ShareCodes.txt" />
+    <Content Include="Sql\Tables\SmsLog.txt" />
+    <Content Include="Sql\Tables\States.txt" />
+    <Content Include="Sql\Tables\Subscribers.txt" />
+    <Content Include="Sql\Tables\sysdiagrams.txt" />
+    <Content Include="Sql\Tables\Tokens.txt" />
+    <Content Include="Sql\Tables\Users.txt" />
+    <Content Include="Sql\Types\User-Defined Table Types\dbo.MyIdList.sql" />
+    <Content Include="Sql\Types\User-Defined Table Types\dbo.MyTVPType.sql" />
+    <Content Include="Sql\Types\User-Defined Table Types\dbo.PushResponsesVariable.sql" />
+    <Content Include="Sql\Types\User-Defined Table Types\dbo.StringArray.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

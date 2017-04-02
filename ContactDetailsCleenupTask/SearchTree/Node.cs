@@ -26,12 +26,19 @@ namespace ContactDetailsCleenupTask.SearchTree
             return Children.Count == 0;
         }
 
-        public Node FindChildNode(char c)
+        public Node FindChildNode(char c, bool isCaseSensitive = true)
         {
             foreach (var child in Children)
-                if (child.Value == c)
-                    return child;
-
+                if (isCaseSensitive)
+                {
+                    if (child.Value == c)
+                        return child;
+                }
+                else
+                {
+                    if (Char.ToLower(child.Value) == Char.ToLower(c))
+                        return child; 
+                }
             return null;
         }
 

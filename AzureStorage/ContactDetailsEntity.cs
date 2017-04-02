@@ -25,11 +25,20 @@ namespace AzureStorage
         public ContactDetailsEntity(IContactDetails contactsDetails)
         {
             this.PartitionKey = contactsDetails.PhoneNumber;
+            if (string.IsNullOrEmpty(contactsDetails.RowKey))
             {
                 this.RowKey = Interlocked.Increment(ref _safeInstanceCount).ToString();
             }
+            else
+            {
+                this.RowKey = contactsDetails.RowKey;
+            }
+
             this.SourcePhoneNumber = contactsDetails.SourcePhoneNumber;
             this.Name = contactsDetails.Name;
+            this.Disabled = contactsDetails.Disabled;
+            this.Reported = contactsDetails.Reported;
+            this.ForbidenWord = contactsDetails.ForbidenWord;
         }
 
         public void ConvertTo(ref IContactDetails contactsDetails)
@@ -38,12 +47,18 @@ namespace AzureStorage
             contactsDetails.RowKey = this.RowKey;
             contactsDetails.SourcePhoneNumber = this.SourcePhoneNumber;
             contactsDetails.Name = this.Name;
+            contactsDetails.Disabled = this.Disabled;
+            contactsDetails.Reported = this.Reported;
+            contactsDetails.ForbidenWord = this.ForbidenWord;
         }
 
         public string Name { get; set; }
 
         public string SourcePhoneNumber { get; set; }
 
+        bool Disabled { get; set; }
+        bool ForbidenWord { get; set; }
+        bool Reported { get; set; }
         public string IconUrl { get; set; }
         public string BackgroundImageUrl { get; set; }
 

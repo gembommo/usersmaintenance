@@ -64,10 +64,11 @@ namespace AzureStorage
         private void CreateTable<T>(string additionalSecondaryTableName)
         {
             Type tableType = typeof(T);
-            string tableInitials = tableType.FullName.Substring(tableType.FullName.LastIndexOf('.'));
+            string tableInitials = tableType.FullName.Substring(tableType.FullName.LastIndexOf('.')+1);
             tableTypeDictionary.Add(tableInitials + '.' + additionalSecondaryTableName, additionalSecondaryTableName);
             CloudTable table = _tableClient.GetTableReference(additionalSecondaryTableName);
             table.CreateIfNotExists();
+            
         }
 
         private void CreateTable<T>()

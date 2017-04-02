@@ -27,7 +27,7 @@ namespace ContactDetailsCleenupTask.SearchTree
             return result;
         }
 
-        public Node PrefixWithPossibleSkip(string s, int skip)
+        public Node PrefixWithPossibleSkip(string s, int skip, bool isCaseSensitive)
         {
             var currentNode = _root;
             var result = currentNode;
@@ -37,7 +37,7 @@ namespace ContactDetailsCleenupTask.SearchTree
             {
                 for (int i = 0; i < skip; i++)
                 {
-                    currentNode = currentNode.FindChildNode(c);
+                    currentNode = currentNode.FindChildNode(c, isCaseSensitive);
                     if (currentNode != null)
                         break;
                     missedDepthSteps++;
@@ -58,9 +58,9 @@ namespace ContactDetailsCleenupTask.SearchTree
             return prefix.Depth == s.Length && prefix.FindChildNode('$') != null;
         }
 
-        public bool SearchWithPossibleSkip(string s, int skip)
+        public bool SearchWithPossibleSkip(string s, int skip, bool isCaseSensitive)
         {
-            var prefix = PrefixWithPossibleSkip(s, skip);
+            var prefix = PrefixWithPossibleSkip(s, skip, isCaseSensitive);
             return prefix.Depth == s.Length && prefix.FindChildNode('$') != null;
         }
 

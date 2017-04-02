@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,16 +27,16 @@ namespace ContactDetailsCleenupTask
         public static SearchTree.SearchTree BadWords = new SearchTree.SearchTree();
         static void Main()
         {
-            var config = new JobHostConfiguration();
+            //var config = new JobHostConfiguration();
 
-            if (config.IsDevelopment)
-            {
-                config.UseDevelopmentSettings();
-            }
+            //if (config.IsDevelopment)
+            //{
+            //    config.UseDevelopmentSettings();
+            //}
 
-            var host = new JobHost();
-            // The following code ensures that the WebJob will be running continuously
-            host.RunAndBlock();
+            //var host = new JobHost();
+            //// The following code ensures that the WebJob will be running continuously
+            //host.RunAndBlock();
 
             LoadIoc();
 
@@ -60,7 +61,7 @@ namespace ContactDetailsCleenupTask
                     List<string> removedWords = new List<string>();
                     foreach (var item in contectDetails.Name.SplitBySpaces())
                     {
-                        if (BadWords.SearchWithPossibleSkip(item, 1))
+                        if (BadWords.SearchWithPossibleSkip(item, 1, false))
                         {
                             removedWords.Add(item);
                         }
@@ -70,6 +71,11 @@ namespace ContactDetailsCleenupTask
                     {
                         contatsToRemove.Add(contectDetails.Clone());
                         removedWords.ForEach(x => contectDetails.Name = contectDetails.Name.Replace(x, ""));
+                        if (contectDetails.Name.Length < 3)
+                        {
+                            contectDetails.Disabled = true;
+                            contectDetails.ForbidenWord = true;
+                        }
                         contatsToUpdate.Add(contectDetails);
                     }
                 }
@@ -96,8 +102,15 @@ namespace ContactDetailsCleenupTask
         private static void LoadIoc()
         {
             Ioc = new StandardKernel();
-            Ioc.Bind<IDbCompleteDataStore>().To<DapperDb>();
-            Ioc.Bind<IAzureStorage>().To<AzureTableStorage>();
+
+            Ioc.Bind<IDbCompleteDataStore>().ToMethod(contex => new DapperDb("MyState_MainDB"));
+
+
+            string storageConnectionString = ConfigurationManager.AppSettings["StorageConnectionString"];
+            Ioc.Bind<IAzureStorage>()
+                .ToMethod(
+                    context => new AzureTableStorage(storageConnectionString, context.Kernel.Get<IMyStateLogger>()));
+
             Ioc.Bind<IMyStateLogger>().To<MyStateLogger>();
             Ioc.Bind<IContactDetailsLoader>()
                 .ToMethod(

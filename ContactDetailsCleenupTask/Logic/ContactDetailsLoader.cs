@@ -31,13 +31,14 @@ namespace ContactDetailsCleenupTask.Logic
                 new Tuple<List<ContactDetailsEntity>, TableContinuationToken>(null, null);
             do
             {
-                
+
                 nextBatch = _elementSource.GetAllEntitiesByBatchs<ContactDetailsEntity>(batchCount, nextBatch.Item2);
+                //nextBatch = new Tuple<List<ContactDetailsEntity>, TableContinuationToken>(_elementSource.Get<ContactDetailsEntity>("+972543394753") , null);
                 List<IContactDetails> items = GetContactDetailsesList(nextBatch);
                 foreach (var operation in operations)
                 {
                     var result = operation.Invoke(items);
-                    if (result)
+                    if (!result)
                     {
                         _logger.Write(new Log()
                         {
@@ -61,8 +62,8 @@ namespace ContactDetailsCleenupTask.Logic
         private void UpdateMonitor(int itemsCount, string partitionKey)
         {
             _contactDetailsLoaderCounter += itemsCount;
-            _monitorDb.SetTempTableValue("ContactDetailsLoaderCounter", _contactDetailsLoaderCounter.ToString());
-            _monitorDb.SetTempTableValue("ContactDetailsLoaderProgress", partitionKey);
+            _monitorDb.SetTempTableValue(/*"ContactDetailsLoaderCounter"*/3, _contactDetailsLoaderCounter.ToString());
+            _monitorDb.SetTempTableValue(/*"ContactDetailsLoaderProgress"*/4, partitionKey);
         }
 
         private static List<IContactDetails> GetContactDetailsesList(Tuple<List<ContactDetailsEntity>, TableContinuationToken> nextBatch)

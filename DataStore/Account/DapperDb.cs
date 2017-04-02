@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using CommonInterfaces;
 using Dapper;
@@ -23,7 +24,7 @@ namespace MyState.WebApplication.DataStore.Account
 
         public DapperDb(string stringConnectionName)
         {
-            _connectionString = ConfigurationManager.ConnectionStrings[stringConnectionName].ConnectionString
+            _connectionString = ConfigurationManager.ConnectionStrings?[stringConnectionName]?.ConnectionString
                                     ?? stringConnectionName;
 
             SqlConnectionStringBuilder scsb = new SqlConnectionStringBuilder(_connectionString)
@@ -49,7 +50,7 @@ namespace MyState.WebApplication.DataStore.Account
             return connection;
         }
 
-        public async Task SetTempTableValue(string value, string key)
+        public async Task SetTempTableValue(int key, string value)
         {
             using (var connection = GetOpenConnection())
             {
@@ -124,6 +125,45 @@ FROM [dbo].[ForbidenWords]
 ",
                     commandType: CommandType.Text);
                 return response.Content?.ToList();
+            }
+
+        }
+
+        public void SaveBadWords(HashSet<string> words)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (var word in words)
+            {
+                sb.Append(string.Format("('{0}'),", word));
+            }
+            sb.Remove(sb.Length - 1, 1);
+            
+
+            using (var connection = GetOpenConnection())
+            {
+                string query = @"
+insert into [dbo].[ForbidenWords]
+(Word)
+values
+";
+                var response = connection.SafeQuery<string>(
+                    query + sb,
+                    commandType: CommandType.Text);
+            }
+
+        }
+
+        public void SaveBadWord(string word)
+        {
+            using (var connection = GetOpenConnection())
+            {
+                string query = @"
+insert into [dbo].[ForbidenWords]
+(Word)
+values ('"+word+"')";
+                var response = connection.SafeQuery<string>(
+                    query,
+                    commandType: CommandType.Text);
             }
 
         }

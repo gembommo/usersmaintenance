@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using AzureStorage;
 using CommonInterfaces;
 using CommonTools;
+using ContactDetailsCleenupTask.BadWordsFilters;
 using ContactDetailsCleenupTask.Interfaces;
 using ContactDetailsCleenupTask.Logic;
 using Microsoft.Azure.WebJobs;
@@ -24,7 +25,13 @@ namespace ContactDetailsCleenupTask
         public static IKernel Ioc;
 
 
-        public static SearchTree.SearchTree BadWords = new SearchTree.SearchTree();
+        public static SearchWordsList BadWordsFilters = new SearchWordsList(){
+            new SearchWordsByRegex(),
+            new SearchWordsThatStartsWith("ה"),
+            new SearchPossiblePasswords(),
+            new SearchWordInText()
+        };
+        //public static SearchTree.SearchTree BadWords = new SearchTree.SearchTree();
         static void Main()
         {
             //var config = new JobHostConfiguration();
@@ -40,13 +47,54 @@ namespace ContactDetailsCleenupTask
 
             LoadIoc();
 
-            BadWords.InsertRange(Ioc.Get<IDbCompleteDataStore>().LoadBadWords());
+            BadWordsFilters.InsertWords(Ioc.Get<IDbCompleteDataStore>().LoadBadWords());
 
             IContactDetailsLoader loader = Ioc.Get<IContactDetailsLoader>();
 
             loader.ForEach(batchCount: 1000, dellayInMilliSeconds: 100,
-                operations: new Func<List<IContactDetails>, bool>[] {AddNewIndexes, MarkBadWords});
+                operations: new Func<List<IContactDetails>, bool>[] { RemoveDuplicateRecords, AddNewIndexes, MarkBadWords});
 
+        }
+
+        private static bool RemoveDuplicateRecords(List<IContactDetails> contactDetailsList)
+        {
+            var logger = Ioc.Get<IMyStateLogger>();
+
+            try
+            {
+                Dictionary<string, List<IContactDetails>> duplicatesToRemove = new Dictionary<string, List<IContactDetails>>();
+                foreach (var contactDetails in contactDetailsList)
+                {
+                    string localKey = string.Format("{0}#{1}#{2}", contactDetails.PhoneNumber,
+                        contactDetails.SourcePhoneNumber, contactDetails.Name);
+                    if (duplicatesToRemove.ContainsKey(localKey))
+                    {
+                        duplicatesToRemove[localKey].Add(contactDetails);
+                    }
+                    else
+                    {
+                        duplicatesToRemove.Add(localKey, new List<IContactDetails>());
+                    }
+                }
+
+
+                var contactsDb = Ioc.Get<IAzureStorage>();
+                foreach (var itemToRemove in duplicatesToRemove)
+                {
+                    if (itemToRemove.Value.IsNullOrEmpty())
+                        continue;
+                    contactsDb.DeleteBatch<ContactDetailsEntity>(itemToRemove.Key.Split('#').First(),
+                        itemToRemove.Value.Select(x => x.RowKey));
+
+                    itemToRemove.Value.ForEach(x => contactDetailsList.Remove(x));
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Write(ex);
+                return false;
+            }
+            return true;
         }
 
         private static bool MarkBadWords(List<IContactDetails> contactDetailsList)
@@ -61,7 +109,7 @@ namespace ContactDetailsCleenupTask
                     List<string> removedWords = new List<string>();
                     foreach (var item in contectDetails.Name.SplitBySpaces())
                     {
-                        if (BadWords.SearchWithPossibleSkip(item, 1, false))
+                        if (BadWordsFilters.SearchWord(item))
                         {
                             removedWords.Add(item);
                         }
@@ -111,7 +159,10 @@ namespace ContactDetailsCleenupTask
                 .ToMethod(
                     context => new AzureTableStorage(storageConnectionString, context.Kernel.Get<IMyStateLogger>()));
 
-            Ioc.Bind<IMyStateLogger>().To<MyStateLogger>();
+            Ioc.Bind<IMyStateLogger>()
+                .ToMethod(
+                    context =>
+                        new MyStateLogger(context.Kernel.Get<IDbCompleteDataStore>()));
             Ioc.Bind<IContactDetailsLoader>()
                 .ToMethod(
                     context =>

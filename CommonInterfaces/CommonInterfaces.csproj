@@ -58,6 +58,7 @@
     <Compile Include="IContactDetails.cs" />
     <Compile Include="IDbCompleteDataStore.cs" />
     <Compile Include="IMyStateLogger.cs" />
+    <Compile Include="ISearchWords.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

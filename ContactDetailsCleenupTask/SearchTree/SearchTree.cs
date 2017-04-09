@@ -26,7 +26,7 @@ namespace ContactDetailsCleenupTask.SearchTree
 
             return result;
         }
-
+        
         public Node PrefixWithPossibleSkip(string s, int skip, bool isCaseSensitive)
         {
             var currentNode = _root;
@@ -58,6 +58,14 @@ namespace ContactDetailsCleenupTask.SearchTree
             return prefix.Depth == s.Length && prefix.FindChildNode('$') != null;
         }
 
+        /// <summary>
+        /// This function doesn't work properly. 
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="skip"></param>
+        /// <param name="isCaseSensitive"></param>
+        /// <returns></returns>
+        [System.Obsolete("This function doesn't work properly yet")]
         public bool SearchWithPossibleSkip(string s, int skip, bool isCaseSensitive)
         {
             var prefix = PrefixWithPossibleSkip(s, skip, isCaseSensitive);

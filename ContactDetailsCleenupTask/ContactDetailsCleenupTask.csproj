@@ -78,6 +78,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BadWordsFilters\SearchTreeWithSkip.cs" />
+    <Compile Include="BadWordsFilters\SearchWordsList.cs" />
     <Compile Include="Interfaces\IContactDetailsLoader.cs" />
     <Compile Include="Logic\ContactDetailsLoader.cs" />
     <Compile Include="Program.cs" />
@@ -85,6 +87,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchTree\Node.cs" />
     <Compile Include="SearchTree\SearchTree.cs" />
+    <Compile Include="SearchWordsByRegex.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

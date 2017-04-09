@@ -114,18 +114,19 @@ where [key] = @key",
             }
         }
 
-        public List<string> LoadBadWords()
+        public List<SearchableWord> LoadBadWords()
         {
-            using (var connection = GetOpenConnection())
-            {
-                var response = connection.SafeQuery<string>(
-                    @"
-SELECT *
-FROM [dbo].[ForbidenWords]
-",
-                    commandType: CommandType.Text);
-                return response.Content?.ToList();
-            }
+            return new List<SearchableWord>(){ new SearchableWord(){Word = "שמנ", WordType = SearchableWord.SearchableWordType.Expandable}};
+//            using (var connection = GetOpenConnection())
+//            {
+//                var response = connection.SafeQuery<SearchableWord>(
+//                    @"
+//SELECT *
+//FROM [dbo].[ForbidenWords]
+//",
+//                    commandType: CommandType.Text);
+//                return response.Content?.ToList();
+//            }
 
         }
 

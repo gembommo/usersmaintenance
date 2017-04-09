@@ -1,25 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using AzureStorage;
 using CommonInterfaces;
 using CommonTools;
 using ContactDetailsCleenupTask.Interfaces;
 using Microsoft.WindowsAzure.Storage.Table;
 
-namespace ContactDetailsCleenupTask.Logic
+namespace ExcellLoader
 {
-    public class ContactDetailsLoader : IContactDetailsLoader
+    public class ContactDetailsSuspecetWordsLoader : IContactDetailsLoader
     {
         private readonly IDbCompleteDataStore _monitorDb;
         private readonly IAzureStorage _elementSource;
         private readonly IMyStateLogger _logger;
         private int _contactDetailsLoaderCounter;
 
-        public ContactDetailsLoader(IDbCompleteDataStore monitorDb, IAzureStorage elementSource, IMyStateLogger logger)
+        public ContactDetailsSuspecetWordsLoader(IDbCompleteDataStore monitorDb, IAzureStorage elementSource, IMyStateLogger logger)
         {
             _monitorDb = monitorDb;
             _elementSource = elementSource;
@@ -32,9 +30,9 @@ namespace ContactDetailsCleenupTask.Logic
                 new Tuple<List<ContactDetailsEntity>, TableContinuationToken>(null, null);
             do
             {
-                //nextBatch = _elementSource.GetAllEntitiesByBatchs<ContactDetailsEntity>(batchCount, nextBatch.Item2);
-                nextBatch = new Tuple<List<ContactDetailsEntity>, TableContinuationToken>(_elementSource.Get<ContactDetailsEntity>("+972524645991") , null);
-                
+
+                nextBatch = _elementSource.GetAllEntitiesByBatchs<ContactDetailsEntity>(batchCount, nextBatch.Item2);
+                //nextBatch = new Tuple<List<ContactDetailsEntity>, TableContinuationToken>(_elementSource.Get<ContactDetailsEntity>("+972524645991") , null);
                 List<IContactDetails> items = ModelConverter.GetContactDetailsesList(nextBatch.Item1);
                 foreach (var operation in operations)
                 {

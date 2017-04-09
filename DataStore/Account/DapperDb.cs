@@ -116,17 +116,16 @@ where [key] = @key",
 
         public List<SearchableWord> LoadBadWords()
         {
-            return new List<SearchableWord>(){ new SearchableWord(){Word = "שמנ", WordType = SearchableWord.SearchableWordType.Expandable}};
-//            using (var connection = GetOpenConnection())
-//            {
-//                var response = connection.SafeQuery<SearchableWord>(
-//                    @"
-//SELECT *
-//FROM [dbo].[ForbidenWords]
-//",
-//                    commandType: CommandType.Text);
-//                return response.Content?.ToList();
-//            }
+            using (var connection = GetOpenConnection())
+            {
+                var response = connection.SafeQuery<SearchableWord>(
+                    @"
+SELECT *
+FROM [dbo].[ForbidenWords]
+",
+                    commandType: CommandType.Text);
+                return response.Content?.ToList();
+            }
 
         }
 

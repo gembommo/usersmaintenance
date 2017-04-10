@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BadWordsFilters\SearchTreeWithSkip.cs" />
+    <Compile Include="BadWordsFilters\SearchWordInText.cs" />
     <Compile Include="BadWordsFilters\SearchWordsList.cs" />
     <Compile Include="Interfaces\IContactDetailsLoader.cs" />
     <Compile Include="Logic\ContactDetailsLoader.cs" />

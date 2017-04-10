@@ -26,7 +26,24 @@ namespace ContactDetailsCleenupTask.SearchTree
 
             return result;
         }
-        
+
+        public Node Prefix(char[] cArray, int startAt)
+        {
+            var currentNode = _root;
+            var result = currentNode;
+
+            for (var index = startAt; index < cArray.Length; index++)
+            {
+                var c = cArray[index];
+                currentNode = currentNode.FindChildNode(c);
+                if (currentNode == null)
+                    break;
+                result = currentNode;
+            }
+
+            return result;
+        }
+
         public Node PrefixWithPossibleSkip(string s, int skip, bool isCaseSensitive)
         {
             var currentNode = _root;
@@ -56,6 +73,19 @@ namespace ContactDetailsCleenupTask.SearchTree
         {
             var prefix = Prefix(s);
             return prefix.Depth == s.Length && prefix.FindChildNode('$') != null;
+        }
+
+        public bool SearchInText(string s)
+        {
+            var cArray = s.ToCharArray();
+            for (int i = 0; i < cArray.Length; i++)
+            {
+                var prefix = Prefix(cArray, i);
+                var result = prefix.FindChildNode('$') != null;
+                if (result)
+                    return true;
+            }
+            return false;
         }
 
         /// <summary>

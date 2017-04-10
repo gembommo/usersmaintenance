@@ -27,6 +27,8 @@ namespace ContactDetailsCleenupTask
 
         public bool SearchWord(string item)
         {
+            if (string.IsNullOrEmpty(item))
+                return false;
             foreach (var regex in _regexList)
             {
                 var match = regex.Match(item);

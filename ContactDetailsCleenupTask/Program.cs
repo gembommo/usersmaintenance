@@ -104,16 +104,27 @@ namespace ContactDetailsCleenupTask
         {
             try
             {
+                if (contactDetailsList.IsNullOrEmpty())
+                    return true;
                 var contactsDb = Ioc.Get<IAzureStorage>();
+                var logger = Ioc.Get<IMyStateLogger>();
                 List<IContactDetails> contactsToRemove = new List<IContactDetails>();
                 
                 foreach (var contectDetails in contactDetailsList)
                 {
-                    if (BadWordsFilters.SearchWord(contectDetails.Name))
-                    { 
-                        contactsToRemove.Add(contectDetails.Clone());
-                        contectDetails.Disabled = true;
-                        contectDetails.ForbidenWord = true;
+                    try
+                    {
+                        if (BadWordsFilters.SearchWord(contectDetails.Name))
+                        {
+                            contactsToRemove.Add(contectDetails.Clone());
+                            contectDetails.Disabled = true;
+                            contectDetails.ForbidenWord = true;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+
+                        logger.Write(ex);
                     }
                 }
 

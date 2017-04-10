@@ -102,34 +102,21 @@ namespace ContactDetailsCleenupTask
             try
             {
                 var contactsDb = Ioc.Get<IAzureStorage>();
-                List<IContactDetails> contatsToRemove = new List<IContactDetails>();
-                List<IContactDetails> contatsToUpdate = new List<IContactDetails>();
+                List<IContactDetails> contactsToRemove = new List<IContactDetails>();
+                
                 foreach (var contectDetails in contactDetailsList)
                 {
-                    List<string> removedWords = new List<string>();
-                    foreach (var item in contectDetails.Name.SplitBySpaces())
-                    {
-                        if (BadWordsFilters.SearchWord(item))
-                        {
-                            removedWords.Add(item);
-                        }
-                    }
-
-                    if (removedWords.Count != 0)
-                    {
-                        contatsToRemove.Add(contectDetails.Clone());
-                        removedWords.ForEach(x => contectDetails.Name = contectDetails.Name.Replace(x, ""));
-                        if (contectDetails.Name.Length < 3)
-                        {
-                            contectDetails.Disabled = true;
-                            contectDetails.ForbidenWord = true;
-                        }
-                        contatsToUpdate.Add(contectDetails);
+                    if (BadWordsFilters.SearchWord(contectDetails.Name))
+                    { 
+                        contactsToRemove.Add(contectDetails.Clone());
+                        contectDetails.Disabled = true;
+                        contectDetails.ForbidenWord = true;
                     }
                 }
 
-                contactsDb.SaveContactDetailsSuspectedNames(contatsToRemove);
-                contactsDb.SaveContactDetails(contatsToUpdate);
+                contactsDb.SaveContactDetailsSuspectedNames(contactsToRemove);
+
+                contactsDb.DeleteBatch(ModelConverter.GetContactDetailsEntityList(contactsToRemove));
                 return true;
             }
             catch (Exception ex)

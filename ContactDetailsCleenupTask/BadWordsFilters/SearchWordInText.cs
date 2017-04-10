@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using CommonInterfaces;
+using CommonTools;
 
 namespace ContactDetailsCleenupTask.BadWordsFilters
 {
@@ -15,9 +16,14 @@ namespace ContactDetailsCleenupTask.BadWordsFilters
                     .ToList());
         }
 
-        public bool SearchWord(string item)
+        public bool SearchWord(string sentence)
         {
-            return _searchTree.SearchInText(item);
+            foreach (var item in sentence.SplitBySpaces())
+            {
+                if (_searchTree.Search(item))
+                    return true;
+            }
+            return false;
         }
     }
 }

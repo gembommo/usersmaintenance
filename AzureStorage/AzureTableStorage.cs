@@ -233,6 +233,14 @@ namespace AzureStorage
             ExecuteBatch(rowKeys.Select(x => new DynamicTableEntity(partitionKey, x)), table, TableOperation.Delete);
         }
 
+        public void DeleteBatch<T>(List<T> entities) where T : TableEntity, new()
+        {
+            if (entities == null || !entities.Any())
+                return;
+            CloudTable table = _tableClient.GetTableReference(tableTypeDictionary[typeof(T).FullName]);
+            ExecuteBatch(entities.Select(x => new DynamicTableEntity(x.PartitionKey, x.RowKey)), table, TableOperation.Delete);
+        }
+
         public void DeleteBatch(IEnumerable<DynamicTableEntity> entities, CloudTable table)
         {
             ExecuteBatch(entities, table, TableOperation.Delete);
@@ -505,6 +513,8 @@ public interface IAzureStorage
     void SaveStateUpdateBatch(List</*BaseStateUpdateRequest*/ object> updatedUserState);
     void SaveBatch<T>(List<T> objToSaveList) where T : TableEntity, new();
     void DeleteBatch<T>(string partitionKey, IEnumerable<string> rowKeys) where T : TableEntity, new();
+
+    void DeleteBatch<T>(List<T> entities) where T : TableEntity, new();
     void DeleteBatch(IEnumerable<DynamicTableEntity> entities, CloudTable table);
     void SaveContactDetails(List<IContactDetails> contactsList);
     void SaveContactDetailsSuspectedNames(List<IContactDetails> contactsList);

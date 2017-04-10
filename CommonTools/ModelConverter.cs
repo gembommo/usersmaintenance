@@ -20,5 +20,10 @@ namespace CommonTools
                 return item;
             }).ToList();
         }
+
+        public static List<ContactDetailsEntity> GetContactDetailsEntityList(List<IContactDetails> nextBatch)
+        {
+            return nextBatch.Select(x => new ContactDetailsEntity(x)).ToList();
+        }
     }
 }

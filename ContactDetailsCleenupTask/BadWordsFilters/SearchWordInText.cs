@@ -18,6 +18,8 @@ namespace ContactDetailsCleenupTask.BadWordsFilters
 
         public bool SearchWord(string sentence)
         {
+            if (string.IsNullOrEmpty(sentence))
+                return false;
             foreach (var item in sentence.SplitBySpaces())
             {
                 if (_searchTree.Search(item))

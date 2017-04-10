@@ -51,7 +51,9 @@ namespace ContactDetailsCleenupTask
 
         public bool SearchWord(string item)
         {
-            return !string.IsNullOrEmpty(item) && item.StartsWith(v);
+            if (string.IsNullOrEmpty(item))
+                return false;
+            return item.StartsWith(v);
         }
 
         public void InsertRange(List<SearchableWord> loadBadWords)
@@ -72,6 +74,8 @@ namespace ContactDetailsCleenupTask
 
         public bool SearchWord(string item)
         {
+            if (string.IsNullOrEmpty(item))
+                return false;
             MatchCollection matches = regex.Matches(item);
             return matches.Count > 0;
         }

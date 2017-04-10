@@ -19,6 +19,8 @@ namespace ContactDetailsCleenupTask.BadWordsFilters
 
         public bool SearchWord(string item)
         {
+            if (string.IsNullOrEmpty(item))
+                return false;
             return _searchTree.SearchWithPossibleSkip(item, 1, false);
         }
     }

@@ -65,6 +65,8 @@ namespace ContactDetailsCleenupTask
                 Dictionary<string, List<IContactDetails>> duplicatesToRemove = new Dictionary<string, List<IContactDetails>>();
                 foreach (var contactDetails in contactDetailsList)
                 {
+                    if (contactDetails.RowKey == "ContactDetailsEntity")//Ignore control row
+                        continue;
                     string localKey = string.Format("{0}#{1}#{2}", contactDetails.PhoneNumber,
                         contactDetails.SourcePhoneNumber, contactDetails.Name);
                     if (duplicatesToRemove.ContainsKey(localKey))
@@ -85,6 +87,7 @@ namespace ContactDetailsCleenupTask
                         continue;
                     contactsDb.DeleteBatch<ContactDetailsEntity>(itemToRemove.Key.Split('#').First(),
                         itemToRemove.Value.Select(x => x.RowKey));
+                    contactsDb.SaveContactDetailsDuplicateBackup(itemToRemove.Value);
 
                     itemToRemove.Value.ForEach(x => contactDetailsList.Remove(x));
                 }

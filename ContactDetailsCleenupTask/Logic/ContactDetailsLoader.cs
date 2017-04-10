@@ -32,13 +32,23 @@ namespace ContactDetailsCleenupTask.Logic
                 new Tuple<List<ContactDetailsEntity>, TableContinuationToken>(null, null);
             do
             {
-                //nextBatch = _elementSource.GetAllEntitiesByBatchs<ContactDetailsEntity>(batchCount, nextBatch.Item2);
-                nextBatch = new Tuple<List<ContactDetailsEntity>, TableContinuationToken>(_elementSource.Get<ContactDetailsEntity>("+972524645991") , null);
+                nextBatch = _elementSource.GetAllEntitiesByBatchs<ContactDetailsEntity>(batchCount, nextBatch.Item2);
+                //nextBatch = new Tuple<List<ContactDetailsEntity>, TableContinuationToken>(_elementSource.Get<ContactDetailsEntity>("+972524645991") , null);
                 
                 List<IContactDetails> items = ModelConverter.GetContactDetailsesList(nextBatch.Item1);
                 foreach (var operation in operations)
                 {
-                    var result = operation.Invoke(items);
+                    bool result;
+                    try
+                    {
+                        result = operation.Invoke(items);
+
+                    }
+                    catch (Exception ex)
+                    {
+                        result = false;
+                        _logger.Write(ex);
+                    } 
                     if (!result)
                     {
                         _logger.Write(new Log()

@@ -10,6 +10,7 @@ namespace AzureStorage
 
         //Additional secondary tables
         public static string SuspectedNamesVault = "ContactDetailsSuspectedNamesVault";
+        public static string DuplicateBackup = "ContactDetailsDuplicateBackup";
         //end
 
         private static long _safeInstanceCount = DateTime.UtcNow.Ticks;

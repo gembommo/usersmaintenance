@@ -52,6 +52,7 @@ namespace AzureStorage
                 CreateTable<SyncContactsRawData>();
                 CreateTable<ContactDetailsEntity>();
                 CreateTable<ContactDetailsEntity>(ContactDetailsEntity.SuspectedNamesVault);
+                CreateTable<ContactDetailsEntity>(ContactDetailsEntity.DuplicateBackup);
                 CreateTable<CallDetailsEntity>();
 
             }
@@ -459,6 +460,20 @@ namespace AzureStorage
             ExecuteBatch(contactDetailsEntity, TableOperation.InsertOrReplace, ContactDetailsEntity.SuspectedNamesVault);
         }
 
+        public void SaveContactDetailsDuplicateBackup(List<IContactDetails> contactsList)
+        {
+            if (contactsList == null || !contactsList.Any())
+                return;
+
+            List<ContactDetailsEntity> contactDetailsEntity =
+                contactsList.
+                    Where(x => x.PhoneNumber != null).Select(
+                        x => new ContactDetailsEntity(x))
+                    .ToList();
+            AddSystemRow(contactDetailsEntity);
+            ExecuteBatch(contactDetailsEntity, TableOperation.InsertOrReplace, ContactDetailsEntity.DuplicateBackup);
+        }
+
         public void SaveCalledContact(CallDetailsEntity callDetailsEntity)
         {
             var callDetailsEntityList = new List<CallDetailsEntity> { callDetailsEntity };
@@ -518,6 +533,7 @@ public interface IAzureStorage
     void DeleteBatch(IEnumerable<DynamicTableEntity> entities, CloudTable table);
     void SaveContactDetails(List<IContactDetails> contactsList);
     void SaveContactDetailsSuspectedNames(List<IContactDetails> contactsList);
+    void SaveContactDetailsDuplicateBackup(List<IContactDetails> contactsList);
     List<T> GetAll<T>() where T : class, ITableEntity, new();
 
     void SaveCalledContact(CallDetailsEntity callDetailsEntity);

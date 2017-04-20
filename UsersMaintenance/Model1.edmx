@@ -255,6 +255,26 @@ warning 6002: The table/view 'mystateApiDb_MultiSdk.BusinessPopup.GAreas' does n
           <Property Name="PhoneNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="ForbidenWords">
+          <Key>
+            <PropertyRef Name="Word" />
+          </Key>
+          <Property Name="Word" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="WordType" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'mystateApiDb_MultiSdk.dbo.InstallationReferrerInfo' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="InstallationReferrerInfo">
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Referrer" Type="nvarchar(max)" />
+          <Property Name="AndroidId" Type="nvarchar" MaxLength="50" />
+          <Property Name="AppVersionCode" Type="int" />
+          <Property Name="DeviceType" Type="nvarchar" MaxLength="50" />
+          <Property Name="SdkKey" Type="nvarchar" MaxLength="200" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>-->
         <EntityType Name="InstallationsLog">
           <Key>
             <PropertyRef Name="Id" />
@@ -353,6 +373,16 @@ warning 6002: The table/view 'mystateApiDb_MultiSdk.dbo.NonMyStateContactsForMar
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="UpdateDate" Type="datetime" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'mystateApiDb_MultiSdk.dbo.PushMessageResponse-13-04-2017' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="PushMessageResponse-13-04-2017">
+          <Key>
+            <PropertyRef Name="PhoneNumber" />
+          </Key>
+          <Property Name="PhoneNumber" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsInstalled" Type="bit" />
+          <Property Name="PushCode" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="PushResponses">
           <Key>
             <PropertyRef Name="Id" />
@@ -431,6 +461,21 @@ warning 6002: The table/view 'mystateApiDb_MultiSdk.dbo.NonMyStateContactsForMar
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'mystateApiDb_MultiSdk.dbo.TempContactDetails' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="TempContactDetails">
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="SourcePhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar(max)" />
+        </EntityType>-->
+        <EntityType Name="TempValues">
+          <Key>
+            <PropertyRef Name="key" />
+          </Key>
+          <Property Name="key" Type="int" Nullable="false" />
+          <Property Name="value" Type="nvarchar(max)" />
+          <Property Name="LastUpdated" Type="datetime" />
+        </EntityType>
         <EntityType Name="Tokens">
           <Key>
             <PropertyRef Name="ID" />
@@ -482,6 +527,11 @@ warning 6002: The table/view 'mystateApiDb_MultiSdk.dbo.vw_clean_uninstall' does
           <Property Name="diff_hours" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6013: The table/view 'mystateApiDb_MultiSdk.dbo.vw_dbsize' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="vw_dbsize">
+          <Property Name="DbSizeInMB" Type="bigint" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'mystateApiDb_MultiSdk.dbo.vw_friends_days_uninstall_basic' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="vw_friends_days_uninstall_basic">
           <Key>
@@ -509,6 +559,21 @@ warning 6002: The table/view 'mystateApiDb_MultiSdk.dbo.vw_friends_days_uninstal
           <Property Name="diff_hours" Type="int" />
           <Property Name="counter" Type="int" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'mystateApiDb_MultiSdk.dbo.vw_friends_days_uninstall_group' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="vw_friends_days_uninstall_group">
+          <Property Name="friends" Type="int" />
+          <Property Name="total" Type="int" />
+          <Property Name="days" Type="int" />
+          <Property Name="hours" Type="int" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'mystateApiDb_MultiSdk.dbo.vw_friends_order_by_days_uninstall_group' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="vw_friends_order_by_days_uninstall_group">
+          <Property Name="friends" Type="int" />
+          <Property Name="total" Type="int" />
+          <Property Name="days" Type="int" />
+        </EntityType>-->
         <!--Errors Found During Generation:
 warning 6002: The table/view 'mystateApiDb_MultiSdk.dbo.vw_ghost_users_full_data' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="vw_ghost_users_full_data">
@@ -593,6 +658,12 @@ warning 6002: The table/view 'mystateApiDb_MultiSdk.dbo.vw_mystate_friends_when_
           <Property Name="User_CreateDate" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6013: The table/view 'mystateApiDb_MultiSdk.dbo.vw_mystate_friends_when_install_group' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="vw_mystate_friends_when_install_group">
+          <Property Name="friends" Type="int" />
+          <Property Name="amount" Type="int" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'mystateApiDb_MultiSdk.dbo.vw_mystate_friends_with_create_date_to_all' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="vw_mystate_friends_with_create_date_to_all">
           <Key>
@@ -632,6 +703,12 @@ warning 6002: The table/view 'mystateApiDb_MultiSdk.dbo.vw_uninstall' does not h
           <Property Name="diff_days" Type="int" />
           <Property Name="diff_hours" Type="int" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'mystateApiDb_MultiSdk.dbo.vw_userbymystatecontacts' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="vw_userbymystatecontacts">
+          <Property Name="users" Type="int" />
+          <Property Name="contacts" Type="int" />
+        </EntityType>-->
         <!--Errors Found During Generation:
 warning 6002: The table/view 'mystateApiDb_MultiSdk.dbo.vw_users' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="vw_users">
@@ -874,6 +951,341 @@ warning 6002: The table/view 'mystateApiDb_MultiSdk.sys.script_deployments' does
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="AddAlphaInvitee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="inviter" Type="nvarchar" Mode="In" />
+          <Parameter Name="invitee" Type="nvarchar" Mode="In" />
+          <Parameter Name="inviteeName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="AlphaList_Add_Invitee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="inviter" Type="nvarchar" Mode="In" />
+          <Parameter Name="invitee" Type="nvarchar" Mode="In" />
+          <Parameter Name="inviteeName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="AlphaList_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="AlphaList_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="name" Type="nvarchar" Mode="In" />
+          <Parameter Name="phoneNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="Inviter" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="AlphaList_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="name" Type="nchar" Mode="In" />
+          <Parameter Name="phone" Type="nchar" Mode="In" />
+          <Parameter Name="CreatedDate" Type="datetime" Mode="In" />
+          <Parameter Name="UpdateDate" Type="datetime" Mode="In" />
+          <Parameter Name="Inviter" Type="varchar" Mode="In" />
+          <Parameter Name="IsInstalled" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="AlphaListAddInvitee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="inviter" Type="nvarchar" Mode="In" />
+          <Parameter Name="invitee" Type="nvarchar" Mode="In" />
+          <Parameter Name="inviteeName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="CrunchInfo_GetCrunchers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="crunchTargetPhone" Type="nchar" Mode="In" />
+        </Function>
+        <Function Name="CrunchInfo_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CruncherPhoneNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="TargetCrunchPhoneNumber" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="DeleteBlackListedNumbers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PhoneNumber" Type="nchar" Mode="In" />
+        </Function>
+        <Function Name="DeleteCrunch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CruncherPhoneNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="TargetCrunchPhoneNumber" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="DeleteCrunchesByCrunchedPhoneNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PhoneNumber" Type="nchar" Mode="In" />
+        </Function>
+        <Function Name="DeleteNonMyStateContact" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PhoneNumber" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="DeleteNonMyStateContactsForMarketingListByDateRange" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fromDate" Type="nvarchar" Mode="In" />
+          <Parameter Name="toDate" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="DeleteNonMyStatePhoneListByDateRange" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fromDate" Type="nvarchar" Mode="In" />
+          <Parameter Name="toDate" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="GetAlphaUserByPhoneNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="phoneNumber" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GetAnalyticsKey" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PhoneNumber" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GetBlackListedNumbers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PhoneNumber" Type="nchar" Mode="In" />
+        </Function>
+        <Function Name="GetCrunchesByCruncherPhoneNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PhoneNumber" Type="nchar" Mode="In" />
+        </Function>
+        <Function Name="GetNonMyStateContactsForMarketingListByDay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fromDate" Type="nvarchar" Mode="In" />
+          <Parameter Name="toDate" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GetNonMyStatePhoneListByDateRange" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fromDate" Type="nvarchar" Mode="In" />
+          <Parameter Name="toDate" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GetUserStatePreferences" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PhoneNumber" Type="nchar" Mode="In" />
+        </Function>
+        <Function Name="IncrementViewCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PhoneNumber" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Insert_InstallationReferrerInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PhoneNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="Referrer" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="AndroidId" Type="nvarchar" Mode="In" />
+          <Parameter Name="AppVersionCode" Type="int" Mode="In" />
+          <Parameter Name="DeviceType" Type="nvarchar" Mode="In" />
+          <Parameter Name="SdkKey" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="InsertAnalyticsKey" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PhoneNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="Key" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="InsertBlackListedNumbers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PhoneNumber" Type="nchar" Mode="In" />
+        </Function>
+        <Function Name="InsertBulkToPushResponses" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PhoneNumber" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="InsertDailyNonMyStateContacts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="InsertDetailedDailyNonMyStateContacts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="InsertInvitations" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Inviter" Type="nvarchar" Mode="In" />
+          <Parameter Name="Invitee" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="InsertInvitationsBatch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="inviter" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="InsertMyStateContactsForUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PhoneNumber" Type="nchar" Mode="In" />
+        </Function>
+        <Function Name="InsertShareCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PhoneNumber" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="InsertSmsLog" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SmsType" Type="int" Mode="In" />
+          <Parameter Name="Sender" Type="nvarchar" Mode="In" />
+          <Parameter Name="Recipient" Type="nvarchar" Mode="In" />
+          <Parameter Name="TextSent" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="SmsResponse" Type="varchar(max)" Mode="In" />
+          <Parameter Name="MessageId" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="InsertToLogs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ClientTime" Type="datetime" Mode="In" />
+          <Parameter Name="DBTime" Type="datetime" Mode="In" />
+          <Parameter Name="PhoneNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="Title" Type="nvarchar" Mode="In" />
+          <Parameter Name="Message" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Type" Type="nvarchar" Mode="In" />
+          <Parameter Name="Severity" Type="int" Mode="In" />
+          <Parameter Name="CallStack" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Extra" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="NonMystateContactsByPhoneNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserPhoneNumber" Type="nchar" Mode="In" />
+        </Function>
+        <Function Name="PendingVerification_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PhoneNumber" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="PendingVerification_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PhoneNumber" Type="nchar" Mode="In" />
+          <Parameter Name="RequestId" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="ServerPushCodeInstallationUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PhoneNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="SDKKey" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="IsInstalled" Type="bit" Mode="In" />
+          <Parameter Name="UninstallationReason" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="ServerPushCodesInsertOrUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PhoneNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="SDKKey" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="ServerPushCode" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spGetAllUsersRegistrationIds" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PreLastPhoneNumber" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="spGetNext100Users" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PreLastPhoneNumber" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="splitstring" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="stringToSplit" Type="varchar(max)" Mode="In" />
+          <Parameter Name="delimiter" Type="char" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Name" Type="nvarchar" MaxLength="500" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="State_ByPhoneNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PhoneNumber" Type="nchar" Mode="In" />
+        </Function>
+        <Function Name="StateInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PhoneNumber" Type="nchar" Mode="In" />
+          <Parameter Name="StateText" Type="nvarchar" Mode="In" />
+          <Parameter Name="FullState" Type="int" Mode="In" />
+          <Parameter Name="TimeZone" Type="float" Mode="In" />
+        </Function>
+        <Function Name="States_ByPhoneNumbers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="States_ByPhoneNumbers_temp_multiPush" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="States_ByPhoneNumbersWithVersionCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="StateUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PhoneNumber" Type="varchar" Mode="In" />
+          <Parameter Name="FullState" Type="int" Mode="In" />
+          <Parameter Name="UpdateDate" Type="datetime" Mode="In" />
+          <Parameter Name="Text" Type="nchar" Mode="In" />
+          <Parameter Name="TextUpdateDate" Type="datetime" Mode="In" />
+          <Parameter Name="StateAvailabilityDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="StateUpdateTimeZone" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PhoneNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="TimeZone" Type="float" Mode="In" />
+        </Function>
+        <Function Name="stp_users" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SynchronizeContacts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PhoneNumber" Type="nchar" Mode="In" />
+        </Function>
+        <Function Name="Token_SaveFull" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FullToken" Type="varchar" Mode="In" />
+          <Parameter Name="ExpireDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="UpdateAnalyticsKey" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PhoneNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="Key" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UpdateInvitations" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="UniqueKey" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="UpdateShareCodes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UniqueKey" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="UpdateSmsLogByMessageId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MessageId" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="ReceiptStatus" Type="nvarchar" Mode="In" />
+          <Parameter Name="ReceiptErrCcode" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UpdateStateOfInstallation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IsUninstalled" Type="bit" Mode="In" />
+          <Parameter Name="UninstallationReason" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UpdateStateOfInstallationTest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IsUninstalled" Type="bit" Mode="In" />
+          <Parameter Name="UninstallationReason" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UpdateStateReconnectPushDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ReconnectPushDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="UpdateStatesPreferences" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PhoneNumber" Type="nchar" Mode="In" />
+          <Parameter Name="IsHideBatteryAndCharging" Type="bit" Mode="In" />
+          <Parameter Name="IsHideManualAvailability" Type="bit" Mode="In" />
+          <Parameter Name="IsHideRingerMode" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="UpdateUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PhoneNumber" Type="nchar" Mode="In" />
+          <Parameter Name="FirstName" Type="nchar" Mode="In" />
+          <Parameter Name="LastName" Type="nchar" Mode="In" />
+          <Parameter Name="perCode" Type="nchar" Mode="In" />
+          <Parameter Name="Status" Type="bit" Mode="In" />
+          <Parameter Name="GcmRegistrationId" Type="text" Mode="In" />
+          <Parameter Name="CreateDate" Type="datetime" Mode="In" />
+          <Parameter Name="UpdateDate" Type="datetime" Mode="In" />
+          <Parameter Name="DeviceType" Type="nchar" Mode="In" />
+          <Parameter Name="AndroidId" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="User_ByPhone" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PhoneNumber" Type="nchar" Mode="In" />
+        </Function>
+        <Function Name="User_ByPhone_temp_multiPush" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PhoneNumber" Type="nchar" Mode="In" />
+        </Function>
+        <Function Name="User_UpdateOrInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pNum" Type="nchar" Mode="In" />
+          <Parameter Name="pName" Type="nchar" Mode="In" />
+          <Parameter Name="lName" Type="nchar" Mode="In" />
+          <Parameter Name="perCode" Type="nchar" Mode="In" />
+          <Parameter Name="Status" Type="bit" Mode="In" />
+          <Parameter Name="GMCRegCode" Type="text" Mode="In" />
+          <Parameter Name="DeviceType" Type="nchar" Mode="In" />
+          <Parameter Name="AccessToken" Type="nvarchar" Mode="In" />
+          <Parameter Name="UniqueExternalId" Type="bigint" Mode="In" />
+          <Parameter Name="AndroidId" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="User_UpdateOrInsert_02_06_20105" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="User_UpdateOrInsert_02-06-20105">
+          <Parameter Name="pNum" Type="nchar" Mode="In" />
+          <Parameter Name="pName" Type="nchar" Mode="In" />
+          <Parameter Name="lName" Type="nchar" Mode="In" />
+          <Parameter Name="perCode" Type="nchar" Mode="In" />
+          <Parameter Name="Status" Type="bit" Mode="In" />
+          <Parameter Name="GMCRegCode" Type="text" Mode="In" />
+          <Parameter Name="DeviceType" Type="nchar" Mode="In" />
+          <Parameter Name="AccessToken" Type="nvarchar" Mode="In" />
+          <Parameter Name="UniqueExternalId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="User_UpdateOrInsert_temp_multiPush" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pNum" Type="nvarchar" Mode="In" />
+          <Parameter Name="SdkKey" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="pName" Type="nvarchar" Mode="In" />
+          <Parameter Name="lName" Type="nvarchar" Mode="In" />
+          <Parameter Name="perCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="Status" Type="bit" Mode="In" />
+          <Parameter Name="GMCRegCode" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="DeviceType" Type="nvarchar" Mode="In" />
+          <Parameter Name="AccessToken" Type="nvarchar" Mode="In" />
+          <Parameter Name="UniqueExternalId" Type="bigint" Mode="In" />
+          <Parameter Name="AndroidId" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Users_ByPhoneNumbers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Users_ByPhoneNumbers_temp_multiPush" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="UsersUpdateAppVersion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PhoneNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="AppVersion" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UsersUpdateAppVersionCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PhoneNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="AppVersion" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="mystateApiDbModelStoreContainer">
           <EntitySet Name="AdminUsers" EntityType="Self.AdminUsers" Schema="BusinessPopup" store:Type="Tables" />
           <EntitySet Name="AvailabilityTypes" EntityType="Self.AvailabilityTypes" Schema="BusinessPopup" store:Type="Tables" />
@@ -899,6 +1311,7 @@ warning 6002: The table/view 'mystateApiDb_MultiSdk.sys.script_deployments' does
           <EntitySet Name="ContactUpdated" EntityType="Self.ContactUpdated" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CrunchesLog" EntityType="Self.CrunchesLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DailyNonMyStateContacts" EntityType="Self.DailyNonMyStateContacts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ForbidenWords" EntityType="Self.ForbidenWords" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InstallationsLog" EntityType="Self.InstallationsLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Invitations" EntityType="Self.Invitations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Logs" EntityType="Self.Logs" Schema="dbo" store:Type="Tables" />
@@ -913,6 +1326,7 @@ warning 6002: The table/view 'mystateApiDb_MultiSdk.sys.script_deployments' does
           <EntitySet Name="SmsLog" EntityType="Self.SmsLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="States" EntityType="Self.States" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TempValues" EntityType="Self.TempValues" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tokens" EntityType="Self.Tokens" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Companies" EntityType="Self.Companies" Schema="SDK" store:Type="Tables" />
@@ -940,6 +1354,13 @@ warning 6002: The table/view 'mystateApiDb_MultiSdk.sys.script_deployments' does
     [NonMyStateContactsForMarketingTemp].[Recents] AS [Recents], 
     [NonMyStateContactsForMarketingTemp].[CreatedDate] AS [CreatedDate]
     FROM [dbo].[NonMyStateContactsForMarketingTemp] AS [NonMyStateContactsForMarketingTemp]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="PushMessageResponse-13-04-2017" EntityType="Self.PushMessageResponse-13-04-2017" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [PushMessageResponse-13-04-2017].[PhoneNumber] AS [PhoneNumber], 
+    [PushMessageResponse-13-04-2017].[IsInstalled] AS [IsInstalled], 
+    [PushMessageResponse-13-04-2017].[PushCode] AS [PushCode]
+    FROM [dbo].[PushMessageResponse-13-04-2017] AS [PushMessageResponse-13-04-2017]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vw_clean_uninstall" EntityType="Self.vw_clean_uninstall" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -1631,7 +2052,7 @@ warning 6002: The table/view 'mystateApiDb_MultiSdk.sys.script_deployments' does
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SDKKey" Type="String" Nullable="false" />
+          <Property Name="SDKKey" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="AuthUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="State" Type="Int32" Nullable="false" />
@@ -2139,7 +2560,488 @@ warning 6002: The table/view 'mystateApiDb_MultiSdk.sys.script_deployments' does
             <End Role="Companies" EntitySet="Companies" />
             <End Role="ServerPushCodes" EntitySet="ServerPushCodes" />
           </AssociationSet>
+          <EntitySet Name="ForbidenWords" EntityType="mystateApiDbModel.ForbidenWord" />
+          <EntitySet Name="TempValues" EntityType="mystateApiDbModel.TempValue" />
+          <EntitySet Name="PushMessageResponse_13_04_2017" EntityType="mystateApiDbModel.PushMessageResponse_13_04_2017" />
+          <FunctionImport Name="AddAlphaInvitee" ReturnType="Collection(Decimal)">
+            <Parameter Name="inviter" Mode="In" Type="String" />
+            <Parameter Name="invitee" Mode="In" Type="String" />
+            <Parameter Name="inviteeName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AlphaList_Add_Invitee" ReturnType="Collection(Decimal)">
+            <Parameter Name="inviter" Mode="In" Type="String" />
+            <Parameter Name="invitee" Mode="In" Type="String" />
+            <Parameter Name="inviteeName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AlphaList_Delete">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AlphaList_Insert" ReturnType="Collection(Decimal)">
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="phoneNumber" Mode="In" Type="String" />
+            <Parameter Name="Inviter" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AlphaList_Update">
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="phone" Mode="In" Type="String" />
+            <Parameter Name="CreatedDate" Mode="In" Type="DateTime" />
+            <Parameter Name="UpdateDate" Mode="In" Type="DateTime" />
+            <Parameter Name="Inviter" Mode="In" Type="String" />
+            <Parameter Name="IsInstalled" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="AlphaListAddInvitee" ReturnType="Collection(Decimal)">
+            <Parameter Name="inviter" Mode="In" Type="String" />
+            <Parameter Name="invitee" Mode="In" Type="String" />
+            <Parameter Name="inviteeName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CrunchInfo_GetCrunchers" ReturnType="Collection(mystateApiDbModel.CrunchInfo_GetCrunchers_Result)">
+            <Parameter Name="crunchTargetPhone" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CrunchInfo_Insert">
+            <Parameter Name="CruncherPhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="TargetCrunchPhoneNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteBlackListedNumbers">
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteCrunch">
+            <Parameter Name="CruncherPhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="TargetCrunchPhoneNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteCrunchesByCrunchedPhoneNumber">
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteNonMyStateContact">
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteNonMyStateContactsForMarketingListByDateRange">
+            <Parameter Name="fromDate" Mode="In" Type="String" />
+            <Parameter Name="toDate" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteNonMyStatePhoneListByDateRange">
+            <Parameter Name="fromDate" Mode="In" Type="String" />
+            <Parameter Name="toDate" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetAlphaUserByPhoneNumber" ReturnType="Collection(mystateApiDbModel.GetAlphaUserByPhoneNumber_Result)">
+            <Parameter Name="phoneNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetAnalyticsKey" ReturnType="Collection(Int64)">
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetBlackListedNumbers" ReturnType="Collection(String)">
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetCrunchesByCruncherPhoneNumber" ReturnType="Collection(String)">
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetNonMyStateContactsForMarketingListByDay" ReturnType="Collection(mystateApiDbModel.GetNonMyStateContactsForMarketingListByDay_Result)">
+            <Parameter Name="fromDate" Mode="In" Type="String" />
+            <Parameter Name="toDate" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetNonMyStatePhoneListByDateRange" ReturnType="Collection(mystateApiDbModel.GetNonMyStatePhoneListByDateRange_Result)">
+            <Parameter Name="fromDate" Mode="In" Type="String" />
+            <Parameter Name="toDate" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetUserStatePreferences" ReturnType="Collection(mystateApiDbModel.GetUserStatePreferences_Result)">
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="IncrementViewCount">
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Insert_InstallationReferrerInfo">
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="Referrer" Mode="In" Type="String" />
+            <Parameter Name="AndroidId" Mode="In" Type="String" />
+            <Parameter Name="AppVersionCode" Mode="In" Type="Int32" />
+            <Parameter Name="DeviceType" Mode="In" Type="String" />
+            <Parameter Name="SdkKey" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsertAnalyticsKey">
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="Key" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="InsertBlackListedNumbers">
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsertBulkToPushResponses">
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsertDailyNonMyStateContacts" />
+          <FunctionImport Name="InsertDetailedDailyNonMyStateContacts" />
+          <FunctionImport Name="InsertInvitations" ReturnType="Collection(mystateApiDbModel.InsertInvitations_Result)">
+            <Parameter Name="Inviter" Mode="In" Type="String" />
+            <Parameter Name="Invitee" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsertInvitationsBatch">
+            <Parameter Name="inviter" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsertMyStateContactsForUser">
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsertShareCode" ReturnType="Collection(String)">
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsertSmsLog" ReturnType="Collection(Decimal)">
+            <Parameter Name="SmsType" Mode="In" Type="Int32" />
+            <Parameter Name="Sender" Mode="In" Type="String" />
+            <Parameter Name="Recipient" Mode="In" Type="String" />
+            <Parameter Name="TextSent" Mode="In" Type="String" />
+            <Parameter Name="SmsResponse" Mode="In" Type="String" />
+            <Parameter Name="MessageId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsertToLogs" ReturnType="Collection(Decimal)">
+            <Parameter Name="ClientTime" Mode="In" Type="DateTime" />
+            <Parameter Name="DBTime" Mode="In" Type="DateTime" />
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="Title" Mode="In" Type="String" />
+            <Parameter Name="Message" Mode="In" Type="String" />
+            <Parameter Name="Type" Mode="In" Type="String" />
+            <Parameter Name="Severity" Mode="In" Type="Int32" />
+            <Parameter Name="CallStack" Mode="In" Type="String" />
+            <Parameter Name="Extra" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="NonMystateContactsByPhoneNumber" ReturnType="Collection(String)">
+            <Parameter Name="UserPhoneNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PendingVerification_Select" ReturnType="Collection(String)">
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PendingVerification_Update" ReturnType="Collection(Decimal)">
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="RequestId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ServerPushCodeInstallationUpdate">
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="SDKKey" Mode="In" Type="String" />
+            <Parameter Name="IsInstalled" Mode="In" Type="Boolean" />
+            <Parameter Name="UninstallationReason" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ServerPushCodesInsertOrUpdate">
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="SDKKey" Mode="In" Type="String" />
+            <Parameter Name="ServerPushCode" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(mystateApiDbModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(mystateApiDbModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="spGetAllUsersRegistrationIds" ReturnType="Collection(mystateApiDbModel.spGetAllUsersRegistrationIds_Result)">
+            <Parameter Name="PreLastPhoneNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spGetNext100Users" ReturnType="Collection(mystateApiDbModel.spGetNext100Users_Result)">
+            <Parameter Name="PreLastPhoneNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="splitstring" IsComposable="true" ReturnType="Collection(String)">
+            <Parameter Name="stringToSplit" Mode="In" Type="String" />
+            <Parameter Name="delimiter" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="State_ByPhoneNumber" ReturnType="Collection(mystateApiDbModel.State_ByPhoneNumber_Result)">
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="StateInsert">
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="StateText" Mode="In" Type="String" />
+            <Parameter Name="FullState" Mode="In" Type="Int32" />
+            <Parameter Name="TimeZone" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="States_ByPhoneNumbers" />
+          <FunctionImport Name="States_ByPhoneNumbers_temp_multiPush" />
+          <FunctionImport Name="States_ByPhoneNumbersWithVersionCode" />
+          <FunctionImport Name="StateUpdate" ReturnType="Collection(mystateApiDbModel.StateUpdate_Result)">
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="FullState" Mode="In" Type="Int32" />
+            <Parameter Name="UpdateDate" Mode="In" Type="DateTime" />
+            <Parameter Name="Text" Mode="In" Type="String" />
+            <Parameter Name="TextUpdateDate" Mode="In" Type="DateTime" />
+            <Parameter Name="StateAvailabilityDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="StateUpdateTimeZone">
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="TimeZone" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="stp_users" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="SynchronizeContacts">
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Token_SaveFull" ReturnType="Collection(Decimal)">
+            <Parameter Name="FullToken" Mode="In" Type="String" />
+            <Parameter Name="ExpireDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateAnalyticsKey">
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="Key" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateInvitations" ReturnType="Collection(mystateApiDbModel.UpdateInvitations_Result)">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="UniqueKey" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateShareCodes" ReturnType="Collection(mystateApiDbModel.UpdateShareCodes_Result)">
+            <Parameter Name="UniqueKey" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateSmsLogByMessageId">
+            <Parameter Name="MessageId" Mode="In" Type="String" />
+            <Parameter Name="ReceiptStatus" Mode="In" Type="String" />
+            <Parameter Name="ReceiptErrCcode" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateStateOfInstallation">
+            <Parameter Name="IsUninstalled" Mode="In" Type="Boolean" />
+            <Parameter Name="UninstallationReason" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateStateOfInstallationTest">
+            <Parameter Name="IsUninstalled" Mode="In" Type="Boolean" />
+            <Parameter Name="UninstallationReason" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateStateReconnectPushDate">
+            <Parameter Name="ReconnectPushDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateStatesPreferences">
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="IsHideBatteryAndCharging" Mode="In" Type="Boolean" />
+            <Parameter Name="IsHideManualAvailability" Mode="In" Type="Boolean" />
+            <Parameter Name="IsHideRingerMode" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateUser">
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
+            <Parameter Name="perCode" Mode="In" Type="String" />
+            <Parameter Name="Status" Mode="In" Type="Boolean" />
+            <Parameter Name="GcmRegistrationId" Mode="In" Type="String" />
+            <Parameter Name="CreateDate" Mode="In" Type="DateTime" />
+            <Parameter Name="UpdateDate" Mode="In" Type="DateTime" />
+            <Parameter Name="DeviceType" Mode="In" Type="String" />
+            <Parameter Name="AndroidId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="User_ByPhone" ReturnType="Collection(mystateApiDbModel.User_ByPhone_Result)">
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="User_ByPhone_temp_multiPush" ReturnType="Collection(mystateApiDbModel.User_ByPhone_temp_multiPush_Result)">
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="User_UpdateOrInsert" ReturnType="Collection(Int32)">
+            <Parameter Name="pNum" Mode="In" Type="String" />
+            <Parameter Name="pName" Mode="In" Type="String" />
+            <Parameter Name="lName" Mode="In" Type="String" />
+            <Parameter Name="perCode" Mode="In" Type="String" />
+            <Parameter Name="Status" Mode="In" Type="Boolean" />
+            <Parameter Name="GMCRegCode" Mode="In" Type="String" />
+            <Parameter Name="DeviceType" Mode="In" Type="String" />
+            <Parameter Name="AccessToken" Mode="In" Type="String" />
+            <Parameter Name="UniqueExternalId" Mode="In" Type="Int64" />
+            <Parameter Name="AndroidId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="User_UpdateOrInsert_02_06_20105" ReturnType="Collection(Decimal)">
+            <Parameter Name="pNum" Mode="In" Type="String" />
+            <Parameter Name="pName" Mode="In" Type="String" />
+            <Parameter Name="lName" Mode="In" Type="String" />
+            <Parameter Name="perCode" Mode="In" Type="String" />
+            <Parameter Name="Status" Mode="In" Type="Boolean" />
+            <Parameter Name="GMCRegCode" Mode="In" Type="String" />
+            <Parameter Name="DeviceType" Mode="In" Type="String" />
+            <Parameter Name="AccessToken" Mode="In" Type="String" />
+            <Parameter Name="UniqueExternalId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="User_UpdateOrInsert_temp_multiPush" ReturnType="Collection(Int32)">
+            <Parameter Name="pNum" Mode="In" Type="String" />
+            <Parameter Name="SdkKey" Mode="In" Type="String" />
+            <Parameter Name="pName" Mode="In" Type="String" />
+            <Parameter Name="lName" Mode="In" Type="String" />
+            <Parameter Name="perCode" Mode="In" Type="String" />
+            <Parameter Name="Status" Mode="In" Type="Boolean" />
+            <Parameter Name="GMCRegCode" Mode="In" Type="String" />
+            <Parameter Name="DeviceType" Mode="In" Type="String" />
+            <Parameter Name="AccessToken" Mode="In" Type="String" />
+            <Parameter Name="UniqueExternalId" Mode="In" Type="Int64" />
+            <Parameter Name="AndroidId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Users_ByPhoneNumbers" />
+          <FunctionImport Name="Users_ByPhoneNumbers_temp_multiPush" />
+          <FunctionImport Name="UsersUpdateAppVersion">
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="AppVersion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UsersUpdateAppVersionCode">
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="AppVersion" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
+        <EntityType Name="ForbidenWord">
+          <Key>
+            <PropertyRef Name="Word" />
+          </Key>
+          <Property Name="Word" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="WordType" Type="Int32" />
+        </EntityType>
+        <EntityType Name="TempValue">
+          <Key>
+            <PropertyRef Name="key" />
+          </Key>
+          <Property Name="key" Type="Int32" Nullable="false" />
+          <Property Name="value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdated" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="PushMessageResponse_13_04_2017">
+          <Key>
+            <PropertyRef Name="PhoneNumber" />
+          </Key>
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsInstalled" Type="Boolean" />
+          <Property Name="PushCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="CrunchInfo_GetCrunchers_Result">
+          <Property Type="String" Name="TargetCrunchPhoneNumber" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="CruncherPhoneNumber" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="GcmRegistrationId" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="DeviceType" Nullable="true" MaxLength="15" />
+        </ComplexType>
+        <ComplexType Name="GetAlphaUserByPhoneNumber_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="phone" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="UpdateDate" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="GetNonMyStateContactsForMarketingListByDay_Result">
+          <Property Type="String" Name="PhoneNumber" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="DisplayName" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="TimesContacted" Nullable="true" />
+          <Property Type="Boolean" Name="Starred" Nullable="true" />
+          <Property Type="Boolean" Name="Favorite" Nullable="true" />
+          <Property Type="Boolean" Name="Recents" Nullable="true" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="PhoneNumber1" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="perCode" Nullable="true" MaxLength="10" />
+          <Property Type="Boolean" Name="Status" Nullable="true" />
+          <Property Type="String" Name="GcmRegistrationId" Nullable="true" MaxLength="Max" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="UpdateDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="DeviceType" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="AccessToken" Nullable="true" MaxLength="600" />
+          <Property Type="String" Name="AppVersion" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="AppVersionCode" Nullable="true" />
+          <Property Type="String" Name="AndroidId" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="GetNonMyStatePhoneListByDateRange_Result">
+          <Property Type="String" Name="PhoneNumber" Nullable="false" MaxLength="20" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="GetUserStatePreferences_Result">
+          <Property Type="Boolean" Name="IsHideRingerMode" Nullable="false" />
+          <Property Type="Boolean" Name="IsHideManualAvailability" Nullable="false" />
+          <Property Type="Boolean" Name="IsHideBatteryAndCharging" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="InsertInvitations_Result">
+          <Property Type="Int32" Name="Id" Nullable="true" />
+          <Property Type="String" Name="UniqueKey" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="spGetAllUsersRegistrationIds_Result">
+          <Property Type="String" Name="PhoneNumber" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="SDKKey" Nullable="false" MaxLength="2" />
+          <Property Type="String" Name="PushCode" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="spGetNext100Users_Result">
+          <Property Type="String" Name="PhoneNumber" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="GcmRegistrationId" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="AccessToken" Nullable="true" MaxLength="600" />
+        </ComplexType>
+        <ComplexType Name="State_ByPhoneNumber_Result">
+          <Property Type="String" Name="PhoneNumber" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="StateText" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="StateTextDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="StateAvailabilityDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="LastUpdated" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Waitings" Nullable="true" MaxLength="Max" />
+          <Property Type="Int32" Name="FullState" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="StateUpdate_Result">
+          <Property Type="String" Name="PhoneNumber" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="FullState" Nullable="true" />
+          <Property Type="String" Name="StateText" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="StateTextDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="StateAvailabilityDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="LastUpdated" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Waitings" Nullable="true" MaxLength="Max" />
+          <Property Type="Int32" Name="ViewCount" Nullable="false" />
+          <Property Type="DateTime" Name="ViewCountDate" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="isuninstalled" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="UpdateInvitations_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Inviter" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Invitee" Nullable="false" MaxLength="20" />
+          <Property Type="Boolean" Name="LinkActivate" Nullable="false" />
+          <Property Type="String" Name="UniqueKey" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="UpdateShareCodes_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="UniqueKey" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="Count" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="User_ByPhone_Result">
+          <Property Type="String" Name="PhoneNumber" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="perCode" Nullable="true" MaxLength="10" />
+          <Property Type="Boolean" Name="Status" Nullable="false" />
+          <Property Type="String" Name="GcmRegistrationId" Nullable="true" MaxLength="Max" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="UpdateDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="DeviceType" Nullable="true" MaxLength="15" />
+        </ComplexType>
+        <ComplexType Name="User_ByPhone_temp_multiPush_Result">
+          <Property Type="String" Name="PhoneNumber" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="perCode" Nullable="true" MaxLength="10" />
+          <Property Type="Boolean" Name="Status" Nullable="false" />
+          <Property Type="String" Name="GcmRegistrationId" Nullable="true" MaxLength="Max" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="UpdateDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="DeviceType" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="SDKKey" Nullable="true" />
+          <Property Type="String" Name="PushCode" Nullable="true" />
+          <Property Type="Boolean" Name="IsInstalled" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2877,6 +3779,285 @@ warning 6002: The table/view 'mystateApiDb_MultiSdk.sys.script_deployments' does
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ForbidenWords">
+            <EntityTypeMapping TypeName="mystateApiDbModel.ForbidenWord">
+              <MappingFragment StoreEntitySet="ForbidenWords">
+                <ScalarProperty Name="WordType" ColumnName="WordType" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Word" ColumnName="Word" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TempValues">
+            <EntityTypeMapping TypeName="mystateApiDbModel.TempValue">
+              <MappingFragment StoreEntitySet="TempValues">
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="key" ColumnName="key" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PushMessageResponse_13_04_2017">
+            <EntityTypeMapping TypeName="mystateApiDbModel.PushMessageResponse_13_04_2017">
+              <MappingFragment StoreEntitySet="PushMessageResponse-13-04-2017">
+                <ScalarProperty Name="PushCode" ColumnName="PushCode" />
+                <ScalarProperty Name="IsInstalled" ColumnName="IsInstalled" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AddAlphaInvitee" FunctionName="mystateApiDbModel.Store.AddAlphaInvitee" />
+          <FunctionImportMapping FunctionImportName="AlphaList_Add_Invitee" FunctionName="mystateApiDbModel.Store.AlphaList_Add_Invitee" />
+          <FunctionImportMapping FunctionImportName="AlphaList_Delete" FunctionName="mystateApiDbModel.Store.AlphaList_Delete" />
+          <FunctionImportMapping FunctionImportName="AlphaList_Insert" FunctionName="mystateApiDbModel.Store.AlphaList_Insert" />
+          <FunctionImportMapping FunctionImportName="AlphaList_Update" FunctionName="mystateApiDbModel.Store.AlphaList_Update" />
+          <FunctionImportMapping FunctionImportName="AlphaListAddInvitee" FunctionName="mystateApiDbModel.Store.AlphaListAddInvitee" />
+          <FunctionImportMapping FunctionImportName="CrunchInfo_GetCrunchers" FunctionName="mystateApiDbModel.Store.CrunchInfo_GetCrunchers">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="mystateApiDbModel.CrunchInfo_GetCrunchers_Result">
+                <ScalarProperty Name="TargetCrunchPhoneNumber" ColumnName="TargetCrunchPhoneNumber" />
+                <ScalarProperty Name="CruncherPhoneNumber" ColumnName="CruncherPhoneNumber" />
+                <ScalarProperty Name="GcmRegistrationId" ColumnName="GcmRegistrationId" />
+                <ScalarProperty Name="DeviceType" ColumnName="DeviceType" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CrunchInfo_Insert" FunctionName="mystateApiDbModel.Store.CrunchInfo_Insert" />
+          <FunctionImportMapping FunctionImportName="DeleteBlackListedNumbers" FunctionName="mystateApiDbModel.Store.DeleteBlackListedNumbers" />
+          <FunctionImportMapping FunctionImportName="DeleteCrunch" FunctionName="mystateApiDbModel.Store.DeleteCrunch" />
+          <FunctionImportMapping FunctionImportName="DeleteCrunchesByCrunchedPhoneNumber" FunctionName="mystateApiDbModel.Store.DeleteCrunchesByCrunchedPhoneNumber" />
+          <FunctionImportMapping FunctionImportName="DeleteNonMyStateContact" FunctionName="mystateApiDbModel.Store.DeleteNonMyStateContact" />
+          <FunctionImportMapping FunctionImportName="DeleteNonMyStateContactsForMarketingListByDateRange" FunctionName="mystateApiDbModel.Store.DeleteNonMyStateContactsForMarketingListByDateRange" />
+          <FunctionImportMapping FunctionImportName="DeleteNonMyStatePhoneListByDateRange" FunctionName="mystateApiDbModel.Store.DeleteNonMyStatePhoneListByDateRange" />
+          <FunctionImportMapping FunctionImportName="GetAlphaUserByPhoneNumber" FunctionName="mystateApiDbModel.Store.GetAlphaUserByPhoneNumber">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="mystateApiDbModel.GetAlphaUserByPhoneNumber_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetAnalyticsKey" FunctionName="mystateApiDbModel.Store.GetAnalyticsKey" />
+          <FunctionImportMapping FunctionImportName="GetBlackListedNumbers" FunctionName="mystateApiDbModel.Store.GetBlackListedNumbers" />
+          <FunctionImportMapping FunctionImportName="GetCrunchesByCruncherPhoneNumber" FunctionName="mystateApiDbModel.Store.GetCrunchesByCruncherPhoneNumber" />
+          <FunctionImportMapping FunctionImportName="GetNonMyStateContactsForMarketingListByDay" FunctionName="mystateApiDbModel.Store.GetNonMyStateContactsForMarketingListByDay">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="mystateApiDbModel.GetNonMyStateContactsForMarketingListByDay_Result">
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="TimesContacted" ColumnName="TimesContacted" />
+                <ScalarProperty Name="Starred" ColumnName="Starred" />
+                <ScalarProperty Name="Favorite" ColumnName="Favorite" />
+                <ScalarProperty Name="Recents" ColumnName="Recents" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="PhoneNumber1" ColumnName="PhoneNumber1" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="perCode" ColumnName="perCode" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="GcmRegistrationId" ColumnName="GcmRegistrationId" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="DeviceType" ColumnName="DeviceType" />
+                <ScalarProperty Name="AccessToken" ColumnName="AccessToken" />
+                <ScalarProperty Name="AppVersion" ColumnName="AppVersion" />
+                <ScalarProperty Name="AppVersionCode" ColumnName="AppVersionCode" />
+                <ScalarProperty Name="AndroidId" ColumnName="AndroidId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetNonMyStatePhoneListByDateRange" FunctionName="mystateApiDbModel.Store.GetNonMyStatePhoneListByDateRange">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="mystateApiDbModel.GetNonMyStatePhoneListByDateRange_Result">
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetUserStatePreferences" FunctionName="mystateApiDbModel.Store.GetUserStatePreferences">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="mystateApiDbModel.GetUserStatePreferences_Result">
+                <ScalarProperty Name="IsHideRingerMode" ColumnName="IsHideRingerMode" />
+                <ScalarProperty Name="IsHideManualAvailability" ColumnName="IsHideManualAvailability" />
+                <ScalarProperty Name="IsHideBatteryAndCharging" ColumnName="IsHideBatteryAndCharging" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="IncrementViewCount" FunctionName="mystateApiDbModel.Store.IncrementViewCount" />
+          <FunctionImportMapping FunctionImportName="Insert_InstallationReferrerInfo" FunctionName="mystateApiDbModel.Store.Insert_InstallationReferrerInfo" />
+          <FunctionImportMapping FunctionImportName="InsertAnalyticsKey" FunctionName="mystateApiDbModel.Store.InsertAnalyticsKey" />
+          <FunctionImportMapping FunctionImportName="InsertBlackListedNumbers" FunctionName="mystateApiDbModel.Store.InsertBlackListedNumbers" />
+          <FunctionImportMapping FunctionImportName="InsertBulkToPushResponses" FunctionName="mystateApiDbModel.Store.InsertBulkToPushResponses" />
+          <FunctionImportMapping FunctionImportName="InsertDailyNonMyStateContacts" FunctionName="mystateApiDbModel.Store.InsertDailyNonMyStateContacts" />
+          <FunctionImportMapping FunctionImportName="InsertDetailedDailyNonMyStateContacts" FunctionName="mystateApiDbModel.Store.InsertDetailedDailyNonMyStateContacts" />
+          <FunctionImportMapping FunctionImportName="InsertInvitations" FunctionName="mystateApiDbModel.Store.InsertInvitations">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="mystateApiDbModel.InsertInvitations_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UniqueKey" ColumnName="UniqueKey" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="InsertInvitationsBatch" FunctionName="mystateApiDbModel.Store.InsertInvitationsBatch" />
+          <FunctionImportMapping FunctionImportName="InsertMyStateContactsForUser" FunctionName="mystateApiDbModel.Store.InsertMyStateContactsForUser" />
+          <FunctionImportMapping FunctionImportName="InsertShareCode" FunctionName="mystateApiDbModel.Store.InsertShareCode" />
+          <FunctionImportMapping FunctionImportName="InsertSmsLog" FunctionName="mystateApiDbModel.Store.InsertSmsLog" />
+          <FunctionImportMapping FunctionImportName="InsertToLogs" FunctionName="mystateApiDbModel.Store.InsertToLogs" />
+          <FunctionImportMapping FunctionImportName="NonMystateContactsByPhoneNumber" FunctionName="mystateApiDbModel.Store.NonMystateContactsByPhoneNumber" />
+          <FunctionImportMapping FunctionImportName="PendingVerification_Select" FunctionName="mystateApiDbModel.Store.PendingVerification_Select" />
+          <FunctionImportMapping FunctionImportName="PendingVerification_Update" FunctionName="mystateApiDbModel.Store.PendingVerification_Update" />
+          <FunctionImportMapping FunctionImportName="ServerPushCodeInstallationUpdate" FunctionName="mystateApiDbModel.Store.ServerPushCodeInstallationUpdate" />
+          <FunctionImportMapping FunctionImportName="ServerPushCodesInsertOrUpdate" FunctionName="mystateApiDbModel.Store.ServerPushCodesInsertOrUpdate" />
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="mystateApiDbModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="mystateApiDbModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="mystateApiDbModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="mystateApiDbModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="mystateApiDbModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="mystateApiDbModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="mystateApiDbModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="mystateApiDbModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="mystateApiDbModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="spGetAllUsersRegistrationIds" FunctionName="mystateApiDbModel.Store.spGetAllUsersRegistrationIds">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="mystateApiDbModel.spGetAllUsersRegistrationIds_Result">
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SDKKey" ColumnName="SDKKey" />
+                <ScalarProperty Name="PushCode" ColumnName="PushCode" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetNext100Users" FunctionName="mystateApiDbModel.Store.spGetNext100Users">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="mystateApiDbModel.spGetNext100Users_Result">
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="GcmRegistrationId" ColumnName="GcmRegistrationId" />
+                <ScalarProperty Name="AccessToken" ColumnName="AccessToken" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="splitstring" FunctionName="mystateApiDbModel.Store.splitstring" />
+          <FunctionImportMapping FunctionImportName="State_ByPhoneNumber" FunctionName="mystateApiDbModel.Store.State_ByPhoneNumber">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="mystateApiDbModel.State_ByPhoneNumber_Result">
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="StateText" ColumnName="StateText" />
+                <ScalarProperty Name="StateTextDate" ColumnName="StateTextDate" />
+                <ScalarProperty Name="StateAvailabilityDate" ColumnName="StateAvailabilityDate" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="Waitings" ColumnName="Waitings" />
+                <ScalarProperty Name="FullState" ColumnName="FullState" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="StateInsert" FunctionName="mystateApiDbModel.Store.StateInsert" />
+          <FunctionImportMapping FunctionImportName="States_ByPhoneNumbers" FunctionName="mystateApiDbModel.Store.States_ByPhoneNumbers" />
+          <FunctionImportMapping FunctionImportName="States_ByPhoneNumbers_temp_multiPush" FunctionName="mystateApiDbModel.Store.States_ByPhoneNumbers_temp_multiPush" />
+          <FunctionImportMapping FunctionImportName="States_ByPhoneNumbersWithVersionCode" FunctionName="mystateApiDbModel.Store.States_ByPhoneNumbersWithVersionCode" />
+          <FunctionImportMapping FunctionImportName="StateUpdate" FunctionName="mystateApiDbModel.Store.StateUpdate">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="mystateApiDbModel.StateUpdate_Result">
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="FullState" ColumnName="FullState" />
+                <ScalarProperty Name="StateText" ColumnName="StateText" />
+                <ScalarProperty Name="StateTextDate" ColumnName="StateTextDate" />
+                <ScalarProperty Name="StateAvailabilityDate" ColumnName="StateAvailabilityDate" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="Waitings" ColumnName="Waitings" />
+                <ScalarProperty Name="ViewCount" ColumnName="ViewCount" />
+                <ScalarProperty Name="ViewCountDate" ColumnName="ViewCountDate" />
+                <ScalarProperty Name="isuninstalled" ColumnName="isuninstalled" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="StateUpdateTimeZone" FunctionName="mystateApiDbModel.Store.StateUpdateTimeZone" />
+          <FunctionImportMapping FunctionImportName="stp_users" FunctionName="mystateApiDbModel.Store.stp_users" />
+          <FunctionImportMapping FunctionImportName="SynchronizeContacts" FunctionName="mystateApiDbModel.Store.SynchronizeContacts" />
+          <FunctionImportMapping FunctionImportName="Token_SaveFull" FunctionName="mystateApiDbModel.Store.Token_SaveFull" />
+          <FunctionImportMapping FunctionImportName="UpdateAnalyticsKey" FunctionName="mystateApiDbModel.Store.UpdateAnalyticsKey" />
+          <FunctionImportMapping FunctionImportName="UpdateInvitations" FunctionName="mystateApiDbModel.Store.UpdateInvitations">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="mystateApiDbModel.UpdateInvitations_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Inviter" ColumnName="Inviter" />
+                <ScalarProperty Name="Invitee" ColumnName="Invitee" />
+                <ScalarProperty Name="LinkActivate" ColumnName="LinkActivate" />
+                <ScalarProperty Name="UniqueKey" ColumnName="UniqueKey" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UpdateShareCodes" FunctionName="mystateApiDbModel.Store.UpdateShareCodes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="mystateApiDbModel.UpdateShareCodes_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UniqueKey" ColumnName="UniqueKey" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UpdateSmsLogByMessageId" FunctionName="mystateApiDbModel.Store.UpdateSmsLogByMessageId" />
+          <FunctionImportMapping FunctionImportName="UpdateStateOfInstallation" FunctionName="mystateApiDbModel.Store.UpdateStateOfInstallation" />
+          <FunctionImportMapping FunctionImportName="UpdateStateOfInstallationTest" FunctionName="mystateApiDbModel.Store.UpdateStateOfInstallationTest" />
+          <FunctionImportMapping FunctionImportName="UpdateStateReconnectPushDate" FunctionName="mystateApiDbModel.Store.UpdateStateReconnectPushDate" />
+          <FunctionImportMapping FunctionImportName="UpdateStatesPreferences" FunctionName="mystateApiDbModel.Store.UpdateStatesPreferences" />
+          <FunctionImportMapping FunctionImportName="UpdateUser" FunctionName="mystateApiDbModel.Store.UpdateUser" />
+          <FunctionImportMapping FunctionImportName="User_ByPhone" FunctionName="mystateApiDbModel.Store.User_ByPhone">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="mystateApiDbModel.User_ByPhone_Result">
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="perCode" ColumnName="perCode" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="GcmRegistrationId" ColumnName="GcmRegistrationId" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="DeviceType" ColumnName="DeviceType" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="User_ByPhone_temp_multiPush" FunctionName="mystateApiDbModel.Store.User_ByPhone_temp_multiPush">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="mystateApiDbModel.User_ByPhone_temp_multiPush_Result">
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="perCode" ColumnName="perCode" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="GcmRegistrationId" ColumnName="GcmRegistrationId" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="DeviceType" ColumnName="DeviceType" />
+                <ScalarProperty Name="SDKKey" ColumnName="SDKKey" />
+                <ScalarProperty Name="PushCode" ColumnName="PushCode" />
+                <ScalarProperty Name="IsInstalled" ColumnName="IsInstalled" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="User_UpdateOrInsert" FunctionName="mystateApiDbModel.Store.User_UpdateOrInsert" />
+          <FunctionImportMapping FunctionImportName="User_UpdateOrInsert_02_06_20105" FunctionName="mystateApiDbModel.Store.User_UpdateOrInsert_02_06_20105" />
+          <FunctionImportMapping FunctionImportName="User_UpdateOrInsert_temp_multiPush" FunctionName="mystateApiDbModel.Store.User_UpdateOrInsert_temp_multiPush" />
+          <FunctionImportMapping FunctionImportName="Users_ByPhoneNumbers" FunctionName="mystateApiDbModel.Store.Users_ByPhoneNumbers" />
+          <FunctionImportMapping FunctionImportName="Users_ByPhoneNumbers_temp_multiPush" FunctionName="mystateApiDbModel.Store.Users_ByPhoneNumbers_temp_multiPush" />
+          <FunctionImportMapping FunctionImportName="UsersUpdateAppVersion" FunctionName="mystateApiDbModel.Store.UsersUpdateAppVersion" />
+          <FunctionImportMapping FunctionImportName="UsersUpdateAppVersionCode" FunctionName="mystateApiDbModel.Store.UsersUpdateAppVersionCode" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

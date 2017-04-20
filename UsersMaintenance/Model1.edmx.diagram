@@ -75,6 +75,9 @@
         <AssociationConnector Association="mystateApiDbModel.FK_Phones_Businesses" ManuallyRouted="false" />
         <AssociationConnector Association="mystateApiDbModel.fk_btbComunication_CommunicationType" ManuallyRouted="false" />
         <AssociationConnector Association="mystateApiDbModel.FK__ServerPus__Compa__79B300FB" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="mystateApiDbModel.ForbidenWord" Width="1.5" PointX="3.375" PointY="22.75" />
+        <EntityTypeShape EntityType="mystateApiDbModel.TempValue" Width="1.5" PointX="5.375" PointY="22.75" />
+        <EntityTypeShape EntityType="mystateApiDbModel.PushMessageResponse_13_04_2017" Width="1.5" PointX="7.375" PointY="22.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

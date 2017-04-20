@@ -12,6 +12,8 @@ namespace UsersMaintenance
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class mystateApiDbEntities1 : DbContext
     {
@@ -85,5 +87,1122 @@ namespace UsersMaintenance
         public virtual DbSet<database_firewall_rules> database_firewall_rules { get; set; }
         public virtual DbSet<script_deployment_status> script_deployment_status { get; set; }
         public virtual DbSet<script_deployments> script_deployments { get; set; }
+        public virtual DbSet<ForbidenWord> ForbidenWords { get; set; }
+        public virtual DbSet<TempValue> TempValues { get; set; }
+        public virtual DbSet<PushMessageResponse_13_04_2017> PushMessageResponse_13_04_2017 { get; set; }
+    
+        public virtual ObjectResult<Nullable<decimal>> AddAlphaInvitee(string inviter, string invitee, string inviteeName)
+        {
+            var inviterParameter = inviter != null ?
+                new ObjectParameter("inviter", inviter) :
+                new ObjectParameter("inviter", typeof(string));
+    
+            var inviteeParameter = invitee != null ?
+                new ObjectParameter("invitee", invitee) :
+                new ObjectParameter("invitee", typeof(string));
+    
+            var inviteeNameParameter = inviteeName != null ?
+                new ObjectParameter("inviteeName", inviteeName) :
+                new ObjectParameter("inviteeName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("AddAlphaInvitee", inviterParameter, inviteeParameter, inviteeNameParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<decimal>> AlphaList_Add_Invitee(string inviter, string invitee, string inviteeName)
+        {
+            var inviterParameter = inviter != null ?
+                new ObjectParameter("inviter", inviter) :
+                new ObjectParameter("inviter", typeof(string));
+    
+            var inviteeParameter = invitee != null ?
+                new ObjectParameter("invitee", invitee) :
+                new ObjectParameter("invitee", typeof(string));
+    
+            var inviteeNameParameter = inviteeName != null ?
+                new ObjectParameter("inviteeName", inviteeName) :
+                new ObjectParameter("inviteeName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("AlphaList_Add_Invitee", inviterParameter, inviteeParameter, inviteeNameParameter);
+        }
+    
+        public virtual int AlphaList_Delete(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AlphaList_Delete", idParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<decimal>> AlphaList_Insert(string name, string phoneNumber, string inviter)
+        {
+            var nameParameter = name != null ?
+                new ObjectParameter("name", name) :
+                new ObjectParameter("name", typeof(string));
+    
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("phoneNumber", phoneNumber) :
+                new ObjectParameter("phoneNumber", typeof(string));
+    
+            var inviterParameter = inviter != null ?
+                new ObjectParameter("Inviter", inviter) :
+                new ObjectParameter("Inviter", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("AlphaList_Insert", nameParameter, phoneNumberParameter, inviterParameter);
+        }
+    
+        public virtual int AlphaList_Update(string name, string phone, Nullable<System.DateTime> createdDate, Nullable<System.DateTime> updateDate, string inviter, Nullable<bool> isInstalled)
+        {
+            var nameParameter = name != null ?
+                new ObjectParameter("name", name) :
+                new ObjectParameter("name", typeof(string));
+    
+            var phoneParameter = phone != null ?
+                new ObjectParameter("phone", phone) :
+                new ObjectParameter("phone", typeof(string));
+    
+            var createdDateParameter = createdDate.HasValue ?
+                new ObjectParameter("CreatedDate", createdDate) :
+                new ObjectParameter("CreatedDate", typeof(System.DateTime));
+    
+            var updateDateParameter = updateDate.HasValue ?
+                new ObjectParameter("UpdateDate", updateDate) :
+                new ObjectParameter("UpdateDate", typeof(System.DateTime));
+    
+            var inviterParameter = inviter != null ?
+                new ObjectParameter("Inviter", inviter) :
+                new ObjectParameter("Inviter", typeof(string));
+    
+            var isInstalledParameter = isInstalled.HasValue ?
+                new ObjectParameter("IsInstalled", isInstalled) :
+                new ObjectParameter("IsInstalled", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AlphaList_Update", nameParameter, phoneParameter, createdDateParameter, updateDateParameter, inviterParameter, isInstalledParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<decimal>> AlphaListAddInvitee(string inviter, string invitee, string inviteeName)
+        {
+            var inviterParameter = inviter != null ?
+                new ObjectParameter("inviter", inviter) :
+                new ObjectParameter("inviter", typeof(string));
+    
+            var inviteeParameter = invitee != null ?
+                new ObjectParameter("invitee", invitee) :
+                new ObjectParameter("invitee", typeof(string));
+    
+            var inviteeNameParameter = inviteeName != null ?
+                new ObjectParameter("inviteeName", inviteeName) :
+                new ObjectParameter("inviteeName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("AlphaListAddInvitee", inviterParameter, inviteeParameter, inviteeNameParameter);
+        }
+    
+        public virtual ObjectResult<CrunchInfo_GetCrunchers_Result> CrunchInfo_GetCrunchers(string crunchTargetPhone)
+        {
+            var crunchTargetPhoneParameter = crunchTargetPhone != null ?
+                new ObjectParameter("crunchTargetPhone", crunchTargetPhone) :
+                new ObjectParameter("crunchTargetPhone", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CrunchInfo_GetCrunchers_Result>("CrunchInfo_GetCrunchers", crunchTargetPhoneParameter);
+        }
+    
+        public virtual int CrunchInfo_Insert(string cruncherPhoneNumber, string targetCrunchPhoneNumber)
+        {
+            var cruncherPhoneNumberParameter = cruncherPhoneNumber != null ?
+                new ObjectParameter("CruncherPhoneNumber", cruncherPhoneNumber) :
+                new ObjectParameter("CruncherPhoneNumber", typeof(string));
+    
+            var targetCrunchPhoneNumberParameter = targetCrunchPhoneNumber != null ?
+                new ObjectParameter("TargetCrunchPhoneNumber", targetCrunchPhoneNumber) :
+                new ObjectParameter("TargetCrunchPhoneNumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CrunchInfo_Insert", cruncherPhoneNumberParameter, targetCrunchPhoneNumberParameter);
+        }
+    
+        public virtual int DeleteBlackListedNumbers(string phoneNumber)
+        {
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("PhoneNumber", phoneNumber) :
+                new ObjectParameter("PhoneNumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteBlackListedNumbers", phoneNumberParameter);
+        }
+    
+        public virtual int DeleteCrunch(string cruncherPhoneNumber, string targetCrunchPhoneNumber)
+        {
+            var cruncherPhoneNumberParameter = cruncherPhoneNumber != null ?
+                new ObjectParameter("CruncherPhoneNumber", cruncherPhoneNumber) :
+                new ObjectParameter("CruncherPhoneNumber", typeof(string));
+    
+            var targetCrunchPhoneNumberParameter = targetCrunchPhoneNumber != null ?
+                new ObjectParameter("TargetCrunchPhoneNumber", targetCrunchPhoneNumber) :
+                new ObjectParameter("TargetCrunchPhoneNumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteCrunch", cruncherPhoneNumberParameter, targetCrunchPhoneNumberParameter);
+        }
+    
+        public virtual int DeleteCrunchesByCrunchedPhoneNumber(string phoneNumber)
+        {
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("PhoneNumber", phoneNumber) :
+                new ObjectParameter("PhoneNumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteCrunchesByCrunchedPhoneNumber", phoneNumberParameter);
+        }
+    
+        public virtual int DeleteNonMyStateContact(string phoneNumber)
+        {
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("PhoneNumber", phoneNumber) :
+                new ObjectParameter("PhoneNumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteNonMyStateContact", phoneNumberParameter);
+        }
+    
+        public virtual int DeleteNonMyStateContactsForMarketingListByDateRange(string fromDate, string toDate)
+        {
+            var fromDateParameter = fromDate != null ?
+                new ObjectParameter("fromDate", fromDate) :
+                new ObjectParameter("fromDate", typeof(string));
+    
+            var toDateParameter = toDate != null ?
+                new ObjectParameter("toDate", toDate) :
+                new ObjectParameter("toDate", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteNonMyStateContactsForMarketingListByDateRange", fromDateParameter, toDateParameter);
+        }
+    
+        public virtual int DeleteNonMyStatePhoneListByDateRange(string fromDate, string toDate)
+        {
+            var fromDateParameter = fromDate != null ?
+                new ObjectParameter("fromDate", fromDate) :
+                new ObjectParameter("fromDate", typeof(string));
+    
+            var toDateParameter = toDate != null ?
+                new ObjectParameter("toDate", toDate) :
+                new ObjectParameter("toDate", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteNonMyStatePhoneListByDateRange", fromDateParameter, toDateParameter);
+        }
+    
+        public virtual ObjectResult<GetAlphaUserByPhoneNumber_Result> GetAlphaUserByPhoneNumber(string phoneNumber)
+        {
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("phoneNumber", phoneNumber) :
+                new ObjectParameter("phoneNumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAlphaUserByPhoneNumber_Result>("GetAlphaUserByPhoneNumber", phoneNumberParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<long>> GetAnalyticsKey(string phoneNumber)
+        {
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("PhoneNumber", phoneNumber) :
+                new ObjectParameter("PhoneNumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<long>>("GetAnalyticsKey", phoneNumberParameter);
+        }
+    
+        public virtual ObjectResult<string> GetBlackListedNumbers(string phoneNumber)
+        {
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("PhoneNumber", phoneNumber) :
+                new ObjectParameter("PhoneNumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("GetBlackListedNumbers", phoneNumberParameter);
+        }
+    
+        public virtual ObjectResult<string> GetCrunchesByCruncherPhoneNumber(string phoneNumber)
+        {
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("PhoneNumber", phoneNumber) :
+                new ObjectParameter("PhoneNumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("GetCrunchesByCruncherPhoneNumber", phoneNumberParameter);
+        }
+    
+        public virtual ObjectResult<GetNonMyStateContactsForMarketingListByDay_Result> GetNonMyStateContactsForMarketingListByDay(string fromDate, string toDate)
+        {
+            var fromDateParameter = fromDate != null ?
+                new ObjectParameter("fromDate", fromDate) :
+                new ObjectParameter("fromDate", typeof(string));
+    
+            var toDateParameter = toDate != null ?
+                new ObjectParameter("toDate", toDate) :
+                new ObjectParameter("toDate", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetNonMyStateContactsForMarketingListByDay_Result>("GetNonMyStateContactsForMarketingListByDay", fromDateParameter, toDateParameter);
+        }
+    
+        public virtual ObjectResult<GetNonMyStatePhoneListByDateRange_Result> GetNonMyStatePhoneListByDateRange(string fromDate, string toDate)
+        {
+            var fromDateParameter = fromDate != null ?
+                new ObjectParameter("fromDate", fromDate) :
+                new ObjectParameter("fromDate", typeof(string));
+    
+            var toDateParameter = toDate != null ?
+                new ObjectParameter("toDate", toDate) :
+                new ObjectParameter("toDate", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetNonMyStatePhoneListByDateRange_Result>("GetNonMyStatePhoneListByDateRange", fromDateParameter, toDateParameter);
+        }
+    
+        public virtual ObjectResult<GetUserStatePreferences_Result> GetUserStatePreferences(string phoneNumber)
+        {
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("PhoneNumber", phoneNumber) :
+                new ObjectParameter("PhoneNumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetUserStatePreferences_Result>("GetUserStatePreferences", phoneNumberParameter);
+        }
+    
+        public virtual int IncrementViewCount(string phoneNumber)
+        {
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("PhoneNumber", phoneNumber) :
+                new ObjectParameter("PhoneNumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("IncrementViewCount", phoneNumberParameter);
+        }
+    
+        public virtual int Insert_InstallationReferrerInfo(string phoneNumber, string referrer, string androidId, Nullable<int> appVersionCode, string deviceType, string sdkKey)
+        {
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("PhoneNumber", phoneNumber) :
+                new ObjectParameter("PhoneNumber", typeof(string));
+    
+            var referrerParameter = referrer != null ?
+                new ObjectParameter("Referrer", referrer) :
+                new ObjectParameter("Referrer", typeof(string));
+    
+            var androidIdParameter = androidId != null ?
+                new ObjectParameter("AndroidId", androidId) :
+                new ObjectParameter("AndroidId", typeof(string));
+    
+            var appVersionCodeParameter = appVersionCode.HasValue ?
+                new ObjectParameter("AppVersionCode", appVersionCode) :
+                new ObjectParameter("AppVersionCode", typeof(int));
+    
+            var deviceTypeParameter = deviceType != null ?
+                new ObjectParameter("DeviceType", deviceType) :
+                new ObjectParameter("DeviceType", typeof(string));
+    
+            var sdkKeyParameter = sdkKey != null ?
+                new ObjectParameter("SdkKey", sdkKey) :
+                new ObjectParameter("SdkKey", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Insert_InstallationReferrerInfo", phoneNumberParameter, referrerParameter, androidIdParameter, appVersionCodeParameter, deviceTypeParameter, sdkKeyParameter);
+        }
+    
+        public virtual int InsertAnalyticsKey(string phoneNumber, Nullable<long> key)
+        {
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("PhoneNumber", phoneNumber) :
+                new ObjectParameter("PhoneNumber", typeof(string));
+    
+            var keyParameter = key.HasValue ?
+                new ObjectParameter("Key", key) :
+                new ObjectParameter("Key", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertAnalyticsKey", phoneNumberParameter, keyParameter);
+        }
+    
+        public virtual int InsertBlackListedNumbers(string phoneNumber)
+        {
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("PhoneNumber", phoneNumber) :
+                new ObjectParameter("PhoneNumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertBlackListedNumbers", phoneNumberParameter);
+        }
+    
+        public virtual int InsertBulkToPushResponses(string phoneNumber)
+        {
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("PhoneNumber", phoneNumber) :
+                new ObjectParameter("PhoneNumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertBulkToPushResponses", phoneNumberParameter);
+        }
+    
+        public virtual int InsertDailyNonMyStateContacts()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertDailyNonMyStateContacts");
+        }
+    
+        public virtual int InsertDetailedDailyNonMyStateContacts()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertDetailedDailyNonMyStateContacts");
+        }
+    
+        public virtual ObjectResult<InsertInvitations_Result> InsertInvitations(string inviter, string invitee)
+        {
+            var inviterParameter = inviter != null ?
+                new ObjectParameter("Inviter", inviter) :
+                new ObjectParameter("Inviter", typeof(string));
+    
+            var inviteeParameter = invitee != null ?
+                new ObjectParameter("Invitee", invitee) :
+                new ObjectParameter("Invitee", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<InsertInvitations_Result>("InsertInvitations", inviterParameter, inviteeParameter);
+        }
+    
+        public virtual int InsertInvitationsBatch(string inviter)
+        {
+            var inviterParameter = inviter != null ?
+                new ObjectParameter("inviter", inviter) :
+                new ObjectParameter("inviter", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertInvitationsBatch", inviterParameter);
+        }
+    
+        public virtual int InsertMyStateContactsForUser(string phoneNumber)
+        {
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("PhoneNumber", phoneNumber) :
+                new ObjectParameter("PhoneNumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertMyStateContactsForUser", phoneNumberParameter);
+        }
+    
+        public virtual ObjectResult<string> InsertShareCode(string phoneNumber)
+        {
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("PhoneNumber", phoneNumber) :
+                new ObjectParameter("PhoneNumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("InsertShareCode", phoneNumberParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<decimal>> InsertSmsLog(Nullable<int> smsType, string sender, string recipient, string textSent, string smsResponse, string messageId)
+        {
+            var smsTypeParameter = smsType.HasValue ?
+                new ObjectParameter("SmsType", smsType) :
+                new ObjectParameter("SmsType", typeof(int));
+    
+            var senderParameter = sender != null ?
+                new ObjectParameter("Sender", sender) :
+                new ObjectParameter("Sender", typeof(string));
+    
+            var recipientParameter = recipient != null ?
+                new ObjectParameter("Recipient", recipient) :
+                new ObjectParameter("Recipient", typeof(string));
+    
+            var textSentParameter = textSent != null ?
+                new ObjectParameter("TextSent", textSent) :
+                new ObjectParameter("TextSent", typeof(string));
+    
+            var smsResponseParameter = smsResponse != null ?
+                new ObjectParameter("SmsResponse", smsResponse) :
+                new ObjectParameter("SmsResponse", typeof(string));
+    
+            var messageIdParameter = messageId != null ?
+                new ObjectParameter("MessageId", messageId) :
+                new ObjectParameter("MessageId", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("InsertSmsLog", smsTypeParameter, senderParameter, recipientParameter, textSentParameter, smsResponseParameter, messageIdParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<decimal>> InsertToLogs(Nullable<System.DateTime> clientTime, Nullable<System.DateTime> dBTime, string phoneNumber, string title, string message, string type, Nullable<int> severity, string callStack, string extra)
+        {
+            var clientTimeParameter = clientTime.HasValue ?
+                new ObjectParameter("ClientTime", clientTime) :
+                new ObjectParameter("ClientTime", typeof(System.DateTime));
+    
+            var dBTimeParameter = dBTime.HasValue ?
+                new ObjectParameter("DBTime", dBTime) :
+                new ObjectParameter("DBTime", typeof(System.DateTime));
+    
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("PhoneNumber", phoneNumber) :
+                new ObjectParameter("PhoneNumber", typeof(string));
+    
+            var titleParameter = title != null ?
+                new ObjectParameter("Title", title) :
+                new ObjectParameter("Title", typeof(string));
+    
+            var messageParameter = message != null ?
+                new ObjectParameter("Message", message) :
+                new ObjectParameter("Message", typeof(string));
+    
+            var typeParameter = type != null ?
+                new ObjectParameter("Type", type) :
+                new ObjectParameter("Type", typeof(string));
+    
+            var severityParameter = severity.HasValue ?
+                new ObjectParameter("Severity", severity) :
+                new ObjectParameter("Severity", typeof(int));
+    
+            var callStackParameter = callStack != null ?
+                new ObjectParameter("CallStack", callStack) :
+                new ObjectParameter("CallStack", typeof(string));
+    
+            var extraParameter = extra != null ?
+                new ObjectParameter("Extra", extra) :
+                new ObjectParameter("Extra", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("InsertToLogs", clientTimeParameter, dBTimeParameter, phoneNumberParameter, titleParameter, messageParameter, typeParameter, severityParameter, callStackParameter, extraParameter);
+        }
+    
+        public virtual ObjectResult<string> NonMystateContactsByPhoneNumber(string userPhoneNumber)
+        {
+            var userPhoneNumberParameter = userPhoneNumber != null ?
+                new ObjectParameter("UserPhoneNumber", userPhoneNumber) :
+                new ObjectParameter("UserPhoneNumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("NonMystateContactsByPhoneNumber", userPhoneNumberParameter);
+        }
+    
+        public virtual ObjectResult<string> PendingVerification_Select(string phoneNumber)
+        {
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("PhoneNumber", phoneNumber) :
+                new ObjectParameter("PhoneNumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("PendingVerification_Select", phoneNumberParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<decimal>> PendingVerification_Update(string phoneNumber, string requestId)
+        {
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("PhoneNumber", phoneNumber) :
+                new ObjectParameter("PhoneNumber", typeof(string));
+    
+            var requestIdParameter = requestId != null ?
+                new ObjectParameter("RequestId", requestId) :
+                new ObjectParameter("RequestId", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("PendingVerification_Update", phoneNumberParameter, requestIdParameter);
+        }
+    
+        public virtual int ServerPushCodeInstallationUpdate(string phoneNumber, string sDKKey, Nullable<bool> isInstalled, string uninstallationReason)
+        {
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("PhoneNumber", phoneNumber) :
+                new ObjectParameter("PhoneNumber", typeof(string));
+    
+            var sDKKeyParameter = sDKKey != null ?
+                new ObjectParameter("SDKKey", sDKKey) :
+                new ObjectParameter("SDKKey", typeof(string));
+    
+            var isInstalledParameter = isInstalled.HasValue ?
+                new ObjectParameter("IsInstalled", isInstalled) :
+                new ObjectParameter("IsInstalled", typeof(bool));
+    
+            var uninstallationReasonParameter = uninstallationReason != null ?
+                new ObjectParameter("UninstallationReason", uninstallationReason) :
+                new ObjectParameter("UninstallationReason", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ServerPushCodeInstallationUpdate", phoneNumberParameter, sDKKeyParameter, isInstalledParameter, uninstallationReasonParameter);
+        }
+    
+        public virtual int ServerPushCodesInsertOrUpdate(string phoneNumber, string sDKKey, string serverPushCode)
+        {
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("PhoneNumber", phoneNumber) :
+                new ObjectParameter("PhoneNumber", typeof(string));
+    
+            var sDKKeyParameter = sDKKey != null ?
+                new ObjectParameter("SDKKey", sDKKey) :
+                new ObjectParameter("SDKKey", typeof(string));
+    
+            var serverPushCodeParameter = serverPushCode != null ?
+                new ObjectParameter("ServerPushCode", serverPushCode) :
+                new ObjectParameter("ServerPushCode", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ServerPushCodesInsertOrUpdate", phoneNumberParameter, sDKKeyParameter, serverPushCodeParameter);
+        }
+    
+        public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        public virtual int sp_dropdiagram(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition_Result>("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual ObjectResult<sp_helpdiagrams_Result> sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var new_diagramnameParameter = new_diagramname != null ?
+                new ObjectParameter("new_diagramname", new_diagramname) :
+                new ObjectParameter("new_diagramname", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
+        }
+    
+        public virtual int sp_upgraddiagrams()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
+        }
+    
+        public virtual ObjectResult<spGetAllUsersRegistrationIds_Result> spGetAllUsersRegistrationIds(string preLastPhoneNumber)
+        {
+            var preLastPhoneNumberParameter = preLastPhoneNumber != null ?
+                new ObjectParameter("PreLastPhoneNumber", preLastPhoneNumber) :
+                new ObjectParameter("PreLastPhoneNumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetAllUsersRegistrationIds_Result>("spGetAllUsersRegistrationIds", preLastPhoneNumberParameter);
+        }
+    
+        public virtual ObjectResult<spGetNext100Users_Result> spGetNext100Users(string preLastPhoneNumber)
+        {
+            var preLastPhoneNumberParameter = preLastPhoneNumber != null ?
+                new ObjectParameter("PreLastPhoneNumber", preLastPhoneNumber) :
+                new ObjectParameter("PreLastPhoneNumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetNext100Users_Result>("spGetNext100Users", preLastPhoneNumberParameter);
+        }
+    
+        [DbFunction("mystateApiDbEntities1", "splitstring")]
+        public virtual IQueryable<string> splitstring(string stringToSplit, string delimiter)
+        {
+            var stringToSplitParameter = stringToSplit != null ?
+                new ObjectParameter("stringToSplit", stringToSplit) :
+                new ObjectParameter("stringToSplit", typeof(string));
+    
+            var delimiterParameter = delimiter != null ?
+                new ObjectParameter("delimiter", delimiter) :
+                new ObjectParameter("delimiter", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<string>("[mystateApiDbEntities1].[splitstring](@stringToSplit, @delimiter)", stringToSplitParameter, delimiterParameter);
+        }
+    
+        public virtual ObjectResult<State_ByPhoneNumber_Result> State_ByPhoneNumber(string phoneNumber)
+        {
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("PhoneNumber", phoneNumber) :
+                new ObjectParameter("PhoneNumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<State_ByPhoneNumber_Result>("State_ByPhoneNumber", phoneNumberParameter);
+        }
+    
+        public virtual int StateInsert(string phoneNumber, string stateText, Nullable<int> fullState, Nullable<double> timeZone)
+        {
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("PhoneNumber", phoneNumber) :
+                new ObjectParameter("PhoneNumber", typeof(string));
+    
+            var stateTextParameter = stateText != null ?
+                new ObjectParameter("StateText", stateText) :
+                new ObjectParameter("StateText", typeof(string));
+    
+            var fullStateParameter = fullState.HasValue ?
+                new ObjectParameter("FullState", fullState) :
+                new ObjectParameter("FullState", typeof(int));
+    
+            var timeZoneParameter = timeZone.HasValue ?
+                new ObjectParameter("TimeZone", timeZone) :
+                new ObjectParameter("TimeZone", typeof(double));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("StateInsert", phoneNumberParameter, stateTextParameter, fullStateParameter, timeZoneParameter);
+        }
+    
+        public virtual int States_ByPhoneNumbers()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("States_ByPhoneNumbers");
+        }
+    
+        public virtual int States_ByPhoneNumbers_temp_multiPush()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("States_ByPhoneNumbers_temp_multiPush");
+        }
+    
+        public virtual int States_ByPhoneNumbersWithVersionCode()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("States_ByPhoneNumbersWithVersionCode");
+        }
+    
+        public virtual ObjectResult<StateUpdate_Result> StateUpdate(string phoneNumber, Nullable<int> fullState, Nullable<System.DateTime> updateDate, string text, Nullable<System.DateTime> textUpdateDate, Nullable<System.DateTime> stateAvailabilityDate)
+        {
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("PhoneNumber", phoneNumber) :
+                new ObjectParameter("PhoneNumber", typeof(string));
+    
+            var fullStateParameter = fullState.HasValue ?
+                new ObjectParameter("FullState", fullState) :
+                new ObjectParameter("FullState", typeof(int));
+    
+            var updateDateParameter = updateDate.HasValue ?
+                new ObjectParameter("UpdateDate", updateDate) :
+                new ObjectParameter("UpdateDate", typeof(System.DateTime));
+    
+            var textParameter = text != null ?
+                new ObjectParameter("Text", text) :
+                new ObjectParameter("Text", typeof(string));
+    
+            var textUpdateDateParameter = textUpdateDate.HasValue ?
+                new ObjectParameter("TextUpdateDate", textUpdateDate) :
+                new ObjectParameter("TextUpdateDate", typeof(System.DateTime));
+    
+            var stateAvailabilityDateParameter = stateAvailabilityDate.HasValue ?
+                new ObjectParameter("StateAvailabilityDate", stateAvailabilityDate) :
+                new ObjectParameter("StateAvailabilityDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<StateUpdate_Result>("StateUpdate", phoneNumberParameter, fullStateParameter, updateDateParameter, textParameter, textUpdateDateParameter, stateAvailabilityDateParameter);
+        }
+    
+        public virtual int StateUpdateTimeZone(string phoneNumber, Nullable<double> timeZone)
+        {
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("PhoneNumber", phoneNumber) :
+                new ObjectParameter("PhoneNumber", typeof(string));
+    
+            var timeZoneParameter = timeZone.HasValue ?
+                new ObjectParameter("TimeZone", timeZone) :
+                new ObjectParameter("TimeZone", typeof(double));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("StateUpdateTimeZone", phoneNumberParameter, timeZoneParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> stp_users()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("stp_users");
+        }
+    
+        public virtual int SynchronizeContacts(string phoneNumber)
+        {
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("PhoneNumber", phoneNumber) :
+                new ObjectParameter("PhoneNumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SynchronizeContacts", phoneNumberParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<decimal>> Token_SaveFull(string fullToken, Nullable<System.DateTime> expireDate)
+        {
+            var fullTokenParameter = fullToken != null ?
+                new ObjectParameter("FullToken", fullToken) :
+                new ObjectParameter("FullToken", typeof(string));
+    
+            var expireDateParameter = expireDate.HasValue ?
+                new ObjectParameter("ExpireDate", expireDate) :
+                new ObjectParameter("ExpireDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("Token_SaveFull", fullTokenParameter, expireDateParameter);
+        }
+    
+        public virtual int UpdateAnalyticsKey(string phoneNumber, Nullable<int> key)
+        {
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("PhoneNumber", phoneNumber) :
+                new ObjectParameter("PhoneNumber", typeof(string));
+    
+            var keyParameter = key.HasValue ?
+                new ObjectParameter("Key", key) :
+                new ObjectParameter("Key", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateAnalyticsKey", phoneNumberParameter, keyParameter);
+        }
+    
+        public virtual ObjectResult<UpdateInvitations_Result> UpdateInvitations(Nullable<int> id, string uniqueKey)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var uniqueKeyParameter = uniqueKey != null ?
+                new ObjectParameter("UniqueKey", uniqueKey) :
+                new ObjectParameter("UniqueKey", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UpdateInvitations_Result>("UpdateInvitations", idParameter, uniqueKeyParameter);
+        }
+    
+        public virtual ObjectResult<UpdateShareCodes_Result> UpdateShareCodes(string uniqueKey)
+        {
+            var uniqueKeyParameter = uniqueKey != null ?
+                new ObjectParameter("UniqueKey", uniqueKey) :
+                new ObjectParameter("UniqueKey", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UpdateShareCodes_Result>("UpdateShareCodes", uniqueKeyParameter);
+        }
+    
+        public virtual int UpdateSmsLogByMessageId(string messageId, string receiptStatus, string receiptErrCcode)
+        {
+            var messageIdParameter = messageId != null ?
+                new ObjectParameter("MessageId", messageId) :
+                new ObjectParameter("MessageId", typeof(string));
+    
+            var receiptStatusParameter = receiptStatus != null ?
+                new ObjectParameter("ReceiptStatus", receiptStatus) :
+                new ObjectParameter("ReceiptStatus", typeof(string));
+    
+            var receiptErrCcodeParameter = receiptErrCcode != null ?
+                new ObjectParameter("ReceiptErrCcode", receiptErrCcode) :
+                new ObjectParameter("ReceiptErrCcode", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateSmsLogByMessageId", messageIdParameter, receiptStatusParameter, receiptErrCcodeParameter);
+        }
+    
+        public virtual int UpdateStateOfInstallation(Nullable<bool> isUninstalled, string uninstallationReason)
+        {
+            var isUninstalledParameter = isUninstalled.HasValue ?
+                new ObjectParameter("IsUninstalled", isUninstalled) :
+                new ObjectParameter("IsUninstalled", typeof(bool));
+    
+            var uninstallationReasonParameter = uninstallationReason != null ?
+                new ObjectParameter("UninstallationReason", uninstallationReason) :
+                new ObjectParameter("UninstallationReason", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateStateOfInstallation", isUninstalledParameter, uninstallationReasonParameter);
+        }
+    
+        public virtual int UpdateStateOfInstallationTest(Nullable<bool> isUninstalled, string uninstallationReason)
+        {
+            var isUninstalledParameter = isUninstalled.HasValue ?
+                new ObjectParameter("IsUninstalled", isUninstalled) :
+                new ObjectParameter("IsUninstalled", typeof(bool));
+    
+            var uninstallationReasonParameter = uninstallationReason != null ?
+                new ObjectParameter("UninstallationReason", uninstallationReason) :
+                new ObjectParameter("UninstallationReason", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateStateOfInstallationTest", isUninstalledParameter, uninstallationReasonParameter);
+        }
+    
+        public virtual int UpdateStateReconnectPushDate(Nullable<System.DateTime> reconnectPushDate)
+        {
+            var reconnectPushDateParameter = reconnectPushDate.HasValue ?
+                new ObjectParameter("ReconnectPushDate", reconnectPushDate) :
+                new ObjectParameter("ReconnectPushDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateStateReconnectPushDate", reconnectPushDateParameter);
+        }
+    
+        public virtual int UpdateStatesPreferences(string phoneNumber, Nullable<bool> isHideBatteryAndCharging, Nullable<bool> isHideManualAvailability, Nullable<bool> isHideRingerMode)
+        {
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("PhoneNumber", phoneNumber) :
+                new ObjectParameter("PhoneNumber", typeof(string));
+    
+            var isHideBatteryAndChargingParameter = isHideBatteryAndCharging.HasValue ?
+                new ObjectParameter("IsHideBatteryAndCharging", isHideBatteryAndCharging) :
+                new ObjectParameter("IsHideBatteryAndCharging", typeof(bool));
+    
+            var isHideManualAvailabilityParameter = isHideManualAvailability.HasValue ?
+                new ObjectParameter("IsHideManualAvailability", isHideManualAvailability) :
+                new ObjectParameter("IsHideManualAvailability", typeof(bool));
+    
+            var isHideRingerModeParameter = isHideRingerMode.HasValue ?
+                new ObjectParameter("IsHideRingerMode", isHideRingerMode) :
+                new ObjectParameter("IsHideRingerMode", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateStatesPreferences", phoneNumberParameter, isHideBatteryAndChargingParameter, isHideManualAvailabilityParameter, isHideRingerModeParameter);
+        }
+    
+        public virtual int UpdateUser(string phoneNumber, string firstName, string lastName, string perCode, Nullable<bool> status, string gcmRegistrationId, Nullable<System.DateTime> createDate, Nullable<System.DateTime> updateDate, string deviceType, string androidId)
+        {
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("PhoneNumber", phoneNumber) :
+                new ObjectParameter("PhoneNumber", typeof(string));
+    
+            var firstNameParameter = firstName != null ?
+                new ObjectParameter("FirstName", firstName) :
+                new ObjectParameter("FirstName", typeof(string));
+    
+            var lastNameParameter = lastName != null ?
+                new ObjectParameter("LastName", lastName) :
+                new ObjectParameter("LastName", typeof(string));
+    
+            var perCodeParameter = perCode != null ?
+                new ObjectParameter("perCode", perCode) :
+                new ObjectParameter("perCode", typeof(string));
+    
+            var statusParameter = status.HasValue ?
+                new ObjectParameter("Status", status) :
+                new ObjectParameter("Status", typeof(bool));
+    
+            var gcmRegistrationIdParameter = gcmRegistrationId != null ?
+                new ObjectParameter("GcmRegistrationId", gcmRegistrationId) :
+                new ObjectParameter("GcmRegistrationId", typeof(string));
+    
+            var createDateParameter = createDate.HasValue ?
+                new ObjectParameter("CreateDate", createDate) :
+                new ObjectParameter("CreateDate", typeof(System.DateTime));
+    
+            var updateDateParameter = updateDate.HasValue ?
+                new ObjectParameter("UpdateDate", updateDate) :
+                new ObjectParameter("UpdateDate", typeof(System.DateTime));
+    
+            var deviceTypeParameter = deviceType != null ?
+                new ObjectParameter("DeviceType", deviceType) :
+                new ObjectParameter("DeviceType", typeof(string));
+    
+            var androidIdParameter = androidId != null ?
+                new ObjectParameter("AndroidId", androidId) :
+                new ObjectParameter("AndroidId", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateUser", phoneNumberParameter, firstNameParameter, lastNameParameter, perCodeParameter, statusParameter, gcmRegistrationIdParameter, createDateParameter, updateDateParameter, deviceTypeParameter, androidIdParameter);
+        }
+    
+        public virtual ObjectResult<User_ByPhone_Result> User_ByPhone(string phoneNumber)
+        {
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("PhoneNumber", phoneNumber) :
+                new ObjectParameter("PhoneNumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<User_ByPhone_Result>("User_ByPhone", phoneNumberParameter);
+        }
+    
+        public virtual ObjectResult<User_ByPhone_temp_multiPush_Result> User_ByPhone_temp_multiPush(string phoneNumber)
+        {
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("PhoneNumber", phoneNumber) :
+                new ObjectParameter("PhoneNumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<User_ByPhone_temp_multiPush_Result>("User_ByPhone_temp_multiPush", phoneNumberParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> User_UpdateOrInsert(string pNum, string pName, string lName, string perCode, Nullable<bool> status, string gMCRegCode, string deviceType, string accessToken, Nullable<long> uniqueExternalId, string androidId)
+        {
+            var pNumParameter = pNum != null ?
+                new ObjectParameter("pNum", pNum) :
+                new ObjectParameter("pNum", typeof(string));
+    
+            var pNameParameter = pName != null ?
+                new ObjectParameter("pName", pName) :
+                new ObjectParameter("pName", typeof(string));
+    
+            var lNameParameter = lName != null ?
+                new ObjectParameter("lName", lName) :
+                new ObjectParameter("lName", typeof(string));
+    
+            var perCodeParameter = perCode != null ?
+                new ObjectParameter("perCode", perCode) :
+                new ObjectParameter("perCode", typeof(string));
+    
+            var statusParameter = status.HasValue ?
+                new ObjectParameter("Status", status) :
+                new ObjectParameter("Status", typeof(bool));
+    
+            var gMCRegCodeParameter = gMCRegCode != null ?
+                new ObjectParameter("GMCRegCode", gMCRegCode) :
+                new ObjectParameter("GMCRegCode", typeof(string));
+    
+            var deviceTypeParameter = deviceType != null ?
+                new ObjectParameter("DeviceType", deviceType) :
+                new ObjectParameter("DeviceType", typeof(string));
+    
+            var accessTokenParameter = accessToken != null ?
+                new ObjectParameter("AccessToken", accessToken) :
+                new ObjectParameter("AccessToken", typeof(string));
+    
+            var uniqueExternalIdParameter = uniqueExternalId.HasValue ?
+                new ObjectParameter("UniqueExternalId", uniqueExternalId) :
+                new ObjectParameter("UniqueExternalId", typeof(long));
+    
+            var androidIdParameter = androidId != null ?
+                new ObjectParameter("AndroidId", androidId) :
+                new ObjectParameter("AndroidId", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("User_UpdateOrInsert", pNumParameter, pNameParameter, lNameParameter, perCodeParameter, statusParameter, gMCRegCodeParameter, deviceTypeParameter, accessTokenParameter, uniqueExternalIdParameter, androidIdParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<decimal>> User_UpdateOrInsert_02_06_20105(string pNum, string pName, string lName, string perCode, Nullable<bool> status, string gMCRegCode, string deviceType, string accessToken, Nullable<long> uniqueExternalId)
+        {
+            var pNumParameter = pNum != null ?
+                new ObjectParameter("pNum", pNum) :
+                new ObjectParameter("pNum", typeof(string));
+    
+            var pNameParameter = pName != null ?
+                new ObjectParameter("pName", pName) :
+                new ObjectParameter("pName", typeof(string));
+    
+            var lNameParameter = lName != null ?
+                new ObjectParameter("lName", lName) :
+                new ObjectParameter("lName", typeof(string));
+    
+            var perCodeParameter = perCode != null ?
+                new ObjectParameter("perCode", perCode) :
+                new ObjectParameter("perCode", typeof(string));
+    
+            var statusParameter = status.HasValue ?
+                new ObjectParameter("Status", status) :
+                new ObjectParameter("Status", typeof(bool));
+    
+            var gMCRegCodeParameter = gMCRegCode != null ?
+                new ObjectParameter("GMCRegCode", gMCRegCode) :
+                new ObjectParameter("GMCRegCode", typeof(string));
+    
+            var deviceTypeParameter = deviceType != null ?
+                new ObjectParameter("DeviceType", deviceType) :
+                new ObjectParameter("DeviceType", typeof(string));
+    
+            var accessTokenParameter = accessToken != null ?
+                new ObjectParameter("AccessToken", accessToken) :
+                new ObjectParameter("AccessToken", typeof(string));
+    
+            var uniqueExternalIdParameter = uniqueExternalId.HasValue ?
+                new ObjectParameter("UniqueExternalId", uniqueExternalId) :
+                new ObjectParameter("UniqueExternalId", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("User_UpdateOrInsert_02_06_20105", pNumParameter, pNameParameter, lNameParameter, perCodeParameter, statusParameter, gMCRegCodeParameter, deviceTypeParameter, accessTokenParameter, uniqueExternalIdParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> User_UpdateOrInsert_temp_multiPush(string pNum, string sdkKey, string pName, string lName, string perCode, Nullable<bool> status, string gMCRegCode, string deviceType, string accessToken, Nullable<long> uniqueExternalId, string androidId)
+        {
+            var pNumParameter = pNum != null ?
+                new ObjectParameter("pNum", pNum) :
+                new ObjectParameter("pNum", typeof(string));
+    
+            var sdkKeyParameter = sdkKey != null ?
+                new ObjectParameter("SdkKey", sdkKey) :
+                new ObjectParameter("SdkKey", typeof(string));
+    
+            var pNameParameter = pName != null ?
+                new ObjectParameter("pName", pName) :
+                new ObjectParameter("pName", typeof(string));
+    
+            var lNameParameter = lName != null ?
+                new ObjectParameter("lName", lName) :
+                new ObjectParameter("lName", typeof(string));
+    
+            var perCodeParameter = perCode != null ?
+                new ObjectParameter("perCode", perCode) :
+                new ObjectParameter("perCode", typeof(string));
+    
+            var statusParameter = status.HasValue ?
+                new ObjectParameter("Status", status) :
+                new ObjectParameter("Status", typeof(bool));
+    
+            var gMCRegCodeParameter = gMCRegCode != null ?
+                new ObjectParameter("GMCRegCode", gMCRegCode) :
+                new ObjectParameter("GMCRegCode", typeof(string));
+    
+            var deviceTypeParameter = deviceType != null ?
+                new ObjectParameter("DeviceType", deviceType) :
+                new ObjectParameter("DeviceType", typeof(string));
+    
+            var accessTokenParameter = accessToken != null ?
+                new ObjectParameter("AccessToken", accessToken) :
+                new ObjectParameter("AccessToken", typeof(string));
+    
+            var uniqueExternalIdParameter = uniqueExternalId.HasValue ?
+                new ObjectParameter("UniqueExternalId", uniqueExternalId) :
+                new ObjectParameter("UniqueExternalId", typeof(long));
+    
+            var androidIdParameter = androidId != null ?
+                new ObjectParameter("AndroidId", androidId) :
+                new ObjectParameter("AndroidId", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("User_UpdateOrInsert_temp_multiPush", pNumParameter, sdkKeyParameter, pNameParameter, lNameParameter, perCodeParameter, statusParameter, gMCRegCodeParameter, deviceTypeParameter, accessTokenParameter, uniqueExternalIdParameter, androidIdParameter);
+        }
+    
+        public virtual int Users_ByPhoneNumbers()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Users_ByPhoneNumbers");
+        }
+    
+        public virtual int Users_ByPhoneNumbers_temp_multiPush()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Users_ByPhoneNumbers_temp_multiPush");
+        }
+    
+        public virtual int UsersUpdateAppVersion(string phoneNumber, string appVersion)
+        {
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("PhoneNumber", phoneNumber) :
+                new ObjectParameter("PhoneNumber", typeof(string));
+    
+            var appVersionParameter = appVersion != null ?
+                new ObjectParameter("AppVersion", appVersion) :
+                new ObjectParameter("AppVersion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UsersUpdateAppVersion", phoneNumberParameter, appVersionParameter);
+        }
+    
+        public virtual int UsersUpdateAppVersionCode(string phoneNumber, Nullable<int> appVersion)
+        {
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("PhoneNumber", phoneNumber) :
+                new ObjectParameter("PhoneNumber", typeof(string));
+    
+            var appVersionParameter = appVersion.HasValue ?
+                new ObjectParameter("AppVersion", appVersion) :
+                new ObjectParameter("AppVersion", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UsersUpdateAppVersionCode", phoneNumberParameter, appVersionParameter);
+        }
     }
 }

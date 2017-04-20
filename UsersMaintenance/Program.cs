@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.Entity.SqlServer;
+using System.Data.SqlTypes;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -16,24 +17,32 @@ namespace UsersMaintenance
 {
     class Program
     {
-        private static readonly DateTime ONE_DAY_AGO = DateTime.UtcNow.AddDays(-1);
+        private static readonly DateTime ONE_DAY_AGO = DateTime.UtcNow.AddDays(-1);//new DateTime(1753, 1, 1);
         static void Main(string[] args)
         {
-            SendMePushReconnectCode();
+            DB.Log(new Exception("UsersMaintenance"));
+            //SendMePushReconnectCode();
 
-            return;
-            DB.SyncDbAndRedisContacts();
+            //return;
+            try
+            {
+                //DB.SyncDbAndRedisContacts();
 
-            List<PhoneNumberAndSdkWithGcm> phoneNumbers = DB.GetStatesWhoDidntReportSince(ONE_DAY_AGO);
+                List<PhoneNumberAndSdkWithGcm> phoneNumbers = DB.GetStatesWhoDidntReportSince(ONE_DAY_AGO);
 
-            //Canceled in order prevent Sdk users who doesn't have Gcm code from being removed
-            DB.UninstallUsersWithoutGCM(phoneNumbers);
+                //Canceled in order prevent Sdk users who doesn't have Gcm code from being removed
+                DB.UninstallUsersWithoutGCM(phoneNumbers);
 
-            phoneNumbers.RemoveAll(s => string.IsNullOrEmpty(s.GcmRegistrationId));
+                phoneNumbers.RemoveAll(s => string.IsNullOrEmpty(s.GcmRegistrationId));
 
-            DB.UninstallUsersWhoDidntReportForAWeek(phoneNumbers);
+                DB.UninstallUsersWhoDidntReportForAWeek(phoneNumbers);
 
-            SendPushToReconnectAndReportBack(phoneNumbers);
+                SendPushToReconnectAndReportBack(phoneNumbers);
+            }
+            catch (Exception ex)
+            {
+                DB.Log(ex);
+            }
         }
 
         private static void SendMePushReconnectCode()

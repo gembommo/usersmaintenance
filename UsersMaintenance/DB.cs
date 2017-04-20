@@ -10,6 +10,7 @@ using System.Linq.Expressions;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace UsersMaintenance
 {
@@ -30,20 +31,25 @@ namespace UsersMaintenance
 
             using (mystateApiDbEntities1 db = new mystateApiDbEntities1())
             {
+                //db.Database.Log = Console.WriteLine;
+
                 var skip = 0;
+                string lastKeyTaken = "";
 
                 while (true)
                 {
                     Console.WriteLine("Taking From {0} to {1}", skip, skip + NUMBERS_TO_TAKE);
 
                     var states = (from s in db.States
-                                  join u in db.Users on s.PhoneNumber equals u.PhoneNumber
-                                  join sp in db.ServerPushCodes on s.PhoneNumber equals sp.PhoneNumber
-                                  where u.DeviceType != "Apple" && sp.IsInstalled
-                                  select s).OrderBy(s => s.PhoneNumber).ToList().Skip(skip).Take(NUMBERS_TO_TAKE).ToList();
-                    if (states.Count == 0)
-                        break;
+                        join u in db.Users on s.PhoneNumber equals u.PhoneNumber
+                        join sp in db.ServerPushCodes on s.PhoneNumber equals sp.PhoneNumber
+                        where u.DeviceType != "Apple" && sp.IsInstalled
+                        && String.Compare(sp.PhoneNumber, lastKeyTaken, System.StringComparison.Ordinal) >= 0
+                        orderby sp.PhoneNumber
+                        select s).Take(NUMBERS_TO_TAKE).ToList();
+                    
                     skip += NUMBERS_TO_TAKE;
+                    lastKeyTaken = states.Last().PhoneNumber;
 
                     IDatabase redisDb = Program.Connection.GetDatabase();
 
@@ -109,7 +115,8 @@ namespace UsersMaintenance
                     {
                         Console.WriteLine("Error:" + ex);
                     }
-
+                    if (states.Count == 1)
+                        break;
                 }
             }
         }
@@ -148,6 +155,7 @@ namespace UsersMaintenance
             Console.WriteLine("Getting states who didnt report for a week");
             using (var db = new mystateApiDbEntities1())
             {
+                db.Database.Log = Console.WriteLine;
                 var phoneNumbersWithGcm = (from s in db.States
                                            join u in db.Users on s.PhoneNumber equals u.PhoneNumber
                                            join spc in db.ServerPushCodes on s.PhoneNumber equals spc.PhoneNumber
@@ -196,7 +204,6 @@ namespace UsersMaintenance
                         //redisDb.HashDelete(USER_HASH_PREFIX + serverPushCode.PhoneNumber.TrimEnd(' '),
                         //    SERVER_PUSH_CODE_FIELD_PREFIX + sdkKey, CommandFlags.FireAndForget);
                         redisDb.KeyDelete(USER_HASH_PREFIX + serverPushCode.PhoneNumber.TrimEnd(' '), CommandFlags.FireAndForget);
-
                     }
                 }
 
@@ -234,13 +241,14 @@ namespace UsersMaintenance
 
                 List<ServerPushCode> uninstalledPushCodes = new List<ServerPushCode>();
 
-                var list = phoneNumberAndSdkWithGcm.Chunk(400);
+                var chunksize = 100;
+                var list = phoneNumberAndSdkWithGcm.Chunk(chunksize);
                 int total = phoneNumberAndSdkWithGcm.Count;
                 int i = 0;
                 foreach (var item in list)
                 {
                     uninstalledPushCodes.AddRange(GetServerPushCodes(db, item.ToList()));
-                    i += 400;
+                    i += chunksize;
                     Console.WriteLine("Got {0} Uninstalled PushCodes from {1}", i, total);
                 }
 
@@ -337,6 +345,25 @@ namespace UsersMaintenance
 
                     db.SaveChanges();
                 }
+            }
+        }
+
+        public static void Log(Exception exception)
+        {
+            using (var db = new mystateApiDbEntities1())
+            {
+                db.Logs.Add(new Log()
+                {
+                    Title = "UserMaintance",
+                    CallStack = exception.StackTrace,
+                    ClientTime = DateTime.UtcNow,
+                    DBTime = DateTime.UtcNow,
+                    Message = exception.Message,
+                    Severity = 2,
+                    Extra =  JsonConvert.SerializeObject(exception.Data),
+                    Type = exception.Source
+                });
+                    db.SaveChanges();
             }
         }
     }

@@ -36,7 +36,6 @@ namespace ContactDetailsCleenupTask
         {
             try
             {
-                Ioc.Get<IMyStateLogger>().Write(new Log() {Message = "ContactDetailsCleenupTask Started" });
                 //var config = new JobHostConfiguration();
 
                 //if (config.IsDevelopment)
@@ -49,6 +48,9 @@ namespace ContactDetailsCleenupTask
                 //host.RunAndBlock();
 
                 LoadIoc();
+
+                Ioc.Get<IMyStateLogger>().Write(new Log() { Message = "ContactDetailsCleenupTask Started" });
+
                 BadWordsFilters.InsertWords(Ioc.Get<IDbCompleteDataStore>().LoadBadWords());
 
                 IContactDetailsLoader loader = Ioc.Get<IContactDetailsLoader>();

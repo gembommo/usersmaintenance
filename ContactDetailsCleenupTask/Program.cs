@@ -34,26 +34,33 @@ namespace ContactDetailsCleenupTask
         //public static SearchTree.SearchTree BadWords = new SearchTree.SearchTree();
         static void Main()
         {
-            //var config = new JobHostConfiguration();
+            try
+            {
+                Ioc.Get<IMyStateLogger>().Write(new Log() {Message = "ContactDetailsCleenupTask Started" });
+                //var config = new JobHostConfiguration();
 
-            //if (config.IsDevelopment)
-            //{
-            //    config.UseDevelopmentSettings();
-            //}
+                //if (config.IsDevelopment)
+                //{
+                //    config.UseDevelopmentSettings();
+                //}
 
-            //var host = new JobHost();
-            //// The following code ensures that the WebJob will be running continuously
-            //host.RunAndBlock();
+                //var host = new JobHost();
+                //// The following code ensures that the WebJob will be running continuously
+                //host.RunAndBlock();
 
-            LoadIoc();
+                LoadIoc();
+                BadWordsFilters.InsertWords(Ioc.Get<IDbCompleteDataStore>().LoadBadWords());
 
-            BadWordsFilters.InsertWords(Ioc.Get<IDbCompleteDataStore>().LoadBadWords());
+                IContactDetailsLoader loader = Ioc.Get<IContactDetailsLoader>();
 
-            IContactDetailsLoader loader = Ioc.Get<IContactDetailsLoader>();
+                loader.ForEach(batchCount: 1000, dellayInMilliSeconds: 100,
+                    operations: new Func<List<IContactDetails>, bool>[] { RemoveDuplicateRecords, AddNewIndexes, MarkBadWords });
 
-            loader.ForEach(batchCount: 1000, dellayInMilliSeconds: 100,
-                operations: new Func<List<IContactDetails>, bool>[] { RemoveDuplicateRecords, AddNewIndexes, MarkBadWords});
-
+            }
+            catch (Exception ex)
+            {
+                Ioc.Get<IMyStateLogger>().Write(ex);
+            }
         }
 
         private static bool RemoveDuplicateRecords(List<IContactDetails> contactDetailsList)

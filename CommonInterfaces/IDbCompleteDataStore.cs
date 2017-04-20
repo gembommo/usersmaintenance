@@ -5,7 +5,8 @@ namespace CommonInterfaces
 {
     public interface IDbCompleteDataStore
     {
-        Task InsertLog(Log log);
+        Task InsertLogAsync(Log log);
+        void InsertLog(Log log);
         void SaveBadWords(HashSet<string> words);
         void SaveBadWord(string word);
         List<SearchableWord> LoadBadWords();
@@ -15,7 +16,7 @@ namespace CommonInterfaces
 
     public class EmptyDb: IDbCompleteDataStore
     {
-        public Task InsertLog(Log log)
+        public Task InsertLogAsync(Log log)
         {
             return Task.CompletedTask;
         }
@@ -41,6 +42,10 @@ namespace CommonInterfaces
         public Task SetTempTableValue(int key, string value)
         {
             return Task.CompletedTask;
+        }
+
+        public void InsertLog(Log log)
+        {
         }
     }
 }

@@ -64,10 +64,6 @@ namespace ContactDetailsCleenupTask.Logic
                 Thread.Sleep(dellayInMilliSeconds);
 
             } while (nextBatch.Item2 != null);
-
-
-
-
         }
 
         private void UpdateMonitor(int itemsCount, string partitionKey)

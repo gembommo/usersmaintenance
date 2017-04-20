@@ -79,7 +79,6 @@ namespace ContactDetailsCleenupTask
                     }
                 }
 
-
                 var contactsDb = Ioc.Get<IAzureStorage>();
                 foreach (var itemToRemove in duplicatesToRemove)
                 {

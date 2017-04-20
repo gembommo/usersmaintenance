@@ -19,7 +19,7 @@ namespace MyState.WebApplication.DataStore.Account
     {
         readonly string _connectionString;
         readonly string _multipleActiveResultSetsString;
-        public const int DbTimeout = 30;
+        public const int DbTimeout = 240;
 
 
         public DapperDb(string stringConnectionName)
@@ -29,12 +29,13 @@ namespace MyState.WebApplication.DataStore.Account
 
             SqlConnectionStringBuilder scsb = new SqlConnectionStringBuilder(_connectionString)
             {
-                MultipleActiveResultSets = true
+                MultipleActiveResultSets = true,
+                ConnectTimeout = DbTimeout
             };
             _multipleActiveResultSetsString = scsb.ConnectionString;
         }
 
-        private SqlConnection GetOpenConnection(bool multipleActiveResultSets = false)
+        private  SqlConnection GetOpenConnection(bool multipleActiveResultSets = false)
         {
             var cs = multipleActiveResultSets ? _multipleActiveResultSetsString : _connectionString;
             var connection = new SqlConnection(cs);
@@ -110,7 +111,8 @@ where [key] = @key",
                         JsonConvert.SerializeObject(log.Param,
                             new JsonSerializerSettings() {DefaultValueHandling = DefaultValueHandling.Populate}),
                     },
-                    commandType: CommandType.StoredProcedure);
+                    commandType: CommandType.StoredProcedure,
+                    commandTimeout: DbTimeout);
             }
         }
 

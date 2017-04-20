@@ -26,7 +26,7 @@ namespace UsersMaintenance
             //return;
             try
             {
-                //DB.SyncDbAndRedisContacts();
+                DB.SyncDbAndRedisContacts();
 
                 List<PhoneNumberAndSdkWithGcm> phoneNumbers = DB.GetStatesWhoDidntReportSince(ONE_DAY_AGO);
 
@@ -104,7 +104,7 @@ namespace UsersMaintenance
             options.EndPoints.Add(RedisConsts.RedisUrl);
             options.Ssl = true;
             options.AbortOnConnectFail = false;
-            options.ConnectTimeout = 20000;
+            options.ConnectTimeout = 240000;
             options.Password = RedisConsts.RedisPassword;
             return ConnectionMultiplexer.Connect(options);
         });

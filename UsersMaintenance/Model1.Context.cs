@@ -20,6 +20,7 @@ namespace UsersMaintenance
         public mystateApiDbEntities1()
             : base("name=mystateApiDbEntities1")
         {
+            ((IObjectContextAdapter)this).ObjectContext.CommandTimeout = 240;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

@@ -16,7 +16,7 @@ namespace UsersMaintenance
 {
     public static class DB
     {
-        private const int NUMBERS_TO_TAKE = 200;
+        private const int NUMBERS_TO_TAKE = 100;
 
         public const string USER_HASH_PREFIX = "User:";
         public const string INTERESTED_USERS_LIST = "InterestedUsersList";
@@ -197,6 +197,7 @@ namespace UsersMaintenance
                     {
                         serverPushCode.IsInstalled = false;
                         serverPushCode.UninstallationReason = "NotRegistered";
+                        serverPushCode.UpdatedDate = DateTime.UtcNow;
                         //string sdkKey =
                         //    toUninstall.Find(
                         //        x => x.PhoneNumber == serverPushCode.PhoneNumber && x.CompanyId == serverPushCode.CompanyId)
@@ -259,6 +260,7 @@ namespace UsersMaintenance
                 {
                     serverPushCode.IsInstalled = false;
                     serverPushCode.UninstallationReason = "LastUpdatedOld";
+                    serverPushCode.UpdatedDate = DateTime.UtcNow;
 
                     //string sdkKey =
                     //    phoneNumberAndSdkWithGcm.Find(

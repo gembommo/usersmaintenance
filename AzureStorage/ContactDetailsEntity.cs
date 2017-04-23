@@ -13,10 +13,12 @@ namespace AzureStorage
         public static string DuplicateBackup = "ContactDetailsDuplicateBackup";
         //end
 
-        private static long _safeInstanceCount = DateTime.UtcNow.Ticks;
+        //private static long _safeInstanceCount = DateTime.UtcNow.Ticks;
+
         public ContactDetailsEntity()
         {
         }
+
         public ContactDetailsEntity(string contactPhoneNumber)
         {
             this.PartitionKey = contactPhoneNumber;
@@ -28,7 +30,7 @@ namespace AzureStorage
             this.PartitionKey = contactsDetails.PhoneNumber;
             if (string.IsNullOrEmpty(contactsDetails.RowKey))
             {
-                this.RowKey = Interlocked.Increment(ref _safeInstanceCount).ToString();
+                this.RowKey = GetRowKey(contactsDetails);
             }
             else
             {
@@ -51,6 +53,13 @@ namespace AzureStorage
             contactsDetails.Disabled = this.Disabled;
             contactsDetails.Reported = this.Reported;
             contactsDetails.ForbidenWord = this.ForbidenWord;
+        }
+
+        private string GetRowKey(IContactDetails contactsDetails)
+        {
+            string concatValue = $"{contactsDetails.Name}-{contactsDetails.SourcePhoneNumber}";
+            concatValue = DisallowedCharsInTableKeys.Replace(concatValue, "*");
+            return concatValue;
         }
 
         public string Name { get; set; }

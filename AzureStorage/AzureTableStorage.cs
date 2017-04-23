@@ -280,13 +280,20 @@ namespace AzureStorage
 
         }
 
-        public void ExecuteBatch<T>(IEnumerable<T> entities, Func<ITableEntity, TableOperation> operation, string altTableName = null) where T : class, ITableEntity
+        /// <summary>
+        /// Comment: ignore duplicates (takes the first)
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="entities"></param>
+        /// <param name="operation"></param>
+        public void ExecuteBatch<T>(IEnumerable<T> entities, Func<ITableEntity, TableOperation> operation) where T : class, ITableEntity
         {
             if (entities == null)
                 return;
 
             var batches = new Dictionary<string, TableBatchOperation>();
-            CloudTable table = _tableClient.GetTableReference(altTableName ?? tableTypeDictionary[typeof(T).FullName]);
+            HashSet<string> duplicateScreen = new HashSet<string>();
+            CloudTable table = _tableClient.GetTableReference(tableTypeDictionary[typeof(T).FullName]);
 
             foreach (var entity in entities)
             {
@@ -294,6 +301,12 @@ namespace AzureStorage
                     continue;
 
                 entity.ETag = "*";
+                string hashedKey = entity.PartitionKey + entity.RowKey;
+                if (duplicateScreen.Contains(hashedKey))
+                {
+                    continue;
+                }
+                duplicateScreen.Add(hashedKey);
 
                 if (!batches.ContainsKey(entity.PartitionKey))
                 {
@@ -304,7 +317,7 @@ namespace AzureStorage
 
                 if (batches[entity.PartitionKey].Count == 100)
                 {
-                    table.ExecuteBatch(batches[entity.PartitionKey]);
+                    ExecuteBatchSafely(table, batches[entity.PartitionKey]);
                     batches[entity.PartitionKey] = new TableBatchOperation();
                 }
             }

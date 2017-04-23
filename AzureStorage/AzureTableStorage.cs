@@ -265,7 +265,7 @@ namespace AzureStorage
 
                 if (batch.Count == 100)
                 {
-                    table.ExecuteBatch(batch);
+                    ExecuteBatchSafely(table, batch);
                     batches[entity.PartitionKey] = new TableBatchOperation();
                 }
             }
@@ -286,14 +286,14 @@ namespace AzureStorage
         /// <typeparam name="T"></typeparam>
         /// <param name="entities"></param>
         /// <param name="operation"></param>
-        public void ExecuteBatch<T>(IEnumerable<T> entities, Func<ITableEntity, TableOperation> operation) where T : class, ITableEntity
+        public void ExecuteBatch<T>(IEnumerable<T> entities, Func<ITableEntity, TableOperation> operation, string altTableName = null) where T : class, ITableEntity
         {
             if (entities == null)
                 return;
 
             var batches = new Dictionary<string, TableBatchOperation>();
             HashSet<string> duplicateScreen = new HashSet<string>();
-            CloudTable table = _tableClient.GetTableReference(tableTypeDictionary[typeof(T).FullName]);
+            CloudTable table = _tableClient.GetTableReference(altTableName ?? tableTypeDictionary[typeof(T).FullName]);
 
             foreach (var entity in entities)
             {

@@ -56,7 +56,7 @@ namespace ContactDetailsCleenupTask
                 IContactDetailsLoader loader = Ioc.Get<IContactDetailsLoader>();
 
                 loader.ForEach(batchCount: 1000, dellayInMilliSeconds: 100,
-                    operations: new Func<List<IContactDetails>, bool>[] { RemoveDuplicateRecords, AddNewIndexes, MarkBadWords });
+                    operations: new Func<List<IContactDetails>, bool>[] { OneTimeJob, RemoveDuplicateRecords, AddNewIndexes, MarkBadWords });
 
             }
             catch (Exception ex)
@@ -64,16 +64,46 @@ namespace ContactDetailsCleenupTask
                 Ioc.Get<IMyStateLogger>().Write(ex);
             }
         }
-                    itemToRemove.Value.ForEach(x => contactDetailsList.Remove(x));
+
+        private static bool OneTimeJob(List<IContactDetails> contactDetailsList)
+        {
+            var logger = Ioc.Get<IMyStateLogger>();
+
+            try
+            {
+                List<IContactDetails> entitiesToRemove = new List<IContactDetails>();
+                var contactsDb = Ioc.Get<IAzureStorage>();
+
+                foreach (var contactDetails in contactDetailsList)
+                {
+                    if (contactDetails.RowKey == "ContactDetailsEntity")//Ignore control row
+                        continue;
+
+                    if (string.IsNullOrEmpty(contactDetails.Name)
+                        || contactDetails.SourcePhoneNumber == "+942526888171"
+                        || contactDetails.SourcePhoneNumber == "+972545555555"
+                        || contactDetails.SourcePhoneNumber == "+972555555555")
+                    {
+                        entitiesToRemove.Add(contactDetails);
+                    }
                 }
+
+                if (entitiesToRemove.IsNullOrEmpty())
+                    return true;
+                contactsDb.DeleteBatch(
+                    entitiesToRemove.Select(x => new ContactDetailsEntity(x))
+                    .ToList());
+                entitiesToRemove.ForEach(x => contactDetailsList.Remove(x));
             }
             catch (Exception ex)
             {
                 logger.Write(ex);
                 return false;
             }
+
             return true;
         }
+
 
         private static bool RemoveDuplicateRecords(List<IContactDetails> contactDetailsList)
         {
@@ -127,7 +157,7 @@ namespace ContactDetailsCleenupTask
                 var contactsDb = Ioc.Get<IAzureStorage>();
                 var logger = Ioc.Get<IMyStateLogger>();
                 List<IContactDetails> contactsToRemove = new List<IContactDetails>();
-                
+
                 foreach (var contectDetails in contactDetailsList)
                 {
                     try

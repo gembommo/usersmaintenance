@@ -34,7 +34,14 @@ namespace ContactDetailsCleenupTask.Logic
             {
                 nextBatch = _elementSource.GetAllEntitiesByBatchs<ContactDetailsEntity>(batchCount, nextBatch.Item2);
                 //nextBatch = new Tuple<List<ContactDetailsEntity>, TableContinuationToken>(_elementSource.Get<ContactDetailsEntity>("+972524645991") , null);
-                
+                //nextBatch = new Tuple<List<ContactDetailsEntity>, TableContinuationToken>(new List<ContactDetailsEntity>(){new ContactDetailsEntity()
+                //{
+                //    RowKey = "test",
+                //    PartitionKey = "test",
+                //     SourcePhoneNumber = "test",
+                //}}, null);
+
+
                 List<IContactDetails> items = ModelConverter.GetContactDetailsList(nextBatch.Item1);
                 foreach (var operation in operations)
                 {

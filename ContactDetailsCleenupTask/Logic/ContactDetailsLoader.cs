@@ -35,14 +35,13 @@ namespace ContactDetailsCleenupTask.Logic
                 nextBatch = _elementSource.GetAllEntitiesByBatchs<ContactDetailsEntity>(batchCount, nextBatch.Item2);
                 //nextBatch = new Tuple<List<ContactDetailsEntity>, TableContinuationToken>(_elementSource.Get<ContactDetailsEntity>("+972524645991") , null);
                 
-                List<IContactDetails> items = ModelConverter.GetContactDetailsesList(nextBatch.Item1);
+                List<IContactDetails> items = ModelConverter.GetContactDetailsList(nextBatch.Item1);
                 foreach (var operation in operations)
                 {
                     bool result;
                     try
                     {
                         result = operation.Invoke(items);
-
                     }
                     catch (Exception ex)
                     {

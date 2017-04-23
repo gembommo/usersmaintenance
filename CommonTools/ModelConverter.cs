@@ -11,7 +11,7 @@ namespace CommonTools
 {
     public class ModelConverter
     {
-        public static List<IContactDetails> GetContactDetailsesList(List<ContactDetailsEntity> nextBatch)
+        public static List<IContactDetails> GetContactDetailsList(List<ContactDetailsEntity> nextBatch)
         {
             return nextBatch.Select(x =>
             {

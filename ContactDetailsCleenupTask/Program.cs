@@ -34,56 +34,36 @@ namespace ContactDetailsCleenupTask
         //public static SearchTree.SearchTree BadWords = new SearchTree.SearchTree();
         static void Main()
         {
-            //var config = new JobHostConfiguration();
-
-            //if (config.IsDevelopment)
-            //{
-            //    config.UseDevelopmentSettings();
-            //}
-
-            //var host = new JobHost();
-            //// The following code ensures that the WebJob will be running continuously
-            //host.RunAndBlock();
-
-            LoadIoc();
-
-            BadWordsFilters.InsertWords(Ioc.Get<IDbCompleteDataStore>().LoadBadWords());
-
-            IContactDetailsLoader loader = Ioc.Get<IContactDetailsLoader>();
-
-            loader.ForEach(batchCount: 1000, dellayInMilliSeconds: 100,
-                operations: new Func<List<IContactDetails>, bool>[] { OneTimeJob ,RemoveDuplicateRecords, AddNewIndexes, MarkBadWords});
-
-        }
-
-        private static bool OneTimeJob(List<IContactDetails> contactDetailsList)
-        {
-            var logger = Ioc.Get<IMyStateLogger>();
-
             try
             {
-                List<IContactDetails> entitiesToRemove = new List<IContactDetails>();
-                var contactsDb = Ioc.Get<IAzureStorage>();
+                //var config = new JobHostConfiguration();
 
-                foreach (var contactDetails in contactDetailsList)
-                {
-                    if (contactDetails.RowKey == "ContactDetailsEntity")//Ignore control row
-                        continue;
+                //if (config.IsDevelopment)
+                //{
+                //    config.UseDevelopmentSettings();
+                //}
 
-                    if (string.IsNullOrEmpty(contactDetails.Name)
-                        || contactDetails.SourcePhoneNumber == "+942526888171"
-                        || contactDetails.SourcePhoneNumber == "+972545555555"
-                        || contactDetails.SourcePhoneNumber == "+972555555555")
-                    {
-                        entitiesToRemove.Add(contactDetails);
-                    }
-                }
-                
-                    if (entitiesToRemove.IsNullOrEmpty())
-                        return true;
-                    contactsDb.DeleteBatch<ContactDetailsEntity>(entitiesToRemove.Select(x=> new ))
-                        
+                //var host = new JobHost();
+                //// The following code ensures that the WebJob will be running continuously
+                //host.RunAndBlock();
 
+                LoadIoc();
+
+                Ioc.Get<IMyStateLogger>().Write(new Log() { Message = "ContactDetailsCleenupTask Started" });
+
+                BadWordsFilters.InsertWords(Ioc.Get<IDbCompleteDataStore>().LoadBadWords());
+
+                IContactDetailsLoader loader = Ioc.Get<IContactDetailsLoader>();
+
+                loader.ForEach(batchCount: 1000, dellayInMilliSeconds: 100,
+                    operations: new Func<List<IContactDetails>, bool>[] { RemoveDuplicateRecords, AddNewIndexes, MarkBadWords });
+
+            }
+            catch (Exception ex)
+            {
+                Ioc.Get<IMyStateLogger>().Write(ex);
+            }
+        }
                     itemToRemove.Value.ForEach(x => contactDetailsList.Remove(x));
                 }
             }

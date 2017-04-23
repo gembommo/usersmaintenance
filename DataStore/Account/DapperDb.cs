@@ -94,8 +94,28 @@ where [key] = @key",
             }
         }
 
+        public void InsertLog(Log log)
+        {
+            using (var connection = GetOpenConnection())
+            {
+                connection.SafeExecute("InsertToLogs",
+                    new
+                    {
+                        log.Title,
+                        log.Message,
+                        Type = log.Details,
+                        log.Severity,
+                        log.CallStack,
+                        Extra =
+                        JsonConvert.SerializeObject(log.Param,
+                            new JsonSerializerSettings() { DefaultValueHandling = DefaultValueHandling.Populate }),
+                    },
+                    commandType: CommandType.StoredProcedure,
+                    commandTimeout: DbTimeout);
+            }
+        }
 
-        public async Task InsertLog(Log log)
+        public async Task InsertLogAsync(Log log)
         {
             using (var connection = await GetOpenConnectionAsync())
             {

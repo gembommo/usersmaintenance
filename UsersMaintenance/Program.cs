@@ -22,7 +22,6 @@ namespace UsersMaintenance
         {
             DB.Log(new Exception("UsersMaintenance"));
             //SendMePushReconnectCode();
-
             //return;
             try
             {
@@ -38,6 +37,8 @@ namespace UsersMaintenance
                 DB.UninstallUsersWhoDidntReportForAWeek(phoneNumbers);
 
                 SendPushToReconnectAndReportBack(phoneNumbers);
+
+                DB.Log(new Exception("UsersMaintenance finished"));
             }
             catch (Exception ex)
             {

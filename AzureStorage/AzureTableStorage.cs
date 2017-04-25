@@ -37,7 +37,6 @@ namespace AzureStorage
             {
                 _logger.Write(new Log(ex, "AzureTableStorage", Log.MessageType.Exception, "Constractor"));
             }
-
         }
 
         private void CreateTables()
@@ -54,7 +53,6 @@ namespace AzureStorage
                 CreateTable<ContactDetailsEntity>(ContactDetailsEntity.SuspectedNamesVault);
                 CreateTable<ContactDetailsEntity>(ContactDetailsEntity.DuplicateBackup);
                 CreateTable<CallDetailsEntity>();
-
             }
             catch (Exception ex)
             {
@@ -65,11 +63,10 @@ namespace AzureStorage
         private void CreateTable<T>(string additionalSecondaryTableName)
         {
             Type tableType = typeof(T);
-            string tableInitials = tableType.FullName.Substring(tableType.FullName.LastIndexOf('.')+1);
+            string tableInitials = tableType.FullName.Substring(tableType.FullName.LastIndexOf('.') + 1);
             tableTypeDictionary.Add(tableInitials + '.' + additionalSecondaryTableName, additionalSecondaryTableName);
             CloudTable table = _tableClient.GetTableReference(additionalSecondaryTableName);
             table.CreateIfNotExists();
-            
         }
 
         private void CreateTable<T>()
@@ -87,7 +84,8 @@ namespace AzureStorage
             try
             {
                 // Create the CloudTable object that represents the "people" table.
-                CloudTable table = _tableClient.GetTableReference(tableTypeDictionary[typeof(T).FullName]);
+                CloudTable table = GetTableName<T>();
+                if (table == null) return;
 
                 // Create a new customer entity.
                 // Create the TableOperation that inserts the customer entity.
@@ -107,7 +105,8 @@ namespace AzureStorage
             try
             {
                 // Create the CloudTable object that represents the "people" table.
-                CloudTable table = _tableClient.GetTableReference(tableTypeDictionary[typeof(T).FullName]);
+                CloudTable table = GetTableName<T>();
+                if (table == null) return;
 
                 // Create the batch operation.
                 TableBatchOperation batchOperation = new TableBatchOperation();
@@ -127,12 +126,8 @@ namespace AzureStorage
         {
             try
             {
-                string tableName = typeof(T).FullName;
-                if (!tableTypeDictionary.Keys.Contains(tableName))
-                    return null;
-                string tableRef = tableTypeDictionary[tableName];
-                //Create the CloudTable object that represents the "people" table.
-                CloudTable table = _tableClient.GetTableReference(tableRef);
+                CloudTable table = GetTableName<T>();
+                if (table == null) return null;
 
                 // Create the table query.
                 TableQuery<T> rangeQuery = new TableQuery<T>().Where(
@@ -153,16 +148,12 @@ namespace AzureStorage
         {
             try
             {
-                string tableName = typeof(T).FullName;
-                if (!tableTypeDictionary.Keys.Contains(tableName))
-                    return null;
-                string tableRef = tableTypeDictionary[tableName];
-                //Create the CloudTable object that represents the "people" table.
-                CloudTable table = _tableClient.GetTableReference(tableRef);
+                CloudTable table = GetTableName<T>();
+                if (table == null) return null;
 
                 // Create the table query.
                 TableQuery<T> rangeQuery = new TableQuery<T>().Where(
-                    TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, partitionKey))
+                        TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, partitionKey))
                     .Take(take);
 
                 // Loop through the results, displaying information about the entity.
@@ -180,18 +171,16 @@ namespace AzureStorage
         {
             try
             {
-                string tableName = typeof(T).FullName;
-                if (!tableTypeDictionary.Keys.Contains(tableName))
-                    return null;
-                string tableRef = tableTypeDictionary[tableName];
-                //Create the CloudTable object that represents the "people" table.
-                CloudTable table = _tableClient.GetTableReference(tableRef);
+                CloudTable table = GetTableName<T>();
+                if (table == null) return null;
 
                 // Create the table query.
                 TableQuery<T> rangeQuery = new TableQuery<T>().Where(
-                    TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, partitionKey))
-                    .Where(TableQuery.GenerateFilterConditionForDate("Timestamp", QueryComparisons.GreaterThanOrEqual, new DateTimeOffset(from)))
-                    .Where(TableQuery.GenerateFilterConditionForDate("Timestamp", QueryComparisons.LessThan, new DateTimeOffset(to)));
+                        TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, partitionKey))
+                    .Where(TableQuery.GenerateFilterConditionForDate("Timestamp", QueryComparisons.GreaterThanOrEqual,
+                        new DateTimeOffset(from)))
+                    .Where(TableQuery.GenerateFilterConditionForDate("Timestamp", QueryComparisons.LessThan,
+                        new DateTimeOffset(to)));
 
                 // Loop through the results, displaying information about the entity.
                 var result = table.ExecuteQuery(rangeQuery);
@@ -208,12 +197,8 @@ namespace AzureStorage
         {
             try
             {
-                string tableName = typeof(T).FullName;
-                if (!tableTypeDictionary.Keys.Contains(tableName))
-                    return null;
-                string tableRef = tableTypeDictionary[tableName];
-                //Create the CloudTable object that represents the "people" table.
-                CloudTable table = _tableClient.GetTableReference(tableRef);
+                CloudTable table = GetTableName<T>();
+                if (table == null) return null;
 
                 TableOperation retrieveOperation = TableOperation.Retrieve<T>(partitionKey, rowKey);
                 TableResult retrievedResult = table.Execute(retrieveOperation);
@@ -226,11 +211,62 @@ namespace AzureStorage
             return null;
         }
 
+        private CloudTable GetTableName<T>()
+        {
+            CloudTable table = null;
+            string tableName = typeof(T).FullName;
+            if (!tableTypeDictionary.Keys.Contains(tableName))
+                return null;
+            string tableRef = tableTypeDictionary[tableName];
+            //Create the CloudTable object that represents the "people" table.
+            table = _tableClient.GetTableReference(tableRef);
+            return table;
+        }
+
+
+        public List<DynamicTableEntity> SearchStartwith<T>(string partitionKey, string rowKeyStart)
+            where T : TableEntity, new()
+        {
+            CloudTable table = GetTableName<T>();
+            if (table == null) return null;
+
+            var query = new TableQuery();
+
+            var length = rowKeyStart.Length - 1;
+            var lastChar = rowKeyStart[length];
+
+            var nextLastChar = (char) (lastChar + 1);
+
+            var startsWithEndPattern = rowKeyStart.Substring(0, length) + nextLastChar;
+
+            var prefixCondition = TableQuery.CombineFilters(
+                TableQuery.GenerateFilterCondition("RowKey",
+                    QueryComparisons.GreaterThanOrEqual,
+                    rowKeyStart),
+                TableOperators.And,
+                TableQuery.GenerateFilterCondition("RowKey",
+                    QueryComparisons.LessThan,
+                    startsWithEndPattern)
+            );
+
+            var filterString = TableQuery.CombineFilters(
+                TableQuery.GenerateFilterCondition("PartitionKey",
+                    QueryComparisons.Equal,
+                    partitionKey),
+                TableOperators.And,
+                prefixCondition
+            );
+
+            var entities = table.ExecuteQuery(query.Where(filterString));
+            return entities.ToList();
+        }
+
         public void DeleteBatch<T>(string partitionKey, IEnumerable<string> rowKeys) where T : TableEntity, new()
         {
             if (string.IsNullOrEmpty(partitionKey) || rowKeys == null || !rowKeys.Any())
                 return;
-            CloudTable table = _tableClient.GetTableReference(tableTypeDictionary[typeof(T).FullName]);
+            CloudTable table = GetTableName<T>();
+            if (table == null) return;
             ExecuteBatch(rowKeys.Select(x => new DynamicTableEntity(partitionKey, x)), table, TableOperation.Delete);
         }
 
@@ -238,8 +274,10 @@ namespace AzureStorage
         {
             if (entities == null || !entities.Any())
                 return;
-            CloudTable table = _tableClient.GetTableReference(tableTypeDictionary[typeof(T).FullName]);
-            ExecuteBatch(entities.Select(x => new DynamicTableEntity(x.PartitionKey, x.RowKey)), table, TableOperation.Delete);
+            CloudTable table = GetTableName<T>();
+            if (table == null) return;
+            ExecuteBatch(entities.Select(x => new DynamicTableEntity(x.PartitionKey, x.RowKey)), table,
+                TableOperation.Delete);
         }
 
         public void DeleteBatch(IEnumerable<DynamicTableEntity> entities, CloudTable table)
@@ -247,7 +285,8 @@ namespace AzureStorage
             ExecuteBatch(entities, table, TableOperation.Delete);
         }
 
-        public void ExecuteBatch(IEnumerable<DynamicTableEntity> entities, CloudTable table, Func<ITableEntity, TableOperation> operation)
+        public void ExecuteBatch(IEnumerable<DynamicTableEntity> entities, CloudTable table,
+            Func<ITableEntity, TableOperation> operation)
         {
             var batches = new Dictionary<string, TableBatchOperation>();
 
@@ -277,7 +316,6 @@ namespace AzureStorage
                     ExecuteBatchSafely(table, batch);
                 }
             }
-
         }
 
         /// <summary>
@@ -286,14 +324,17 @@ namespace AzureStorage
         /// <typeparam name="T"></typeparam>
         /// <param name="entities"></param>
         /// <param name="operation"></param>
-        public void ExecuteBatch<T>(IEnumerable<T> entities, Func<ITableEntity, TableOperation> operation, string altTableName = null) where T : class, ITableEntity
+        public void ExecuteBatch<T>(IEnumerable<T> entities, Func<ITableEntity, TableOperation> operation,
+            string altTableName = null) where T : class, ITableEntity
         {
             if (entities == null)
                 return;
 
             var batches = new Dictionary<string, TableBatchOperation>();
             HashSet<string> duplicateScreen = new HashSet<string>();
-            CloudTable table = _tableClient.GetTableReference(altTableName ?? tableTypeDictionary[typeof(T).FullName]);
+
+            CloudTable table = GetTableName<T>();
+            if (table == null) return;
 
             foreach (var entity in entities)
             {
@@ -341,24 +382,19 @@ namespace AzureStorage
         /// <param name="operation"></param>
         public List<T> GetAll<T>() where T : class, ITableEntity, new()
         {
-            string tableName = typeof(T).FullName;
-            if (!tableTypeDictionary.Keys.Contains(tableName))
-                return null;
-            string tableRef = tableTypeDictionary[tableName];
-            //Create the CloudTable object that represents the "people" table.
-            CloudTable table = _tableClient.GetTableReference(tableRef);
+            CloudTable table = GetTableName<T>();
+            if (table == null) return null;
 
             // Create the table query.
             TableQuery<T> rangeQuery = new TableQuery<T>();
             rangeQuery = rangeQuery.Where(
-                TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.GreaterThan, ""))
-                .Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.LessThanOrEqual,
-                    "+9999999999999"))
-                    .Select(new List<string>() { "PartitionKey" })
-                    ;
+                        TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.GreaterThan, ""))
+                    .Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.LessThanOrEqual,
+                        "+9999999999999"))
+                    .Select(new List<string>() {"PartitionKey"})
+                ;
             var result = table.ExecuteQuery(rangeQuery);
             return result.ToList();
-
         }
 
 
@@ -394,7 +430,6 @@ namespace AzureStorage
             {
                 _logger.Write(ex);
             }
-
         }
 
         private void DeleteAllEntitiesInBatches(CloudTable table, Expression<Func<DynamicTableEntity, bool>> filter)
@@ -403,8 +438,8 @@ namespace AzureStorage
         }
 
         private void ProcessEntities(CloudTable table,
-                                    Action<IEnumerable<DynamicTableEntity>, CloudTable> processor,
-                                    Expression<Func<DynamicTableEntity, bool>> filter)
+            Action<IEnumerable<DynamicTableEntity>, CloudTable> processor,
+            Expression<Func<DynamicTableEntity, bool>> filter)
         {
             TableQuerySegment<DynamicTableEntity> segment = null;
 
@@ -412,7 +447,8 @@ namespace AzureStorage
             {
                 if (filter == null)
                 {
-                    segment = table.ExecuteQuerySegmented(new TableQuery().Take(100), segment == null ? null : segment.ContinuationToken);
+                    segment = table.ExecuteQuerySegmented(new TableQuery().Take(100),
+                        segment == null ? null : segment.ContinuationToken);
                 }
                 else
                 {
@@ -430,7 +466,7 @@ namespace AzureStorage
             Save(stateHistoryEntity);
         }
 
-        public void SaveStateUpdateBatch(List</*BaseStateUpdateRequest*/ object> updatedUserStateList)
+        public void SaveStateUpdateBatch(List< /*BaseStateUpdateRequest*/ object> updatedUserStateList)
         {
             //long now = DateTime.UtcNow.Ticks;
             //List<StateHistoryEntity> listToSave =
@@ -489,15 +525,18 @@ namespace AzureStorage
 
         public void SaveCalledContact(CallDetailsEntity callDetailsEntity)
         {
-            var callDetailsEntityList = new List<CallDetailsEntity> { callDetailsEntity };
+            var callDetailsEntityList = new List<CallDetailsEntity> {callDetailsEntity};
             AddSystemRow(callDetailsEntityList);
             ExecuteBatch(callDetailsEntityList, TableOperation.InsertOrReplace);
         }
 
-        public Tuple<List<T>, TableContinuationToken> GetAllEntitiesByBatchs<T>(int maxNumOfElements, TableContinuationToken continuationToken) where T : MyStateTableEntity, new()
+        public Tuple<List<T>, TableContinuationToken> GetAllEntitiesByBatchs<T>(int maxNumOfElements,
+            TableContinuationToken continuationToken) where T : MyStateTableEntity, new()
         {
             // Create the CloudTable object that represents the "people" table.
-            var table = _tableClient.GetTableReference(tableTypeDictionary[typeof(T).FullName]);
+            CloudTable table = GetTableName<T>();
+            if (table == null) return null;
+
             var tableQuery = new TableQuery<T>();
             tableQuery.Take(maxNumOfElements);
             var query = table.ExecuteQuerySegmented(
@@ -538,7 +577,7 @@ public interface IAzureStorage
     List<T> Get<T>(string lastName) where T : TableEntity, new();
     List<T> Get<T>(string partitionKey, int take) where T : TableEntity, new();
     List<T> Get<T>(string partitionKey, DateTime @from, DateTime to) where T : TableEntity, new();
-    void SaveStateUpdateBatch(List</*BaseStateUpdateRequest*/ object> updatedUserState);
+    void SaveStateUpdateBatch(List< /*BaseStateUpdateRequest*/ object> updatedUserState);
     void SaveBatch<T>(List<T> objToSaveList) where T : TableEntity, new();
     void DeleteBatch<T>(string partitionKey, IEnumerable<string> rowKeys) where T : TableEntity, new();
 
@@ -553,6 +592,8 @@ public interface IAzureStorage
 
     Tuple<List<T>, TableContinuationToken> GetAllEntitiesByBatchs<T>(int maxNumOfElements,
         TableContinuationToken continuationToken) where T : MyStateTableEntity, new();
-    void SaveLogRecord(LogRecord logRecord);
-}
 
+    void SaveLogRecord(LogRecord logRecord);
+
+    List<DynamicTableEntity> SearchStartwith<T>(string partitionKey, string rowKeyStart) where T : TableEntity, new();
+}

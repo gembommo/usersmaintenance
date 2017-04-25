@@ -82,7 +82,9 @@ namespace ContactDetailsCleenupTask
                     if (string.IsNullOrEmpty(contactDetails.Name)
                         || contactDetails.SourcePhoneNumber == "+942526888171"
                         || contactDetails.SourcePhoneNumber == "+972545555555"
-                        || contactDetails.SourcePhoneNumber == "+972555555555")
+                        || contactDetails.SourcePhoneNumber == "+972555555555"
+                        || contactDetails.SourcePhoneNumber == "+972543394753"
+                        )
                     {
                         entitiesToRemove.Add(contactDetails);
                     }

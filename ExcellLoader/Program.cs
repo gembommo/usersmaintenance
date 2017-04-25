@@ -18,15 +18,11 @@ namespace ExcellLoader
     {
         static void Main(string[] args)
         {
-            //LoadExcelToBadWordsTable(args);
-            //SendBadWordsTableViaEMail();
-            string format = "yyyy-MM-dd";
-            string str = DateTime.UtcNow.ToString(format);
-
-            Console.WriteLine(str);
+            LoadExcelToBadWordsTable(args);
+            //SendBadWordsTableViaEmail();
         }
 
-        private static void SendBadWordsTableViaEMail()
+        private static void SendBadWordsTableViaEmail()
         {
             string file = LoadBadWordsTableToExcel();
         }
